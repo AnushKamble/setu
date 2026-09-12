@@ -3,7 +3,12 @@ import pickle
 import numpy as np
 import pandas as pd
 from typing import Dict, Any, Tuple, Optional
-import lightgbm as lgb
+try:
+    import lightgbm as lgb
+    HAS_LIGHTGBM = True
+except (ImportError, OSError):
+    lgb = None
+    HAS_LIGHTGBM = False
 
 
 class DurationQuantileModel:
