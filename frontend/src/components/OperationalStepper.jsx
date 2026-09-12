@@ -75,12 +75,13 @@ export default function OperationalStepper({ activeTab, onSelectTab }) {
       gap: '8px',
       userSelect: 'none'
     }}>
-      {/* Rectangular Stepper Boxes Grid (Highlighted by design) */}
+      {/* Rectangular Stepper Boxes Grid (Single horizontal row) */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
-        gap: '10px',
-        width: '100%'
+        gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+        gap: '8px',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {PIPELINE_STAGES.map((stage, idx) => {
           const isActive = stage.allTabs.includes(activeTab)
@@ -116,7 +117,9 @@ export default function OperationalStepper({ activeTab, onSelectTab }) {
                     : 'none',
                 cursor: 'pointer',
                 textAlign: 'left',
-                minHeight: '82px',
+                minHeight: '80px',
+                minWidth: 0,
+                overflow: 'hidden',
                 transition: 'all 0.15s ease'
               }}
               className="card-surface-hover"

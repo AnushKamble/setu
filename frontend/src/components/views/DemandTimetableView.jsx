@@ -118,11 +118,11 @@ export default function DemandTimetableView({
   }, [windows, windowSectionFilter, windowTierFilter, windowSearch])
 
   const subTabs = [
-    { id: 'backlog', label: '1. Asset Backlog', badge: `${jobs?.length || 18} Jobs`, icon: Wrench },
-    { id: 'windows', label: '2. Corridor Blocks & Windows', badge: `${windows?.length || 24} Slots`, icon: Calendar },
-    { id: 'timetable', label: '3. Train Timetable (WTT)', badge: timetableData?.summary?.is_corridor_disrupted ? `${timetableData.summary.delayed_count} Delayed` : `${timetableData?.summary?.total_trains || '140+'} Trains`, badgeColor: timetableData?.summary?.is_corridor_disrupted ? '#ef4444' : '#38bdf8', icon: Train },
-    { id: 'portal', label: '4. Field Ingestion Portal', badge: 'Submit Defect', icon: Layers },
-    { id: 'topology', label: '5. Track Topology', badge: `${sections?.length || 6} Sections`, icon: GitFork },
+    { id: 'backlog', label: 'Asset Backlog', badge: `${jobs?.length || 18}`, icon: Wrench },
+    { id: 'windows', label: 'Block Windows', badge: `${windows?.length || 24}`, icon: Calendar },
+    { id: 'timetable', label: 'Train Timetable', badge: timetableData?.summary?.is_corridor_disrupted ? `${timetableData.summary.delayed_count} Del` : `${timetableData?.summary?.total_trains || '140+'}`, badgeColor: timetableData?.summary?.is_corridor_disrupted ? '#ef4444' : '#38bdf8', icon: Train },
+    { id: 'portal', label: 'Field Portal', badge: 'Submit', icon: Layers },
+    { id: 'topology', label: 'Track Topology', badge: `${sections?.length || 6}`, icon: GitFork },
   ]
 
   return (
@@ -198,16 +198,18 @@ export default function DemandTimetableView({
         </div>
       )}
 
-      {/* 2. Sub-Tab Switcher (Neatly Managed Layout) */}
+      {/* 2. Sub-Tab Switcher (Single Unified Row, Zero Horizontal Scrollbar) */}
       <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '6px',
-        background: 'rgba(24, 24, 27, 0.95)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+        gap: '6px',
+        padding: '5px',
+        background: 'rgba(20, 24, 33, 0.95)',
         border: '1px solid var(--border)',
         borderRadius: '10px',
-        overflowX: 'auto',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
         userSelect: 'none'
       }}>
         {subTabs.map(t => {
@@ -223,29 +225,35 @@ export default function DemandTimetableView({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                padding: '8px 14px',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '8px 8px',
                 borderRadius: '6px',
                 background: isActive ? 'rgba(56, 189, 248, 0.15)' : 'transparent',
                 border: `1px solid ${isActive ? 'rgba(56, 189, 248, 0.4)' : 'transparent'}`,
                 color: isActive ? '#38bdf8' : 'var(--text-secondary)',
                 fontWeight: isActive ? 700 : 500,
-                fontSize: '12.5px',
+                fontSize: '12px',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                width: '100%',
+                minWidth: 0,
+                overflow: 'hidden'
               }}
+              title={t.label}
             >
-              <IconCmp size={15} />
-              <span>{t.label}</span>
+              <IconCmp size={14} style={{ flexShrink: 0 }} />
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.label}</span>
               {t.badge && (
                 <span style={{
-                  fontSize: '10px',
-                  padding: '2px 6px',
+                  fontSize: '9.5px',
+                  padding: '1.5px 5px',
                   borderRadius: '4px',
-                  background: isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(255, 255, 255, 0.06)',
+                  background: isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(255, 255, 255, 0.07)',
                   color: t.badgeColor || (isActive ? '#38bdf8' : 'var(--text-muted)'),
-                  fontWeight: 700
+                  fontWeight: 700,
+                  flexShrink: 0
                 }}>
                   {t.badge}
                 </span>

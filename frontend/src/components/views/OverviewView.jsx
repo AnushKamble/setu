@@ -27,74 +27,73 @@ export default function OverviewView({
         </p>
       </div>
 
-      {/* 2. Fluid KPI Strip (De-boxed: Frameless, spacious metrics) */}
+      {/* 2. Fluid KPI Strip (Spacious, perfectly aligned single row) */}
       <div style={{
         background: 'var(--bg-card)',
-        borderRadius: '16px',
-        padding: '20px 32px',
+        borderRadius: '14px',
+        padding: '20px 28px',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '24px',
+        gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+        gap: '20px',
         border: '1px solid var(--border-subtle)'
       }}>
-        <div>
+        <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--text-muted)' }}>
             Open Jobs
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--text-primary)', marginTop: '2px' }}>
+          <div style={{ fontSize: '30px', fontWeight: 800, color: 'var(--text-primary)', marginTop: '2px', lineHeight: 1.1 }}>
             {openJobsCount}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             Active across 6 track sections
           </div>
         </div>
 
-        <div>
+        <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--text-muted)' }}>
             Planned Possessions
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--accent-emerald)', marginTop: '2px' }}>
+          <div style={{ fontSize: '30px', fontWeight: 800, color: 'var(--accent-emerald)', marginTop: '2px', lineHeight: 1.1 }}>
             {plannedPossessions}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {comparison ? `Reduced from ${comparison.baseline.possessions_opened} baseline` : 'Optimized multi-dept blocks'}
           </div>
         </div>
 
-        <div>
+        <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--text-muted)' }}>
             Block Hours
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--text-primary)', marginTop: '2px' }}>
+          <div style={{ fontSize: '30px', fontWeight: 800, color: 'var(--text-primary)', marginTop: '2px', lineHeight: 1.1 }}>
             {blockHours} h
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {comparison ? `${(comparison.deltas.downtime_minutes_saved / 60).toFixed(1)}h saved vs manual` : 'Weekly total downtime'}
           </div>
         </div>
 
-        <div>
+        <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--text-muted)' }}>
             Critical Deferred
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--accent-emerald)', marginTop: '2px' }}>
+          <div style={{ fontSize: '30px', fontWeight: 800, color: 'var(--accent-emerald)', marginTop: '2px', lineHeight: 1.1 }}>
             {criticalDeferred}
           </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             100% statutory compliance
           </div>
         </div>
       </div>
 
       {/* 3. Main Section: Left Planning Status + Right Attention Panel */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '28px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.35fr 1fr', gap: '24px' }}>
         {/* Left: Corridor Planning Status */}
-        {/* Left: Corridor Planning Status */}
-        <div className="card-surface" style={{ padding: '24px 28px' }}>
+        <div className="card-surface" style={{ padding: '22px 24px' }}>
           <div className="card-title-row">
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+                <h3 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
                   Corridor Planning Snapshot
                 </h3>
                 <span style={{
@@ -104,7 +103,8 @@ export default function OverviewView({
                   color: '#38bdf8',
                   padding: '2px 8px',
                   borderRadius: '4px',
-                  border: '1px solid rgba(56, 189, 248, 0.3)'
+                  border: '1px solid rgba(56, 189, 248, 0.3)',
+                  whiteSpace: 'nowrap'
                 }}>
                   {sections?.length || 0} TRACK SECTIONS
                 </span>
@@ -113,17 +113,17 @@ export default function OverviewView({
                 Multi-department synchronized possessions across all active corridor track sections.
               </p>
             </div>
-            <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+            <span style={{ fontSize: '11px', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
               Week of 14–20 Sep 2026
             </span>
           </div>
 
-          {/* Tabular Scrollable Container */}
+          {/* Tabular Clean Container - No Horizontal Scrollbar */}
           <div style={{
             marginTop: '16px',
             maxHeight: '380px',
             overflowY: 'auto',
-            overflowX: 'auto',
+            overflowX: 'hidden',
             border: '1px solid var(--border)',
             borderRadius: '8px',
             background: 'rgba(0, 0, 0, 0.2)'
@@ -137,13 +137,13 @@ export default function OverviewView({
                 zIndex: 2
               }}>
                 <tr style={{ color: 'var(--text-muted)', fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  <th style={{ padding: '10px 12px' }}>Track Section</th>
-                  <th style={{ padding: '10px 12px' }}>Line & Type</th>
-                  <th style={{ padding: '10px 12px' }}>Length</th>
-                  <th style={{ padding: '10px 12px' }}>Speed</th>
-                  <th style={{ padding: '10px 12px', textAlign: 'center' }}>Active Jobs</th>
-                  <th style={{ padding: '10px 12px', textAlign: 'center' }}>Joint Blocks</th>
-                  <th style={{ padding: '10px 12px', textAlign: 'right' }}>Action</th>
+                  <th style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>Track Section</th>
+                  <th style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>Line & Type</th>
+                  <th style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>Length</th>
+                  <th style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>Speed</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'center', whiteSpace: 'nowrap' }}>Active Jobs</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'center', whiteSpace: 'nowrap' }}>Joint Blocks</th>
+                  <th style={{ padding: '10px 12px', textAlign: 'right', whiteSpace: 'nowrap' }}>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -163,58 +163,64 @@ export default function OverviewView({
                       onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                     >
                       <td style={{ padding: '10px 12px' }}>
-                        <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                        <div style={{ fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
                           {sec.name}
                         </div>
                         <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                           {sec.id}
                         </div>
                       </td>
-                      <td style={{ padding: '10px 12px' }}>
+                      <td style={{ padding: '10px 12px', whiteSpace: 'nowrap' }}>
                         <span style={{
-                          fontSize: '10.5px',
+                          fontSize: '10px',
                           fontWeight: 700,
                           padding: '2px 7px',
                           borderRadius: '4px',
                           background: isUp ? 'rgba(56, 189, 248, 0.12)' : 'rgba(16, 185, 129, 0.12)',
                           color: isUp ? '#38bdf8' : '#34d399',
-                          border: `1px solid ${isUp ? 'rgba(56, 189, 248, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
+                          border: `1px solid ${isUp ? 'rgba(56, 189, 248, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap'
                         }}>
                           {sec.track_type || 'MAIN'}
                         </span>
                       </td>
-                      <td style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '10px 12px', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
                         {sec.length_km} km
                       </td>
-                      <td style={{ padding: '10px 12px', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '10px 12px', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
                         {sec.max_speed_kmh} km/h
                       </td>
-                      <td style={{ padding: '10px 12px', textAlign: 'center' }}>
+                      <td style={{ padding: '10px 12px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                         <span style={{
                           fontSize: '11px',
                           fontWeight: 600,
                           color: secJobs > 0 ? '#fbbf24' : 'var(--text-muted)',
                           background: secJobs > 0 ? 'rgba(251, 191, 36, 0.1)' : 'transparent',
-                          padding: '2px 8px',
-                          borderRadius: '9999px'
+                          padding: '3px 10px',
+                          borderRadius: '9999px',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap'
                         }}>
                           {secJobs} {secJobs === 1 ? 'job' : 'jobs'}
                         </span>
                       </td>
-                      <td style={{ padding: '10px 12px', textAlign: 'center' }}>
+                      <td style={{ padding: '10px 12px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                         <span style={{
                           fontSize: '11px',
                           fontWeight: 700,
                           color: secBlocks > 0 ? '#34d399' : 'var(--text-muted)',
                           background: secBlocks > 0 ? 'rgba(16, 185, 129, 0.12)' : 'transparent',
                           border: secBlocks > 0 ? '1px solid rgba(16, 185, 129, 0.3)' : 'none',
-                          padding: '2px 8px',
-                          borderRadius: '9999px'
+                          padding: '3px 10px',
+                          borderRadius: '9999px',
+                          display: 'inline-block',
+                          whiteSpace: 'nowrap'
                         }}>
                           {secBlocks} {secBlocks === 1 ? 'block' : 'blocks'}
                         </span>
                       </td>
-                      <td style={{ padding: '10px 12px', textAlign: 'right' }}>
+                      <td style={{ padding: '10px 12px', textAlign: 'right', whiteSpace: 'nowrap' }}>
                         <button
                           onClick={() => onNavigate('planner')}
                           style={{
@@ -225,7 +231,8 @@ export default function OverviewView({
                             padding: '3px 8px',
                             fontSize: '11px',
                             cursor: 'pointer',
-                            fontWeight: 600
+                            fontWeight: 600,
+                            whiteSpace: 'nowrap'
                           }}
                           title={`Open ${sec.name} in Possession Planner`}
                         >

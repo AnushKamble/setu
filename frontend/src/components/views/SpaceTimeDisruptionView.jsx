@@ -35,9 +35,9 @@ export default function SpaceTimeDisruptionView({
   }, [activeSubTab])
 
   const subTabs = [
-    { id: 'planner', label: '1. Corridor Possession Gantt', badge: '7-Day Horizon', badgeColor: '#10b981', icon: Calendar },
-    { id: 'marey', label: '2. Marey Distance-Time Chart', badge: 'Live String Trajectories', badgeColor: '#38bdf8', icon: TrendingUp },
-    { id: 'whatif', label: '3. What-If Disruption Simulator', badge: isCorridorDisrupted ? 'Disruption Active' : 'Resilience Test', badgeColor: isCorridorDisrupted ? '#ef4444' : '#f59e0b', icon: Zap },
+    { id: 'planner', label: 'Corridor Gantt', badge: '7-Day', badgeColor: '#10b981', icon: Calendar },
+    { id: 'marey', label: 'Marey String Chart', badge: 'Trajectories', badgeColor: '#38bdf8', icon: TrendingUp },
+    { id: 'whatif', label: 'Disruption Simulator', badge: isCorridorDisrupted ? 'Active Delay' : 'What-If', badgeColor: isCorridorDisrupted ? '#ef4444' : '#f59e0b', icon: Zap },
   ]
 
   return (
@@ -97,16 +97,18 @@ export default function SpaceTimeDisruptionView({
         )}
       </div>
 
-      {/* 2. Sub-Tab Switcher */}
+      {/* 2. Sub-Tab Switcher (Single Unified Row, Zero Horizontal Scrollbar) */}
       <div style={{
-        display: 'flex',
-        alignItems: 'center',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
         gap: '8px',
-        padding: '6px',
-        background: 'rgba(24, 24, 27, 0.95)',
+        padding: '5px',
+        background: 'rgba(20, 24, 33, 0.95)',
         border: '1px solid var(--border)',
         borderRadius: '10px',
-        overflowX: 'auto',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
         userSelect: 'none'
       }}>
         {subTabs.map(t => {
@@ -119,8 +121,9 @@ export default function SpaceTimeDisruptionView({
               style={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '8px',
-                padding: '8px 14px',
+                padding: '8px 12px',
                 borderRadius: '6px',
                 background: isActive ? 'rgba(56, 189, 248, 0.15)' : 'transparent',
                 border: `1px solid ${isActive ? 'rgba(56, 189, 248, 0.4)' : 'transparent'}`,
@@ -129,19 +132,24 @@ export default function SpaceTimeDisruptionView({
                 fontSize: '12.5px',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                width: '100%',
+                minWidth: 0,
+                overflow: 'hidden'
               }}
+              title={t.label}
             >
-              <IconCmp size={15} />
-              <span>{t.label}</span>
+              <IconCmp size={15} style={{ flexShrink: 0 }} />
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.label}</span>
               {t.badge && (
                 <span style={{
                   fontSize: '10px',
-                  padding: '2px 6px',
+                  padding: '2px 7px',
                   borderRadius: '4px',
-                  background: isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(255, 255, 255, 0.06)',
+                  background: isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(255, 255, 255, 0.07)',
                   color: t.badgeColor || (isActive ? '#38bdf8' : 'var(--text-muted)'),
-                  fontWeight: 700
+                  fontWeight: 700,
+                  flexShrink: 0
                 }}>
                   {t.badge}
                 </span>
