@@ -19,12 +19,8 @@ COPY main.py ./main.py
 
 ENV PYTHONPATH=/app
 ENV ENVIRONMENT=production
-ENV PORT=8000
+
 EXPOSE 8000
+EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
-
-# Start via direct Python entrypoint
 CMD ["python", "main.py"]

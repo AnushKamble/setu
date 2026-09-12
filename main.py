@@ -25,5 +25,6 @@ if __name__ == "__main__":
     except (ValueError, TypeError):
         port = 8000
 
-    print(f"[SETU STARTUP] Launching Uvicorn server on 0.0.0.0:{port}...")
+    print(f"[SETU STARTUP] Target Port: {port}", flush=True)
+    print(f"[SETU STARTUP] Launching Uvicorn server on 0.0.0.0:{port}...", flush=True)
     uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
