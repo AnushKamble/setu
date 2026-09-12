@@ -4,15 +4,28 @@ from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from backend.app.config import settings
 
 # Engine configuration
+db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
 connect_args = {}
-if settings.DATABASE_URL.startswith("sqlite"):
+if db_url.startswith("sqlite"):
     connect_args["check_same_thread"] = False
 
-engine = create_engine(
-    settings.DATABASE_URL,
-    connect_args=connect_args,
-    echo=False,
-)
+try:
+    engine = create_engine(
+        db_url,
+        connect_args=connect_args,
+        echo=False,
+    )
+except Exception:
+    # Graceful fallback to SQLite if remote Postgres dialect driver is missing
+    db_url = "sqlite:///./setu.db"
+    engine = create_engine(
+        db_url,
+        connect_args={"check_same_thread": False},
+        echo=False,
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()

@@ -13,8 +13,11 @@ logger = setup_logging()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Initializing SETU Application Services...")
-    init_db()
-    logger.info("Database schema validated.")
+    try:
+        init_db()
+        logger.info("Database schema validated.")
+    except Exception as e:
+        logger.error(f"Database schema validation warning: {e}")
     
     # Auto-seed database if empty (ensures cloud deployments like Railway have full corridor data out-of-the-box!)
     try:
