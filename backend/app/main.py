@@ -15,6 +15,21 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing SETU Application Services...")
     init_db()
     logger.info("Database schema validated.")
+    
+    # Auto-seed database if empty (ensures cloud deployments like Railway have full corridor data out-of-the-box!)
+    try:
+        from backend.app.models.railway import Section
+        from backend.app.database import SessionLocal
+        from backend.app.datagen.loader import seed_database
+        db = SessionLocal()
+        if db.query(Section).count() == 0:
+            logger.info("Empty database detected on startup. Auto-seeding initial 'NORMAL' corridor scenario...")
+            seed_database("NORMAL", seed=42, db=db)
+            logger.info("Database auto-seeded successfully with 6 sections, 18 jobs, 140+ trains.")
+        db.close()
+    except Exception as e:
+        logger.error(f"Error during database auto-seed: {e}")
+        
     yield
     logger.info("Shutting down SETU Application Services.")
 

@@ -126,33 +126,71 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  const [backendError, setBackendError] = useState(false)
+  const [customRailwayUrl, setCustomRailwayUrl] = useState(() => {
+    return typeof window !== 'undefined' ? (window.localStorage.getItem('SETU_API_URL') || '') : ''
+  })
+
+  const safeFetchJson = async (url, options = {}) => {
+    try {
+      const res = await fetch(url, options)
+      if (!res.ok) {
+        console.warn(`[API] ${url} returned status ${res.status}`)
+        return null
+      }
+      return await res.json()
+    } catch (err) {
+      console.warn(`[API] ${url} network error:`, err)
+      return null
+    }
+  }
+
+  const handleConnectCustomUrl = () => {
+    if (!customRailwayUrl.trim()) return
+    const clean = customRailwayUrl.trim().replace(/\/$/, '')
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('SETU_API_URL', clean)
+    }
+    setStatusMessage(`Connecting to ${clean}...`)
+    fetchInitialData()
+  }
+
   const fetchInitialData = async () => {
     setLoading(true)
     try {
-      const [hRes, scRes, jRes, wRes, optRes, baseRes, compRes, valRes, explRes, bdmsRes] = await Promise.all([
-        fetch('/api/health').then(r => r.json()),
-        fetch('/api/scenarios').then(r => r.json()),
-        fetch('/api/jobs').then(r => r.json()),
-        fetch('/api/windows?limit=100').then(r => r.json()),
-        fetch('/api/plans/optimize').then(r => r.json()),
-        fetch('/api/plans/baseline').then(r => r.json()),
-        fetch('/api/plans/compare').then(r => r.json()),
-        fetch('/api/plans/validate').then(r => r.json()),
-        fetch('/api/plans/explain').then(r => r.json()),
-        fetch('/api/plans/export-bdms', { method: 'POST' }).then(r => r.json()),
-      ])
-      setHealth(hRes)
-      setScenarios(scRes)
-      setJobs(jRes)
-      setWindows(wRes)
-      setOptimizedPlan(optRes)
-      setBaselinePlan(baseRes)
-      setComparison(compRes)
-      setValidationReport(valRes)
-      setExplanationReport(explRes)
-      setBdmsBundle(bdmsRes)
+      // Check backend health first
+      const hRes = await safeFetchJson('/api/health')
+      if (!hRes) {
+        setBackendError(true)
+      } else {
+        setBackendError(false)
+        setHealth(hRes)
+      }
 
-      let secList = await fetch('/api/sections').then(r => r.json()).catch(() => [])
+      // Fetch primary datasets with error isolation so one failure never blocks the others
+      const [scRes, jRes, wRes, optRes, baseRes, compRes, valRes, explRes, bdmsRes] = await Promise.all([
+        safeFetchJson('/api/scenarios'),
+        safeFetchJson('/api/jobs'),
+        safeFetchJson('/api/windows?limit=100'),
+        safeFetchJson('/api/plans/optimize'),
+        safeFetchJson('/api/plans/baseline'),
+        safeFetchJson('/api/plans/compare'),
+        safeFetchJson('/api/plans/validate'),
+        safeFetchJson('/api/plans/explain'),
+        safeFetchJson('/api/plans/export-bdms', { method: 'POST' }),
+      ])
+
+      if (scRes) setScenarios(scRes)
+      if (jRes) setJobs(jRes)
+      if (wRes) setWindows(wRes)
+      if (optRes) setOptimizedPlan(optRes)
+      if (baseRes) setBaselinePlan(baseRes)
+      if (compRes) setComparison(compRes)
+      if (valRes) setValidationReport(valRes)
+      if (explRes) setExplanationReport(explRes)
+      if (bdmsRes) setBdmsBundle(bdmsRes)
+
+      let secList = await safeFetchJson('/api/sections')
       if (!secList || secList.length === 0) {
         secList = [
           { id: 'SEC-NDLS-GZB-UP', name: 'New Delhi - Ghaziabad Up Main', track_type: 'UP_MAIN', length_km: 25.5, max_speed_kmh: 130 },
@@ -166,6 +204,7 @@ export default function App() {
       setSections(secList)
     } catch (err) {
       console.error('Initial fetch failed:', err)
+      setBackendError(true)
     } finally {
       setLoading(false)
     }
@@ -299,6 +338,65 @@ export default function App() {
         />
 
         <main className="app-workspace">
+
+        {/* Backend Connection Diagnostic Banner */}
+        {backendError && (
+          <div style={{
+            background: 'rgba(239, 68, 68, 0.12)',
+            border: '1px solid rgba(239, 68, 68, 0.35)',
+            color: '#fca5a5',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            marginBottom: '16px',
+            fontSize: '12px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></span>
+              <strong style={{ color: '#fecaca' }}>Backend Disconnected:</strong>
+              <span>Cannot reach Railway API. Paste your public Railway domain to connect instantly:</span>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', flex: '1', maxWidth: '540px' }}>
+              <input
+                type="url"
+                placeholder="https://your-backend-name.up.railway.app"
+                value={customRailwayUrl}
+                onChange={(e) => setCustomRailwayUrl(e.target.value)}
+                style={{
+                  background: '#0f172a',
+                  border: '1px solid #475569',
+                  color: '#f8fafc',
+                  padding: '6px 12px',
+                  borderRadius: '4px',
+                  fontSize: '12px',
+                  flex: 1,
+                  outline: 'none'
+                }}
+              />
+              <button
+                onClick={handleConnectCustomUrl}
+                style={{
+                  background: '#3b82f6',
+                  color: '#ffffff',
+                  border: 'none',
+                  padding: '6px 14px',
+                  borderRadius: '4px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Connect & Load
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Actionable Status Toast */}
         {statusMessage && !loading && (
