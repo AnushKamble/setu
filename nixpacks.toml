@@ -4,7 +4,7 @@ nixPkgs = ["python311", "gcc", "stdenv.cc.cc.lib"]
 [phases.install]
 cmds = [
   "pip install --upgrade pip",
-  "pip install -r backend/requirements.txt"
+  "pip install -r requirements.txt"
 ]
 
 [start]

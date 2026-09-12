@@ -19,8 +19,8 @@ COPY main.py ./main.py
 
 ENV PYTHONPATH=/app
 ENV ENVIRONMENT=production
-ENV PORT=8080
 
+EXPOSE 8000
 EXPOSE 8080
 
 CMD ["python", "main.py"]
