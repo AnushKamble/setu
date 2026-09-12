@@ -290,7 +290,7 @@ def build_slide_3(slide):
     
     for shape in slide.shapes:
         if shape.name == "Title 1" and shape.has_text_frame:
-            shape.text_frame.text = "TECHNICAL APPROACH: MULTI-STAGE OPTIMIZATION & SAFETY PIPELINE"
+            shape.text_frame.text = "TECHNICAL APPROACH: TECHNOLOGIES, METHODOLOGY & PROTOTYPE"
             for p in shape.text_frame.paragraphs:
                 p.font.name = "Calibri"
                 p.font.size = Pt(20)
@@ -300,101 +300,121 @@ def build_slide_3(slide):
             shape.text_frame.clear()
             shape.left = Inches(100)
             
-    # Top Half (4-Stage Pipeline): 4 boxes across 12.33 inches width
+    # Section A: TECHNOLOGIES TO BE USED (Top Half: top=1.3, height=2.45)
     top_y = Inches(1.3)
-    pipe_w = Inches(2.9)
+    card_w = Inches(2.9)
     gap = Inches(0.24)
     
-    stages = [
-        ("1. DEMAND & MARGINS", COLOR_ENG, [
-            ("Work Orders", True, TEXT_WHITE),
-            ("Eng, TRD, S&T pending tasks", False, TEXT_MUTED),
-            ("NTES Passenger Timetables", False, TEXT_MUTED),
-            ("FOIS Freight Headways", False, TEXT_MUTED),
-            ("Duration Risk Estimator (ML)", True, COLOR_ENG)
+    tech_categories = [
+        ("LANGUAGES & RUNTIME", COLOR_ENG, [
+            ("Python 3.11 LTS", True, TEXT_WHITE),
+            ("Optimization solver core, constraint formulation, G&SR safety audit, FastAPI backend.", False, TEXT_MUTED),
+            ("TypeScript 5.x / ES2024", True, TEXT_WHITE),
+            ("Type-safe interactive dashboard, modular React components, client state engine.", False, TEXT_MUTED),
+            ("Bash / PowerShell", True, COLOR_ENG),
+            ("Automated test runner & CI/CD reproduction.", False, TEXT_MUTED)
         ]),
-        ("2. SOLVER ENGINE (CP-SAT)", COLOR_SETU, [
-            ("Google OR-Tools CP-SAT", True, TEXT_WHITE),
-            ("IntervalVar() Decision Variables", False, TEXT_MUTED),
-            ("Multi-Knapsack Packing", False, TEXT_MUTED),
-            ("Spatio-Temporal No-Overlap", False, TEXT_MUTED),
-            ("Global Penalty Minimization", True, COLOR_SETU)
+        ("FRAMEWORKS & LIBRARIES", COLOR_TRD, [
+            ("FastAPI (Python)", True, TEXT_WHITE),
+            ("High-throughput async REST API, auto OpenAPI specs.", False, TEXT_MUTED),
+            ("React 19 + Vite + Tailwind", True, TEXT_WHITE),
+            ("Sub-second HMR, modular UI cards, dark theme styling.", False, TEXT_MUTED),
+            ("Pydantic v2 & NetworkX", True, COLOR_TRD),
+            ("Strict schema validation & 1-hop network graph topology.", False, TEXT_MUTED)
         ]),
-        ("3. ZERO-ERROR SAFETY GATE", COLOR_GOLD, [
-            ("Deterministic Validator", True, COLOR_GOLD),
-            ("G&SR Chapter XV Rulebook", False, TEXT_WHITE),
-            ("15-min Train Headway Buffer", False, TEXT_WHITE),
-            ("25kV OHE Power Lockout", False, TEXT_WHITE),
-            ("100% VETO / ZERO ML OVERRIDE", True, COLOR_ALERT)
+        ("OPTIMIZATION & AI/ML", COLOR_SETU, [
+            ("Google OR-Tools CP-SAT", True, COLOR_SETU),
+            ("Constraint Programming with SAT solving for multi-knapsack interval scheduling.", False, TEXT_WHITE),
+            ("scikit-learn (Regression)", True, TEXT_WHITE),
+            ("Task duration variance & overrun risk forecasting.", False, TEXT_MUTED),
+            ("Deterministic Rule Engine", True, COLOR_ALERT),
+            ("Zero-hallucination G&SR safety gate (55 unit tests).", False, TEXT_MUTED)
         ]),
-        ("4. OPERATIONAL DISPATCH", COLOR_ST, [
-            ("Section Block Notices", True, TEXT_WHITE),
-            ("Station Master Authorizations", False, TEXT_MUTED),
-            ("Dynamic Marey String Charts", False, TEXT_MUTED),
-            ("Speed Restriction Bulletins", False, TEXT_MUTED),
-            ("Machine Crew Rostering", True, COLOR_ST)
+        ("HARDWARE & DEPLOYMENT", COLOR_ST, [
+            ("Divisional On-Prem Server", True, TEXT_WHITE),
+            ("Linux Ubuntu 22.04 LTS, containerized Docker microservices.", False, TEXT_MUTED),
+            ("Operator Workstations", True, TEXT_WHITE),
+            ("Dual-monitor Section Controller & Station Master terminals.", False, TEXT_MUTED),
+            ("Rugged Field PWA & Redis", True, COLOR_ST),
+            ("Handheld worker portal; Redis sub-second replan cache.", False, TEXT_MUTED)
         ])
     ]
     
-    for i, (title, col, items) in enumerate(stages):
-        bx = Inches(0.5) + i * (pipe_w + gap)
-        border_c = COLOR_GOLD if i == 2 else CARD_BORDER
-        b_width = 2.0 if i == 2 else 1.0
-        bg_c = RGBColor(35, 30, 20) if i == 2 else CARD_BG
+    for i, (cat_title, col, items) in enumerate(tech_categories):
+        bx = Inches(0.5) + i * (card_w + gap)
+        add_card(slide, bx, top_y, card_w, Inches(2.35), bg_color=CARD_BG, border_color=col, border_width=1.2)
+        add_badge(slide, bx + Inches(0.12), top_y + Inches(0.1), card_w - Inches(0.24), Inches(0.26), cat_title, col, TEXT_WHITE, 8.5, True)
         
-        add_card(slide, bx, top_y, pipe_w, Inches(2.2), bg_color=bg_c, border_color=border_c, border_width=b_width)
-        add_badge(slide, bx + Inches(0.15), top_y + Inches(0.12), pipe_w - Inches(0.3), Inches(0.28), title, col, TEXT_WHITE, 9, True)
-        
-        tb = slide.shapes.add_textbox(bx + Inches(0.15), top_y + Inches(0.45), pipe_w - Inches(0.3), Inches(1.7))
+        tb = slide.shapes.add_textbox(bx + Inches(0.1), top_y + Inches(0.38), card_w - Inches(0.2), Inches(1.9))
         tf = tb.text_frame
         tf.word_wrap = True
         
         for j, (line_text, is_bold, text_col) in enumerate(items):
             p = tf.paragraphs[0] if j == 0 else tf.add_paragraph()
-            format_text(p, line_text, 8.5, is_bold, text_col)
-            p.space_after = Pt(2)
-            
-    # Bottom Half (Architectural Rigor: Decoupled Decision Layers): 3 columns
-    bot_y = Inches(3.65)
-    col_w = Inches(3.95)
+            format_text(p, line_text, 7.5, is_bold, text_col)
+            p.space_after = Pt(1 if is_bold else 2)
+
+    # Section B: METHODOLOGY & WORKING PROTOTYPE (Bottom Half: top=3.8, height=3.0)
+    bot_y = Inches(3.78)
     
-    layers = [
-        ("AI / ML ESTIMATION LAYER", COLOR_ENG, [
-            ("Role: Task Duration & Priority Scoring", True, COLOR_ENG),
-            ("FastAPI telemetry microservice trained on synthetic & historical maintenance logs.", False, TEXT_MUTED),
-            ("Estimates machine task duration variance under weather & ballast conditions.", False, TEXT_MUTED),
-            ("Calculates dynamic deferral cost penalties based on track wear indices.", False, TEXT_MUTED),
-            ("PRINCIPLE: ML recommends priority, NEVER final safety.", True, TEXT_WHITE)
-        ]),
-        ("MATHEMATICAL OPTIMIZATION CORE", COLOR_SETU, [
-            ("Role: Combinatorial Global Search", True, COLOR_SETU),
-            ("Google OR-Tools CP-SAT constraint programming solver engine.", False, TEXT_MUTED),
-            ("Formulated as Multi-Dimensional Bin Packing with Non-Overlapping Intervals.", False, TEXT_MUTED),
-            ("Evaluates 10,000+ spatial permutations in <3.5 seconds across 6 sub-divisions.", False, TEXT_MUTED),
-            ("Objective: Minimize Occupancy + Deferrals + Headway Loss.", True, TEXT_WHITE)
-        ]),
-        ("DETERMINISTIC SAFETY AUDITOR", COLOR_ST, [
-            ("Role: Independent Rulebook Gatekeeper", True, COLOR_ST),
-            ("Standalone Python core enforcing Indian Railways General & Subsidiary Rules (G&SR).", False, TEXT_MUTED),
-            ("Hard Safety Invariant: Minimum 500m separation between tamping machine & workers.", False, TEXT_MUTED),
-            ("Hard Electrical Invariant: TRD power block strictly encloses track maintenance.", False, TEXT_MUTED),
-            ("ZERO-HALLUCINATION: Cannot be overridden by ML or user.", True, COLOR_ALERT)
-        ])
+    # Left Container: 5-Stage Implementation Methodology Flowchart (width: 8.2 inches)
+    m_width = Inches(8.2)
+    add_card(slide, Inches(0.5), bot_y, m_width, Inches(2.72), bg_color=RGBColor(20, 27, 45), border_color=COLOR_SETU, border_width=1.2)
+    add_badge(slide, Inches(0.65), bot_y + Inches(0.1), m_width - Inches(0.3), Inches(0.28),
+              "METHODOLOGY: 5-STAGE OPERATIONAL IMPLEMENTATION PIPELINE", COLOR_SETU, TEXT_WHITE, 9, True)
+    
+    steps = [
+        ("STAGE 1: DATA INGESTION", COLOR_ENG, "Normalizes Eng/TRD/S&T work orders + NTES passenger timetables into unified JSON schema."),
+        ("STAGE 2: ML DURATION ESTIMATION", COLOR_TRD, "Predicts task duration variance based on machine type, weather, and historical delay logs."),
+        ("STAGE 3: CP-SAT OPTIMIZATION", COLOR_SETU, "Google OR-Tools bundles compatible orders into corridor white margins (<3.5s solve time)."),
+        ("STAGE 4: DETERMINISTIC SAFETY GATE", COLOR_ALERT, "100% G&SR audit: verifies 500m machine buffer, 25kV OHE isolation, 15m train headway."),
+        ("STAGE 5: DISPATCH & REPLANNING", COLOR_ST, "Generates Station Master Joint Block Notices, Marey string charts, and <500ms reactive replanning.")
     ]
     
-    for i, (title, col, items) in enumerate(layers):
-        bx = Inches(0.5) + i * (col_w + gap)
-        add_card(slide, bx, bot_y, col_w, Inches(2.6), bg_color=CARD_BG, border_color=CARD_BORDER)
-        add_badge(slide, bx + Inches(0.15), bot_y + Inches(0.15), col_w - Inches(0.3), Inches(0.28), title, col, TEXT_WHITE, 9, True)
+    step_y = bot_y + Inches(0.44)
+    step_h = Inches(0.42)
+    step_gap = Inches(0.04)
+    for k, (s_title, s_col, s_desc) in enumerate(steps):
+        sy = step_y + k * (step_h + step_gap)
+        add_card(slide, Inches(0.65), sy, m_width - Inches(0.3), step_h, bg_color=CARD_BG, border_color=s_col, border_width=1)
         
-        tb = slide.shapes.add_textbox(bx + Inches(0.15), bot_y + Inches(0.48), col_w - Inches(0.3), Inches(2.0))
-        tf = tb.text_frame
-        tf.word_wrap = True
+        # Step Title Badge (Left)
+        add_badge(slide, Inches(0.72), sy + Inches(0.06), Inches(2.4), Inches(0.3), s_title, s_col, TEXT_WHITE, 7.5, True)
         
-        for j, (line_text, is_bold, text_col) in enumerate(items):
-            p = tf.paragraphs[0] if j == 0 else tf.add_paragraph()
-            format_text(p, line_text, 8.5, is_bold, text_col)
-            p.space_after = Pt(3)
+        # Step Description (Right)
+        tb_step = slide.shapes.add_textbox(Inches(3.2), sy + Inches(0.02), m_width - Inches(2.9), Inches(0.38))
+        tf_s = tb_step.text_frame
+        tf_s.word_wrap = True
+        p_s = tf_s.paragraphs[0]
+        format_text(p_s, s_desc, 7.5, False, TEXT_WHITE)
+
+    # Right Container: Working Prototype Verification Card (width: 3.89 inches)
+    p_left = Inches(8.94)
+    p_width = Inches(3.89)
+    add_card(slide, p_left, bot_y, p_width, Inches(2.72), bg_color=RGBColor(16, 36, 60), border_color=COLOR_ST, border_width=1.5)
+    add_badge(slide, p_left + Inches(0.15), bot_y + Inches(0.1), p_width - Inches(0.3), Inches(0.28),
+              "WORKING PROTOTYPE VERIFIED", COLOR_ST, TEXT_WHITE, 9, True)
+    
+    tb_proto = slide.shapes.add_textbox(p_left + Inches(0.15), bot_y + Inches(0.44), p_width - Inches(0.3), Inches(2.2))
+    tf_p = tb_proto.text_frame
+    tf_p.word_wrap = True
+    
+    proto_items = [
+        ("Full-Stack Working Application", True, COLOR_ST),
+        ("FastAPI Python backend paired with React 19 interactive operational dashboard.", False, TEXT_WHITE),
+        ("Interactive Marey String Chart", True, COLOR_SETU),
+        ("Real-time time-distance visualization with live conflict detection & train paths.", False, TEXT_WHITE),
+        ("Dynamic Disruption Simulator", True, COLOR_TRD),
+        ("Simulates train delays and executes 1-hop rolling horizon replanning in <500ms.", False, TEXT_WHITE),
+        ("100% Passing Automated Tests", True, COLOR_ENG),
+        ("55 / 55 unit & integration tests passing across optimization, safety, and API.", False, TEXT_WHITE)
+    ]
+    
+    for idx, (p_head, is_b, t_color) in enumerate(proto_items):
+        p = tf_p.paragraphs[0] if idx == 0 else tf_p.add_paragraph()
+        format_text(p, p_head if is_b else "* " + p_head, 7.5, is_b, t_color)
+        p.space_after = Pt(1 if is_b else 3)
+
 
 
 # -----------------------------------------------------------------------------
@@ -747,8 +767,13 @@ def main():
     print(f"Saving presentation to {output_path_1}...")
     prs.save(output_path_1)
     
-    print(f"Saving mirror presentation to {output_path_2}...")
-    prs.save(output_path_2)
+    try:
+        print(f"Saving mirror presentation to {output_path_2}...")
+        prs.save(output_path_2)
+    except PermissionError:
+        fallback_path = r"C:\Users\anush\OneDrive\Desktop\SIH\Railway\SETU_SIH2026_Idea_Presentation_Updated.pptx"
+        print(f"Warning: {output_path_2} is locked (likely open in PowerPoint). Saving to {fallback_path} instead.")
+        prs.save(fallback_path)
     
     print("SUCCESS: SETU SIH 2026 Idea Presentation successfully generated!")
 

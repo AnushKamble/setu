@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://SETU_RAILWAY_URL.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/health",
+      "destination": "https://SETU_RAILWAY_URL.up.railway.app/health"
+    }
+  ]
+}
