@@ -115,54 +115,54 @@ def build_slide_1(slide):
     
     # Card Header
     add_badge(slide, hero_left + Inches(0.3), hero_top + Inches(0.2), Inches(5.4), Inches(0.35), 
-              "CORE PARADIGM: CROSS-DEPARTMENT SHADOW CONVOYS", COLOR_SETU, TEXT_WHITE, 10, True)
+              "THE CORE IDEA: COMBINING THREE SHUTDOWNS INTO ONE", COLOR_SETU, TEXT_WHITE, 10, True)
     
     # State 1: Current Siloed Practice
     add_card(slide, hero_left + Inches(0.3), hero_top + Inches(0.7), Inches(5.4), Inches(1.6), bg_color=RGBColor(20, 27, 45), border_color=COLOR_ALERT, border_width=1)
     badge1 = add_badge(slide, hero_left + Inches(0.4), hero_top + Inches(0.8), Inches(5.2), Inches(0.25),
-                       "CURRENT PRACTICE: 3 DISJOINTED TRACK SHUTDOWNS (14.2h Lost)", COLOR_ALERT, TEXT_WHITE, 8.5, True)
+                       "TODAY'S PRACTICE: 3 SEPARATE TRACK SHUTDOWNS (14.2h Lost)", COLOR_ALERT, TEXT_WHITE, 8.5, True)
     
     # Department Timeline Strips
     strip_y = hero_top + Inches(1.12)
-    s1 = add_badge(slide, hero_left + Inches(0.4), strip_y, Inches(2.2), Inches(0.24), "Track (P-Way): 09:00 - 12:00 (180m)", COLOR_ENG, TEXT_WHITE, 7.5, True)
-    s2 = add_badge(slide, hero_left + Inches(2.7), strip_y, Inches(1.7), Inches(0.24), "TRD (OHE): 13:30 - 15:30 (120m)", COLOR_TRD, TEXT_WHITE, 7.5, True)
-    s3 = add_badge(slide, hero_left + Inches(4.5), strip_y, Inches(1.1), Inches(0.24), "S&T: 16:30 (90m)", COLOR_ST, TEXT_WHITE, 7.5, True)
+    s1 = add_badge(slide, hero_left + Inches(0.4), strip_y, Inches(2.2), Inches(0.24), "Track (P-Way): 09:00 - 12:00 (3h)", COLOR_ENG, TEXT_WHITE, 7.5, True)
+    s2 = add_badge(slide, hero_left + Inches(2.7), strip_y, Inches(1.7), Inches(0.24), "Electrical (TRD): 13:30 - 15:30 (2h)", COLOR_TRD, TEXT_WHITE, 7.5, True)
+    s3 = add_badge(slide, hero_left + Inches(4.5), strip_y, Inches(1.1), Inches(0.24), "Signals: 16:30 (1.5h)", COLOR_ST, TEXT_WHITE, 7.5, True)
     
     # State 1 Subtitle
     txt_box1 = slide.shapes.add_textbox(hero_left + Inches(0.4), strip_y + Inches(0.28), Inches(5.2), Inches(0.55))
     tf1 = txt_box1.text_frame
     tf1.word_wrap = True
     p = tf1.paragraphs[0]
-    format_text(p, "3 Separate Traffic Halts | Repeated Speed Restrictions | Compounded Freight Stagnation", 8, False, TEXT_MUTED, align=PP_ALIGN.CENTER)
+    format_text(p, "Trains halted 3 times a day | Freight held in sidings | Severe passenger delays", 8, False, TEXT_MUTED, align=PP_ALIGN.CENTER)
     
     # Arrow / Transition Callout
     arrow_box = slide.shapes.add_textbox(hero_left + Inches(0.3), hero_top + Inches(2.35), Inches(5.4), Inches(0.35))
     tf_arr = arrow_box.text_frame
     p_arr = tf_arr.paragraphs[0]
-    format_text(p_arr, "v   SETU CP-SAT BUNDLING & DETERMINISTIC SAFETY GATE   v", 9, True, COLOR_GOLD, align=PP_ALIGN.CENTER)
+    format_text(p_arr, "v   SETU SMART OPTIMIZATION & RAILWAY SAFETY CHECK   v", 9, True, COLOR_GOLD, align=PP_ALIGN.CENTER)
     
     # State 2: SETU Joint Shadow Convoy
     add_card(slide, hero_left + Inches(0.3), hero_top + Inches(2.75), Inches(5.4), Inches(1.75), bg_color=RGBColor(16, 36, 60), border_color=COLOR_ST, border_width=1.5)
     add_badge(slide, hero_left + Inches(0.4), hero_top + Inches(2.85), Inches(5.2), Inches(0.26),
-              "SETU REVOLUTION: 1 UNIFIED SHADOW CONVOY WINDOW", COLOR_ST, TEXT_WHITE, 8.5, True)
+              "SETU INNOVATION: 1 COMBINED MAINTENANCE WINDOW", COLOR_ST, TEXT_WHITE, 8.5, True)
     
     # Unified Multi-Department Possession Window Bar
     convoy_y = hero_top + Inches(3.2)
     c_bar = add_card(slide, hero_left + Inches(0.4), convoy_y, Inches(5.2), Inches(0.55), bg_color=RGBColor(10, 20, 40), border_color=COLOR_SETU, border_width=1)
     
     # Nested lanes
-    add_badge(slide, hero_left + Inches(0.5), convoy_y + Inches(0.06), Inches(4.0), Inches(0.18), "ENG: CSM Tamping Machine (Km 102.0 - 104.5)", COLOR_ENG, TEXT_WHITE, 7, True)
-    add_badge(slide, hero_left + Inches(0.8), convoy_y + Inches(0.26), Inches(3.2), Inches(0.18), "TRD: Catenary Tower Car (Km 102.5 - 104.0) [Certified 25kV Cut]", COLOR_TRD, TEXT_WHITE, 7, True)
-    add_badge(slide, hero_left + Inches(3.2), convoy_y + Inches(0.26), Inches(2.2), Inches(0.18), "S&T: Point Testing (Km 104.2)", COLOR_ST, TEXT_WHITE, 7, True)
+    add_badge(slide, hero_left + Inches(0.5), convoy_y + Inches(0.06), Inches(4.0), Inches(0.18), "Track: Heavy Tamping Machine works along rails (Km 102.0 - 104.5)", COLOR_ENG, TEXT_WHITE, 7, True)
+    add_badge(slide, hero_left + Inches(0.8), convoy_y + Inches(0.26), Inches(3.2), Inches(0.18), "Electrical: Tower Car checks wires under certified 25kV power cut (Km 102.5 - 104.0)", COLOR_TRD, TEXT_WHITE, 6.8, True)
+    add_badge(slide, hero_left + Inches(3.2), convoy_y + Inches(0.26), Inches(2.2), Inches(0.18), "Signals: Point switch testing (Km 104.2)", COLOR_ST, TEXT_WHITE, 7, True)
     
     # State 2 Subtitle
     txt_box2 = slide.shapes.add_textbox(hero_left + Inches(0.4), hero_top + Inches(3.8), Inches(5.2), Inches(0.6))
     tf2 = txt_box2.text_frame
     tf2.word_wrap = True
     p2 = tf2.paragraphs[0]
-    format_text(p2, "1 Single Integrated Window (210 min)  |  180 min Track Time Returned to Traffic", 8.5, True, COLOR_ST, align=PP_ALIGN.CENTER)
+    format_text(p2, "1 Single Combined Window (210 min)  |  Saves 180 min of track time for running trains", 8.5, True, COLOR_ST, align=PP_ALIGN.CENTER)
     p2_sub = tf2.add_paragraph()
-    format_text(p2_sub, "Zero passenger train disruption  *  100% G&SR safety clearance buffers verified", 7.5, False, TEXT_MUTED, align=PP_ALIGN.CENTER)
+    format_text(p2_sub, "Zero passenger train disruption  *  100% official railway safety buffer verified", 7.5, False, TEXT_MUTED, align=PP_ALIGN.CENTER)
 
 
 # -----------------------------------------------------------------------------
@@ -190,46 +190,46 @@ def build_slide_2(slide):
     
     # Left Box: Current Siloed Reality (40% width = 4.8 inches)
     add_card(slide, Inches(0.5), top_y, Inches(4.8), Inches(2.6), bg_color=CARD_BG, border_color=COLOR_ALERT, border_width=1.5)
-    add_badge(slide, Inches(0.7), top_y + Inches(0.15), Inches(4.4), Inches(0.3), "CURRENT REALITY: DEPARTMENTAL SILOS", COLOR_ALERT, TEXT_WHITE, 10, True)
+    add_badge(slide, Inches(0.7), top_y + Inches(0.15), Inches(4.4), Inches(0.3), "TODAY'S REALITY: DEPARTMENT SILOS", COLOR_ALERT, TEXT_WHITE, 10, True)
     
     txt1 = slide.shapes.add_textbox(Inches(0.7), top_y + Inches(0.55), Inches(4.4), Inches(1.9))
     tf1 = txt1.text_frame
     tf1.word_wrap = True
     
     p = tf1.paragraphs[0]
-    format_text(p, "* Civil Eng (Track): Submits 09:00-12:00 block -> 180 min track closure", 9.5, False, COLOR_ENG)
+    format_text(p, "* Track Team (P-Way): Requests 09:00 - 12:00 block -> 180 min track closure", 9.5, False, COLOR_ENG)
     p.space_after = Pt(4)
     p = tf1.add_paragraph()
-    format_text(p, "* TRD (OHE): Submits 13:30-15:30 block -> 120 min track closure", 9.5, False, COLOR_TRD)
+    format_text(p, "* Electrical Team (TRD): Requests 13:30 - 15:30 block -> 120 min track closure", 9.5, False, COLOR_TRD)
     p.space_after = Pt(4)
     p = tf1.add_paragraph()
-    format_text(p, "* S&T (Signals): Submits 16:30-18:00 block -> 90 min track closure", 9.5, False, COLOR_ST)
-    p.space_after = Pt(8)
+    format_text(p, "* Signal Team (S&T): Requests 16:30 - 18:00 block -> 90 min track closure", 9.5, False, COLOR_ST)
+    p.space_after = Pt(6)
     p = tf1.add_paragraph()
-    format_text(p, "BOTTLENECK: 3 Separate Track Closures (390 min total lost). Section controllers juggle paper forms. Freight held at outer loops.", 9.5, True, COLOR_ALERT)
+    format_text(p, "THE BOTTLENECK: 3 Separate Track Closures (390 min total lost). Section controllers manage paper forms & phone calls. Freight held at outer loops, causing ripple delays across the network.", 9, True, COLOR_ALERT)
     
     # Right Box: SETU Joint Shadow Convoy (60% width = 7.3 inches)
     add_card(slide, Inches(5.5), top_y, Inches(7.33), Inches(2.6), bg_color=RGBColor(16, 36, 60), border_color=COLOR_SETU, border_width=1.5)
-    add_badge(slide, Inches(5.7), top_y + Inches(0.15), Inches(6.93), Inches(0.3), "THE SETU REVOLUTION: SYNCHRONIZED SHADOW CONVOY", COLOR_SETU, TEXT_WHITE, 10, True)
+    add_badge(slide, Inches(5.7), top_y + Inches(0.15), Inches(6.93), Inches(0.3), "THE SETU REVOLUTION: SYNCHRONIZED WORK WINDOWS", COLOR_SETU, TEXT_WHITE, 10, True)
     
     txt2 = slide.shapes.add_textbox(Inches(5.7), top_y + Inches(0.55), Inches(6.93), Inches(1.9))
     tf2 = txt2.text_frame
     tf2.word_wrap = True
     
     p = tf2.paragraphs[0]
-    format_text(p, "UNIFIED PROTECTED CORRIDOR WINDOW: 11:00 - 14:30 (210 min active possession)", 10.5, True, COLOR_ST)
+    format_text(p, "ONE COMBINED TRACK WINDOW: 11:00 - 14:30 (210 min active work)", 10.5, True, COLOR_ST)
     p.space_after = Pt(4)
     p = tf2.add_paragraph()
-    format_text(p, "* Eng: Tamping Machine operates Km 102.0 to 104.5 (P-Way output maximized)", 9.5, False, TEXT_WHITE)
+    format_text(p, "* Track Team: Tamping machine works on track from Km 102.0 to 104.5.", 9.5, False, TEXT_WHITE)
     p.space_after = Pt(3)
     p = tf2.add_paragraph()
-    format_text(p, "* TRD: OHE Ladder Car operates Km 102.5 to 104.0 under certified 25kV power cut", 9.5, False, TEXT_WHITE)
+    format_text(p, "* Electrical Team: Overhead wire inspection from Km 102.5 to 104.0 under certified power cut.", 9.5, False, TEXT_WHITE)
     p.space_after = Pt(3)
     p = tf2.add_paragraph()
-    format_text(p, "* S&T: Interlocking Point Machine tested concurrently at Km 104.2 crossover", 9.5, False, TEXT_WHITE)
+    format_text(p, "* Signal Team: Track crossover switches and point machine tested at Km 104.2 junction.", 9.5, False, TEXT_WHITE)
     p.space_after = Pt(6)
     p = tf2.add_paragraph()
-    format_text(p, "RESULT: 1 Single Corridor Closure instead of 3. Saved 180 min of active track time. Headways preserved for Rajdhani & container freight rakes.", 9.5, True, COLOR_SETU)
+    format_text(p, "BREAKTHROUGH RESULT: 1 Track Closure instead of 3. Returns 180 min of track time back to passenger express & freight trains. Zero train cancellations.", 9.5, True, COLOR_SETU)
     
     # Bottom Half (The 3 Innovation Pillars): 3 cards across 12.33 inches width
     bot_y = Inches(4.05)
@@ -238,48 +238,48 @@ def build_slide_2(slide):
     
     # Pillar 1
     add_card(slide, Inches(0.5), bot_y, card_w, Inches(2.2), bg_color=CARD_BG, border_color=CARD_BORDER)
-    add_badge(slide, Inches(0.65), bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "1. SHARED ASSET DEMAND LEDGER", COLOR_ENG, TEXT_WHITE, 9, True)
+    add_badge(slide, Inches(0.65), bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "1. ONE SHARED DIGITAL HUB", COLOR_ENG, TEXT_WHITE, 9, True)
     tbox = slide.shapes.add_textbox(Inches(0.65), bot_y + Inches(0.48), card_w - Inches(0.3), Inches(1.6))
     tf = tbox.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
-    format_text(p, "Unified Multi-Dept Ingestion", 10, True, TEXT_WHITE)
+    format_text(p, "Unified Multi-Department Queue", 10, True, TEXT_WHITE)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "Ingests pending maintenance work orders from Civil Eng, TRD, and S&T into a single standardized operational queue.", 8.5, False, TEXT_MUTED)
+    format_text(p, "Brings maintenance requests from Track, Electrical, and Signal teams into one shared digital system.", 8.5, False, TEXT_MUTED)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "* Replaces fragmented paper & phone requests with unified spatio-temporal state.", 8.5, True, COLOR_ENG)
+    format_text(p, "* Replaces scattered paper forms and phone calls with one clear view of all upcoming work.", 8.5, True, COLOR_ENG)
     
     # Pillar 2
     add_card(slide, Inches(0.5) + card_w + gap, bot_y, card_w, Inches(2.2), bg_color=CARD_BG, border_color=CARD_BORDER)
-    add_badge(slide, Inches(0.65) + card_w + gap, bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "2. SPATIO-TEMPORAL CONVOY PACKING", COLOR_SETU, TEXT_WHITE, 9, True)
+    add_badge(slide, Inches(0.65) + card_w + gap, bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "2. SMART WORK BUNDLING", COLOR_SETU, TEXT_WHITE, 9, True)
     tbox = slide.shapes.add_textbox(Inches(0.65) + card_w + gap, bot_y + Inches(0.48), card_w - Inches(0.3), Inches(1.6))
     tf = tbox.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
-    format_text(p, "Google OR-Tools CP-SAT Bundling", 10, True, TEXT_WHITE)
+    format_text(p, "Coordinated Multi-Job Scheduling", 10, True, TEXT_WHITE)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "Algorithmically discovers compatible multi-department tasks on the same track segment. Enforces 500m safety clearance buffers.", 8.5, False, TEXT_MUTED)
+    format_text(p, "Our optimization engine groups compatible repair jobs in the same track section to run together.", 8.5, False, TEXT_MUTED)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "* Guarantees OHE 25kV de-energization window strictly encloses ground maintenance.", 8.5, True, COLOR_SETU)
+    format_text(p, "* Enforces 500m safety buffers and guarantees overhead 25kV power cut before work starts.", 8.5, True, COLOR_SETU)
     
     # Pillar 3
     add_card(slide, Inches(0.5) + (card_w + gap)*2, bot_y, card_w, Inches(2.2), bg_color=CARD_BG, border_color=CARD_BORDER)
-    add_badge(slide, Inches(0.65) + (card_w + gap)*2, bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "3. TIMETABLE MARGIN INTEGRATION", COLOR_ST, TEXT_WHITE, 9, True)
+    add_badge(slide, Inches(0.65) + (card_w + gap)*2, bot_y + Inches(0.15), card_w - Inches(0.3), Inches(0.28), "3. TIMETABLE GAP MATCHING", COLOR_ST, TEXT_WHITE, 9, True)
     tbox = slide.shapes.add_textbox(Inches(0.65) + (card_w + gap)*2, bot_y + Inches(0.48), card_w - Inches(0.3), Inches(1.6))
     tf = tbox.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
-    format_text(p, "Corridor Headway Awareness", 10, True, TEXT_WHITE)
+    format_text(p, "Protecting Train Punctuality", 10, True, TEXT_WHITE)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "Snaps joint possession envelopes into natural timetable white margins between scheduled passenger and freight trains.", 8.5, False, TEXT_MUTED)
+    format_text(p, "Fits maintenance windows directly into natural time gaps between scheduled passenger and freight trains.", 8.5, False, TEXT_MUTED)
     p.space_after = Pt(3)
     p = tf.add_paragraph()
-    format_text(p, "* Eliminates unscheduled passenger stops at outer home signals.", 8.5, True, COLOR_ST)
+    format_text(p, "* Protects high-speed trains (Rajdhani, Vande Bharat) and keeps freight rakes moving.", 8.5, True, COLOR_ST)
 
 
 # -----------------------------------------------------------------------------
@@ -308,35 +308,35 @@ def build_slide_3(slide):
     tech_categories = [
         ("LANGUAGES & RUNTIME", COLOR_ENG, [
             ("Python 3.11 LTS", True, TEXT_WHITE),
-            ("Optimization solver core, constraint formulation, G&SR safety audit, FastAPI backend.", False, TEXT_MUTED),
-            ("TypeScript 5.x / ES2024", True, TEXT_WHITE),
-            ("Type-safe interactive dashboard, modular React components, client state engine.", False, TEXT_MUTED),
-            ("Bash / PowerShell", True, COLOR_ENG),
-            ("Automated test runner & CI/CD reproduction.", False, TEXT_MUTED)
+            ("Powers scheduling optimization, safety verification rules, and FastAPI backend.", False, TEXT_MUTED),
+            ("TypeScript & JavaScript", True, TEXT_WHITE),
+            ("Delivers a fast, interactive, type-safe web dashboard for operators.", False, TEXT_MUTED),
+            ("Automated Scripting", True, COLOR_ENG),
+            ("Automated end-to-end verification and testing pipelines.", False, TEXT_MUTED)
         ]),
-        ("FRAMEWORKS & LIBRARIES", COLOR_TRD, [
+        ("FRAMEWORKS & TOOLS", COLOR_TRD, [
             ("FastAPI (Python)", True, TEXT_WHITE),
-            ("High-throughput async REST API, auto OpenAPI specs.", False, TEXT_MUTED),
-            ("React 19 + Vite + Tailwind", True, TEXT_WHITE),
-            ("Sub-second HMR, modular UI cards, dark theme styling.", False, TEXT_MUTED),
-            ("Pydantic v2 & NetworkX", True, COLOR_TRD),
-            ("Strict schema validation & 1-hop network graph topology.", False, TEXT_MUTED)
+            ("High-speed async backend that handles live schedules and requests instantly.", False, TEXT_MUTED),
+            ("React 19 + Tailwind CSS", True, TEXT_WHITE),
+            ("Clean, responsive operator interface with dark-mode night-shift theme.", False, TEXT_MUTED),
+            ("Data & Network Tools", True, COLOR_TRD),
+            ("Pydantic v2 schema validation and track connection graph models.", False, TEXT_MUTED)
         ]),
-        ("OPTIMIZATION & AI/ML", COLOR_SETU, [
+        ("OPTIMIZATION & LOGIC", COLOR_SETU, [
             ("Google OR-Tools CP-SAT", True, COLOR_SETU),
-            ("Constraint Programming with SAT solving for multi-knapsack interval scheduling.", False, TEXT_WHITE),
-            ("scikit-learn (Regression)", True, TEXT_WHITE),
-            ("Task duration variance & overrun risk forecasting.", False, TEXT_MUTED),
-            ("Deterministic Rule Engine", True, COLOR_ALERT),
-            ("Zero-hallucination G&SR safety gate (55 unit tests).", False, TEXT_MUTED)
+            ("Mathematically searches thousands of schedule combinations in seconds to find the best plan.", False, TEXT_WHITE),
+            ("Predictive Machine Learning", True, TEXT_WHITE),
+            ("Estimates realistic job duration based on weather and equipment type.", False, TEXT_MUTED),
+            ("Independent Safety Gate", True, COLOR_ALERT),
+            ("Zero-hallucination code that verifies official railway safety rules (55 unit tests).", False, TEXT_MUTED)
         ]),
         ("HARDWARE & DEPLOYMENT", COLOR_ST, [
-            ("Divisional On-Prem Server", True, TEXT_WHITE),
-            ("Linux Ubuntu 22.04 LTS, containerized Docker microservices.", False, TEXT_MUTED),
+            ("Control Office Servers", True, TEXT_WHITE),
+            ("Runs on standard railway division computers (Linux Ubuntu / Windows Server).", False, TEXT_MUTED),
             ("Operator Workstations", True, TEXT_WHITE),
-            ("Dual-monitor Section Controller & Station Master terminals.", False, TEXT_MUTED),
-            ("Rugged Field PWA & Redis", True, COLOR_ST),
-            ("Handheld worker portal; Redis sub-second replan cache.", False, TEXT_MUTED)
+            ("Dual-monitor dashboard for Section Controllers and Station Masters.", False, TEXT_MUTED),
+            ("Mobile Field Access", True, COLOR_ST),
+            ("Web access on handheld tablets/phones for supervisors at track sites.", False, TEXT_MUTED)
         ])
     ]
     
@@ -361,14 +361,14 @@ def build_slide_3(slide):
     m_width = Inches(8.2)
     add_card(slide, Inches(0.5), bot_y, m_width, Inches(2.72), bg_color=RGBColor(20, 27, 45), border_color=COLOR_SETU, border_width=1.2)
     add_badge(slide, Inches(0.65), bot_y + Inches(0.1), m_width - Inches(0.3), Inches(0.28),
-              "METHODOLOGY: 5-STAGE OPERATIONAL IMPLEMENTATION PIPELINE", COLOR_SETU, TEXT_WHITE, 9, True)
+              "METHODOLOGY: 5-STEP OPERATIONAL IMPLEMENTATION PIPELINE", COLOR_SETU, TEXT_WHITE, 9, True)
     
     steps = [
-        ("STAGE 1: DATA INGESTION", COLOR_ENG, "Normalizes Eng/TRD/S&T work orders + NTES passenger timetables into unified JSON schema."),
-        ("STAGE 2: ML DURATION ESTIMATION", COLOR_TRD, "Predicts task duration variance based on machine type, weather, and historical delay logs."),
-        ("STAGE 3: CP-SAT OPTIMIZATION", COLOR_SETU, "Google OR-Tools bundles compatible orders into corridor white margins (<3.5s solve time)."),
-        ("STAGE 4: DETERMINISTIC SAFETY GATE", COLOR_ALERT, "100% G&SR audit: verifies 500m machine buffer, 25kV OHE isolation, 15m train headway."),
-        ("STAGE 5: DISPATCH & REPLANNING", COLOR_ST, "Generates Station Master Joint Block Notices, Marey string charts, and <500ms reactive replanning.")
+        ("STAGE 1: GATHER DEMANDS", COLOR_ENG, "Normalizes Track, Electrical, and Signal requests + public timetables into one shared format."),
+        ("STAGE 2: ESTIMATE DURATION", COLOR_TRD, "Machine learning predicts realistic job durations and flags urgent repairs based on past logs."),
+        ("STAGE 3: FIND OPTIMAL SCHEDULE", COLOR_SETU, "Google OR-Tools engine fits maintenance jobs into timetable gaps in under 3.5 seconds."),
+        ("STAGE 4: INDEPENDENT SAFETY CHECK", COLOR_ALERT, "Verifies Railway Safety Rules (G&SR Ch. XV): enforces 500m buffer, power shut-off, and 15m train headway."),
+        ("STAGE 5: ISSUE NOTICES & REPLAN", COLOR_ST, "Generates Station Master Joint Block Notices, live train charts, and updates plan in <0.5s if trains delay.")
     ]
     
     step_y = bot_y + Inches(0.44)
@@ -401,13 +401,13 @@ def build_slide_3(slide):
     
     proto_items = [
         ("Full-Stack Working Application", True, COLOR_ST),
-        ("FastAPI Python backend paired with React 19 interactive operational dashboard.", False, TEXT_WHITE),
+        ("FastAPI Python backend connected to an interactive React 19 operational dashboard.", False, TEXT_WHITE),
         ("Interactive Marey String Chart", True, COLOR_SETU),
-        ("Real-time time-distance visualization with live conflict detection & train paths.", False, TEXT_WHITE),
-        ("Dynamic Disruption Simulator", True, COLOR_TRD),
-        ("Simulates train delays and executes 1-hop rolling horizon replanning in <500ms.", False, TEXT_WHITE),
-        ("100% Passing Automated Tests", True, COLOR_ENG),
-        ("55 / 55 unit & integration tests passing across optimization, safety, and API.", False, TEXT_WHITE)
+        ("Section-by-section dynamic space-time visualization with live conflict detection.", False, TEXT_WHITE),
+        ("Live Delay Simulator", True, COLOR_TRD),
+        ("Simulates train delays and executes local rolling-horizon replanning in under 0.5s.", False, TEXT_WHITE),
+        ("55 Passing Automated Tests", True, COLOR_ENG),
+        ("100% test coverage across solver optimization, safety checks, and API endpoints.", False, TEXT_WHITE)
     ]
     
     for idx, (p_head, is_b, t_color) in enumerate(proto_items):
@@ -441,15 +441,15 @@ def build_slide_4(slide):
     row_gap = Inches(0.08)
     
     rows = [
-        ("DATA AVAILABILITY", "Live IR TMS/COA feeds are confidential and access-restricted.",
-         "Universal Schema Ingestion Adapter: Calibrated on public NTES timetables and RDSO machine output norms; schema-ready for REST/CSV/FOIS APIs.",
-         "FEASIBLE (Ready)", COLOR_ST),
-        ("PEAK INFEASIBILITY", "High corridor train density leaves zero legal windows for all requested blocks.",
-         "Automated Tiered Relaxation Hierarchy: Step 1 compresses non-critical buffers; Step 2 defers low-priority routine tasks with audit log; Step 3 preserves safety invariants.",
-         "ROBUST (Proven)", COLOR_ST),
-        ("LIVE DISRUPTIONS", "Unplanned 45-min freight delay or machine breakdown shatters pre-computed plan.",
-         "Warm-Start 1-Hop Cascade Replanner: Recalculates affected local block section in <500ms using rolling horizon without rebuilding global network.",
-         "<500ms LATENCY", COLOR_TRD)
+        ("DATA ACCESS", "Live Indian Railways internal systems are restricted and not directly connected to external apps.",
+         "Universal Schema Ingestion: Works with standard spreadsheets (Excel/CSV) and public timetables today, and connects via standard APIs whenever Indian Railways connects internal systems (COA/TMS).",
+         "FEASIBLE & READY", COLOR_ST),
+        ("HEAVY TRAFFIC", "During peak rush hours, dense train traffic leaves zero gaps for all requested repairs.",
+         "Tiered Relaxation Hierarchy: Prioritizes critical safety repairs, safely defers routine low-priority jobs with an official audit log, and strictly maintains all safety buffers.",
+         "ROBUST & PROVEN", COLOR_ST),
+        ("REAL-TIME DELAYS", "A freight train running 45 minutes late ruins the pre-planned maintenance schedule.",
+         "Fast Local Replanner: Instead of recalculating the entire division, SETU recalculates just the affected local track section in under 0.5 seconds.",
+         "<0.5s LATENCY", COLOR_TRD)
     ]
     
     for i, (chall_title, chall_desc, mit_desc, status_text, status_col) in enumerate(rows):
@@ -489,20 +489,20 @@ def build_slide_4(slide):
               "STEPWISE ADOPTION ROADMAP: ZERO DISRUPTION TO RUNNING TRAFFIC OPERATIONS", COLOR_SETU, TEXT_WHITE, 9.5, True)
     
     phases = [
-        ("PHASE 1: SHADOW ADVISORY", COLOR_ENG, [
-            ("Runs in parallel with Section Controller in division office.", True, TEXT_WHITE),
-            ("Provides advisory recommendations; Section Controller retains 100% manual control.", False, TEXT_MUTED),
-            ("Zero operational risk to running trains; proves accuracy against real-world logs.", False, COLOR_ST)
+        ("PHASE 1: SMART ADVISORY MODE", COLOR_ENG, [
+            ("Runs on a screen beside the Section Controller in the divisional control room.", True, TEXT_WHITE),
+            ("Recommends optimal windows; Section Controller retains 100% manual control to approve or reject.", False, TEXT_MUTED),
+            ("Zero operational risk to running trains; proves reliability against real-world operational logs.", False, COLOR_ST)
         ]),
         ("PHASE 2: DIVISION PILOT", COLOR_SETU, [
-            ("Controlled pilot on single high-density double-line section (Kanpur-Prayagraj).", True, TEXT_WHITE),
-            ("Section Controller digitally approves SETU-bundled Shadow Convoys.", False, TEXT_MUTED),
-            ("Integrated field worker mobile portal for automated block clearance reports.", False, COLOR_SETU)
+            ("Controlled trial run on a single high-density double-line section (Kanpur-Prayagraj).", True, TEXT_WHITE),
+            ("Section Controllers digitally approve combined windows with track workers confirming via tablet.", False, TEXT_MUTED),
+            ("Tracks actual track hours saved and train punctuality improvements.", False, COLOR_SETU)
         ]),
         ("PHASE 3: ENTERPRISE INTEGRATION", COLOR_ST, [
-            ("Direct bi-directional API link with CRIS Control Office Application (COA).", True, TEXT_WHITE),
-            ("Fully automated block negotiation between Engineering, TRD, and S&T.", False, TEXT_MUTED),
-            ("Network-wide deployment across Indian Railways Golden Quadrilateral corridors.", False, COLOR_ST)
+            ("Direct bi-directional API link with Indian Railways Control Office Application (COA).", True, TEXT_WHITE),
+            ("Fully automated block negotiation between Engineering, Electrical, and Signal departments.", False, TEXT_MUTED),
+            ("Network-wide deployment across Indian Railways Golden Quadrilateral trunk routes.", False, COLOR_ST)
         ])
     ]
     
@@ -555,10 +555,10 @@ def build_slide_5(slide):
     gap = Inches(0.24)
     
     metrics = [
-        ("-38.9%", COLOR_ENG, "TRACK POSSESSION DOWNTIME", "Total track closure reduced from 2,080m to 1,270m across corridor."),
-        ("+810 MIN", COLOR_SETU, "CORRIDOR CAPACITY RECOVERED", "Active traffic capacity restored for passenger express and freight paths."),
-        ("1,420 L", COLOR_ST, "DIESEL FUEL SAVED / DAY", "Eliminated idle locomotive hours on held freight trains (~3.8t CO2 reduction)."),
-        ("ZERO", COLOR_TRD, "SAFETY BUFFER VIOLATIONS", "100% adherence to G&SR Chapter XV distance and power isolation rules.")
+        ("-38.9%", COLOR_ENG, "TRACK SHUTDOWN TIME", "Total track closure reduced from 34.6 hours down to 21.1 hours across corridor."),
+        ("+810 MIN", COLOR_SETU, "LINE CAPACITY SAVED", "Over 13 hours of extra track time returned to running passenger and freight trains."),
+        ("1,420 L", COLOR_ST, "DIESEL FUEL SAVED / DAY", "Freight trains spend less time waiting with engines idling (~3.8t CO2 cut daily)."),
+        ("ZERO", COLOR_TRD, "SAFETY BREACHES", "100% adherence to G&SR Chapter XV distance buffers and power isolation rules.")
     ]
     
     for i, (num, col, title, desc) in enumerate(metrics):
@@ -587,29 +587,29 @@ def build_slide_5(slide):
     card_w = Inches(3.95)
     
     pillars = [
-        ("OPERATIONAL & SOCIAL IMPACT", COLOR_ENG, [
-            ("Passenger Train Punctuality", True, TEXT_WHITE),
-            ("Eliminates unscheduled outer-signal stops and secondary cascading delays on trunk lines.", False, TEXT_MUTED),
-            ("Mechanized Track Quality", True, TEXT_WHITE),
+        ("PASSENGER & SOCIAL GAINS", COLOR_ENG, [
+            ("On-Time Passenger Trains", True, TEXT_WHITE),
+            ("Eliminates sudden stops outside stations caused by uncoordinated track repairs.", False, TEXT_MUTED),
+            ("Smoother Journeys", True, TEXT_WHITE),
             ("Regular, guaranteed tamping machine windows prevent severe speed restrictions (TSRs).", False, TEXT_MUTED),
-            ("Commuter Reliability", True, COLOR_ENG),
-            ("Predictable passenger journey times across high-density commuter networks.", False, TEXT_MUTED)
+            ("Reliable Travel Times", True, COLOR_ENG),
+            ("Predictable arrival times for daily commuters and long-distance passengers.", False, TEXT_MUTED)
         ]),
-        ("ECONOMIC & FREIGHT BENEFITS", COLOR_SETU, [
-            ("Freight Path Availability", True, TEXT_WHITE),
-            ("Fast-tracks high-value container & bulk rakes without getting sidelined for maintenance.", False, TEXT_MUTED),
-            ("Capital Asset Utilization", True, TEXT_WHITE),
-            ("Maximizes output per machine-hour for expensive track tampers (CSM) and OHE ladder cars.", False, TEXT_MUTED),
-            ("Indian Railways Operating Ratio", True, COLOR_SETU),
-            ("Reduces unproductive possession penalties and lowers divisional corridor operating costs.", False, TEXT_MUTED)
+        ("FREIGHT & FINANCIAL SAVINGS", COLOR_SETU, [
+            ("Faster Freight Movement", True, TEXT_WHITE),
+            ("High-value container and bulk goods rakes move through corridors without getting sidelined.", False, TEXT_MUTED),
+            ("Better Machine Usage", True, TEXT_WHITE),
+            ("Maximizes work output per working hour for expensive track tampers and OHE ladder cars.", False, TEXT_MUTED),
+            ("Lower Operating Costs", True, COLOR_SETU),
+            ("Less fuel wasted on idling locomotives and fewer unproductive track possession penalties.", False, TEXT_MUTED)
         ]),
-        ("WORKFORCE SAFETY & GOVERNANCE", COLOR_ST, [
+        ("WORKER SAFETY & TRANSPARENCY", COLOR_ST, [
             ("Guaranteed Electrical Isolation", True, TEXT_WHITE),
-            ("TRD power block lockout prevents electrocution risks for ground tamping crews.", False, TEXT_MUTED),
-            ("Zero Inter-Departmental Blame", True, TEXT_WHITE),
-            ("Eliminates contentious coordination disputes between Engineering, TRD, and S&T.", False, TEXT_MUTED),
-            ("Verifiable Digital Audit Trail", True, COLOR_ST),
-            ("Complete regulatory transparency for every possession request, approval, and deferral.", False, TEXT_MUTED)
+            ("TRD power block lockout prevents electrocution risks for ground crews working near rails.", False, TEXT_MUTED),
+            ("Better Department Teamwork", True, TEXT_WHITE),
+            ("Eliminates finger-pointing and coordination disputes between Track, Electrical, and Signal teams.", False, TEXT_MUTED),
+            ("Clear Digital Records", True, COLOR_ST),
+            ("Complete regulatory transparency and digital audit trails for every block request and approval.", False, TEXT_MUTED)
         ])
     ]
     
@@ -652,29 +652,29 @@ def build_slide_6(slide):
     gap = Inches(0.24)
     
     research_pillars = [
-        ("1. RAILWAY DOMAIN & SAFETY", COLOR_ENG, [
+        ("1. RAILWAY SAFETY STANDARDS", COLOR_ENG, [
             ("Indian Railways G&SR Rulebook", True, COLOR_ENG),
-            ("General & Subsidiary Rules — Chapter XV: Rules for Working of Trains on Temporary Single Line & Permanent Way Protection.", False, TEXT_WHITE),
+            ("General & Subsidiary Rules — Chapter XV rules for track protection and maintenance safety.", False, TEXT_WHITE),
             ("RDSO Track Machine Guidelines", True, COLOR_ENG),
-            ("Comprehensive norms on CSM/BCM machine productivity, maintenance tolerances & headway buffer clearances (IRICEN).", False, TEXT_MUTED),
-            ("Static Speed Restriction Manuals", True, COLOR_ENG),
-            ("Standards governing temporary speed restrictions following mechanized tamping.", False, TEXT_MUTED)
+            ("Comprehensive norms on machine productivity, maintenance tolerances & headway buffer clearances (IRICEN).", False, TEXT_MUTED),
+            ("Speed Restriction Manuals", True, COLOR_ENG),
+            ("Official regulations governing temporary speed restrictions (TSRs) following mechanized maintenance.", False, TEXT_MUTED)
         ]),
-        ("2. OPTIMIZATION & ALGORITHMS", COLOR_SETU, [
+        ("2. OPTIMIZATION RESEARCH", COLOR_SETU, [
             ("Google OR-Tools CP-SAT Solver", True, COLOR_SETU),
-            ("Laurent Perron & Frederic Didier (Google Operations Research): Constraint Programming with SAT Solvers for NP-hard Scheduling.", False, TEXT_WHITE),
-            ("Railway Rescheduling Theory", True, COLOR_SETU),
-            ("Caimi, Fuchsberger, Burkolter (ETH Zurich): Periodic Timetable Conflict Resolution and Dynamic Rescheduling in Dense Rail Networks.", False, TEXT_MUTED),
-            ("Rolling Horizon Decision Support", True, COLOR_SETU),
-            ("Multi-stage optimization frameworks for dynamic network disruption handling.", False, TEXT_MUTED)
+            ("Laurent Perron & Frederic Didier (Google Operations Research): Constraint Programming for complex scheduling.", False, TEXT_WHITE),
+            ("Railway Scheduling Theory", True, COLOR_SETU),
+            ("Caimi, Fuchsberger, Burkolter (ETH Zurich): Periodic Timetable Conflict Resolution in Dense Rail Networks.", False, TEXT_MUTED),
+            ("Real-Time Rescheduling Methods", True, COLOR_SETU),
+            ("Multi-stage rolling horizon optimization frameworks for dynamic network disruption handling.", False, TEXT_MUTED)
         ]),
-        ("3. OPEN DATA & BENCHMARKS", COLOR_ST, [
+        ("3. RAILWAY TIMETABLES & DATA", COLOR_ST, [
             ("National Train Enquiry System (NTES)", True, COLOR_ST),
-            ("Public passenger train timetable schemas, station arrival/departure times, and section running intervals.", False, TEXT_WHITE),
+            ("Authentic public train arrival, departure, and section running intervals.", False, TEXT_WHITE),
             ("Freight Operations Info System (FOIS)", True, COLOR_ST),
-            ("Standard headway allocations, rake turnover norms, and bulk freight priority schedules.", False, TEXT_MUTED),
+            ("Standard goods train headway allocations, rake turnover norms, and bulk freight priorities.", False, TEXT_MUTED),
             ("Delhi-Kanpur 433.5 km Benchmark", True, COLOR_ST),
-            ("Authentic double-line arterial corridor model with 6 sub-divisions and 140+ daily scheduled trains.", False, TEXT_MUTED)
+            ("Authentic double-line arterial corridor model with 6 major stations and 140+ daily scheduled trains.", False, TEXT_MUTED)
         ])
     ]
     
@@ -724,10 +724,10 @@ def build_slide_6(slide):
     p.space_after = Pt(4)
     
     badges = [
-        ("55 / 55 Unit & Integration Tests Passing", "100% test coverage on solver constraints, safety validation, and disruption recovery."),
-        ("Google OR-Tools CP-SAT + FastAPI Telemetry", "Production-grade Python 3.11 backend with asynchronous optimization engine."),
+        ("55 / 55 Unit & Integration Tests Passing", "Complete test coverage across solver optimization, safety checks, and API endpoints."),
+        ("Full-Stack Python & React Application", "Fast, reliable FastAPI backend paired with interactive operational dashboard."),
         ("Interactive Marey String Chart Included", "Section-by-section dynamic space-time visualization with live conflict detection."),
-        ("Delhi-Kanpur Double-Line Dataset Reproducible", "Complete 433.5 km simulation dataset included for independent peer review.")
+        ("Delhi-Kanpur Corridor Dataset Reproducible", "Complete 433.5 km benchmark included in repository for independent review.")
     ]
     
     for b_title, b_desc in badges:

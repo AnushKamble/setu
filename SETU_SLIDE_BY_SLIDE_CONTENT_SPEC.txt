@@ -1,49 +1,48 @@
 ====================================================================================================
 PROJECT SETU — SIH 2026 (PROBLEM STATEMENT: SIH26027)
-EXACT SLIDE-BY-SLIDE TEXTUAL CONTENT SPECIFICATION (BLOCK-BY-BLOCK)
+CLEAR, PLAIN-ENGLISH SLIDE-BY-SLIDE CONTENT SPECIFICATION (BLOCK-BY-BLOCK)
 ====================================================================================================
-This document contains the exact textual data, bullet points, headers, badges, and metrics for every 
-single block across all 6 slides of the official SIH 2026 Idea Presentation.
-All text is calibrated to fit the slide card dimensions without truncation or awkward wrapping.
+Designed to explain the entire problem and solution clearly without heavy academic jargon,
+while preserving all technical depth, safety guarantees, and realistic railway features.
 
 ====================================================================================================
 SLIDE 1 — TITLE PAGE
 ====================================================================================================
-[OFFICIAL TEMPLATE CATEGORY]: SMART INDIA HACKATHON 2026 | IDEA PRESENTATION
+[OFFICIAL HEADER]: SMART INDIA HACKATHON 2026 | IDEA PRESENTATION
 
---- BLOCK 1.1: OFFICIAL METADATA CARD (LEFT CONTAINER) ---
+--- BLOCK 1.1: OFFICIAL PROJECT & PROBLEM DETAILS (LEFT CARD) ---
 * Card Title: OFFICIAL REGISTRATION & PROBLEM DETAILS
 * Problem Statement ID: SIH26027
 * Problem Statement Title: Integrated AI Block Planning for Railway Engineering, Traction Distribution, and S&T Maintenance
 * Theme: Smart Transportation / Infrastructure / Railways
 * PS Category: Software
-* Target Ministry: Ministry of Railways (Indian Railways)
-* Target Domain: Corridor Traffic Management & Multi-Department Maintenance Operations
+* Target Organization: Ministry of Railways (Indian Railways)
+* Target Domain: Railway Corridor Operations & Multi-Department Track Maintenance
 * Team ID: [Registered Team ID]
 * Team Name: [Registered Team Name]
 
---- BLOCK 1.2: HERO CONSOLIDATION GLYPH (RIGHT CONTAINER - MAIN) ---
-* Card Header: CORE PARADIGM: CROSS-DEPARTMENT SHADOW CONVOYS
+--- BLOCK 1.2: HERO PROBLEM-TO-SOLUTION COMPARISON (RIGHT CARD) ---
+* Card Header: THE CORE IDEA: COMBINING THREE SHUTDOWNS INTO ONE
 
-  [SUB-BLOCK 1.2A: CURRENT PRACTICE — 3 DISJOINTED TRACK SHUTDOWNS]
-  * Banner Label: CURRENT PRACTICE: 3 DISJOINTED TRACK SHUTDOWNS (14.2h Lost)
-  * Strip 1 (Ochre): Track (P-Way): 09:00 - 12:00 (180 min) — CSM Tamping Machine
-  * Strip 2 (Cyan): TRD (OHE): 13:30 - 15:30 (120 min) — Catenary Ladder Inspection
-  * Strip 3 (Green): S&T (Signals): 16:30 - 18:00 (90 min) — Point Machine Overhaul
-  * Operational Consequence: 3 Separate Traffic Halts | Repeated Speed Restrictions | Compounded Freight Stagnation
+  [TOP SECTION: TODAY'S PROBLEM — 3 SEPARATE TRACK SHUTDOWNS]
+  * Section Title: TODAY'S PRACTICE: 3 SEPARATE TRACK SHUTDOWNS (14.2 Hours Lost)
+  * Bar 1 (Orange): Track Repair (P-Way): 09:00 - 12:00 (3 Hours) — Heavy Track Tamping
+  * Bar 2 (Cyan): Electrical Wires (TRD): 13:30 - 15:30 (2 Hours) — Overhead Wire Check
+  * Bar 3 (Green): Signals & Switches (S&T): 16:30 - 18:00 (1.5 Hours) — Track Point Overhaul
+  * Consequence: Trains halted 3 times a day. Freight stuck in sidings. Severe passenger delays.
 
-  [SUB-BLOCK 1.2B: TRANSITION ELEMENT]
-  * Directional Divider: v   SETU CP-SAT BUNDLING & DETERMINISTIC SAFETY GATE   v
+  [MIDDLE DIVIDER: THE SETU ENGINE]
+  * Divider Label: v   SETU SMART OPTIMIZATION & RAILWAY SAFETY CHECK   v
 
-  [SUB-BLOCK 1.2C: SETU INNOVATION — 1 UNIFIED SHADOW CONVOY]
-  * Banner Label: SETU REVOLUTION: 1 UNIFIED SHADOW CONVOY WINDOW
-  * Consolidated Window: 11:00 - 14:30 (210 min active possession)
-  * Nested Execution:
-    - ENG: CSM Tamping Machine (Km 102.0 - 104.5)
-    - TRD: Catenary Tower Car (Km 102.5 - 104.0) [Certified 25kV Power Cut]
-    - S&T: Interlocking Point Testing (Km 104.2 Crossover)
-  * Verified Result: 1 Single Integrated Window (210 min) | Saved: 180 min Active Line Capacity
-  * Safety Note: Zero passenger train disruption | 100% G&SR safety clearance buffers verified
+  [BOTTOM SECTION: THE SETU SOLUTION — 1 COMBINED WINDOW]
+  * Section Title: SETU INNOVATION: 1 COMBINED MAINTENANCE WINDOW
+  * Coordinated Window: 11:00 - 14:30 (3.5 Hours Total Track Closure)
+  * How Work Happens Together:
+    - Track machine works along rails (Km 102.0 to 104.5)
+    - Electrical ladder car checks overhead wires overhead under certified power shut-off (Km 102.5 to 104.0)
+    - Signal team inspects track crossover switches at the station junction (Km 104.2)
+  * Outcome: 1 track closure instead of 3 | Saves 180 minutes of track time for running trains
+  * Safety Assurance: Trains run smoothly before & after | 100% official railway safety buffer verified
 
 ====================================================================================================
 SLIDE 2 — PROPOSED SOLUTION
@@ -51,48 +50,48 @@ SLIDE 2 — PROPOSED SOLUTION
 [OFFICIAL TEMPLATE CATEGORY]: PROPOSED SOLUTION
 [OFFICIAL POINTERS]: Detailed explanation of proposed solution | How it addresses the problem | Innovation and uniqueness
 
---- BLOCK 2.1: CURRENT REALITY — DEPARTMENTAL SILOS (TOP-LEFT CARD) ---
-* Header Badge: CURRENT REALITY: DEPARTMENTAL SILOS
-* Operational Reality Points:
-  * Civil Eng (Track): Submits independent 09:00-12:00 block -> 180 min track closure
-  * TRD (OHE Electrical): Submits separate 13:30-15:30 block -> 120 min track closure
-  * S&T (Signals): Submits isolated 16:30-18:00 block -> 90 min track closure
-* Bottleneck Summary:
-  * BOTTLENECK: 3 Separate Track Closures (390 min total lost). Section controllers negotiate via paper/phone. Freight held at outer loops, causing cascading network delays.
+--- BLOCK 2.1: THE CURRENT BOTTLENECK (TOP-LEFT CARD) ---
+* Header Badge: TODAY'S REALITY: DEPARTMENT SILOS
+* The Real Problem in Plain Terms:
+  * Track Team (P-Way): Requests a morning track closure (09:00 - 12:00) to repair rails.
+  * Electrical Team (TRD): Requests an afternoon closure (13:30 - 15:30) to inspect overhead wires.
+  * Signal Team (S&T): Requests an evening closure (16:30 - 18:00) to service track switches.
+* The Bottleneck:
+  * Section Controllers manage these requests manually on paper forms and phone calls. Tracks are shut down 3 separate times (390 minutes total lost). Freight trains are held at outer signals, causing ripple delays across the network.
 
---- BLOCK 2.2: THE SETU REVOLUTION — SYNCHRONIZED SHADOW CONVOY (TOP-RIGHT CARD) ---
-* Header Badge: THE SETU REVOLUTION: SYNCHRONIZED SHADOW CONVOY
-* Subtitle: UNIFIED PROTECTED CORRIDOR WINDOW: 11:00 - 14:30 (210 min active possession)
-* Coordinated Execution Points:
-  * Eng: Tamping Machine operates Km 102.0 to 104.5 (P-Way track output maximized)
-  * TRD: OHE Ladder Car operates Km 102.5 to 104.0 under certified 25kV electrical power cut
-  * S&T: Interlocking Point Machine tested concurrently at Km 104.2 crossover
-* Breakthrough Outcome:
-  * RESULT: 1 Single Corridor Closure instead of 3. Saved 180 min of active track time. Headways fully preserved for Rajdhani expresses and container freight rakes.
+--- BLOCK 2.2: THE SETU SOLUTION (TOP-RIGHT CARD) ---
+* Header Badge: THE SETU REVOLUTION: SYNCHRONIZED WORK WINDOWS
+* Subtitle: ONE COMBINED TRACK WINDOW: 11:00 - 14:30 (210 min active work)
+* Coordinated Execution:
+  * Track Team: Tamping machine works on track from Km 102.0 to 104.5.
+  * Electrical Team: Works on overhead wires between Km 102.5 and 104.0 with power safely cut.
+  * Signal Team: Inspects rail switches and signals at Km 104.2 during the same window.
+* Breakthrough Result:
+  * 1 track closure instead of 3. Returns 180 minutes of track availability back to passenger express and freight trains. Zero train cancellations.
 
---- BLOCK 2.3: INNOVATION PILLAR 1 — SHARED ASSET DEMAND LEDGER (BOTTOM-LEFT CARD) ---
-* Header Badge: 1. SHARED ASSET DEMAND LEDGER
-* Title: Unified Multi-Department Ingestion
+--- BLOCK 2.3: PILLAR 1 — SHARED DIGITAL REQUEST HUB (BOTTOM-LEFT CARD) ---
+* Header Badge: 1. ONE SHARED DIGITAL HUB
+* Title: Unified Multi-Department Queue
 * Key Points:
-  * Ingests pending maintenance work orders from Civil Eng, TRD, and S&T into a single standardized operational queue.
-  * Replaces fragmented paper and phone requests with a unified spatio-temporal asset ledger.
-  * Dynamic priority scoring based on asset criticality, track wear, and historical failure risks.
+  * Brings maintenance requests from Track, Electrical, and Signal teams into one shared digital system.
+  * Replaces scattered paper forms and phone calls with one clear view of all upcoming work.
+  * Automatically scores which repairs are urgent based on track age and safety inspection records.
 
---- BLOCK 2.4: INNOVATION PILLAR 2 — SPATIO-TEMPORAL CONVOY PACKING (BOTTOM-CENTER CARD) ---
-* Header Badge: 2. SPATIO-TEMPORAL CONVOY PACKING
-* Title: Google OR-Tools CP-SAT Bundling
+--- BLOCK 2.4: PILLAR 2 — SMART WORK BUNDLING (BOTTOM-CENTER CARD) ---
+* Header Badge: 2. SMART WORK BUNDLING
+* Title: Coordinated Multi-Job Scheduling
 * Key Points:
-  * Algorithmically discovers compatible multi-department tasks on the same track segment.
-  * Automatically enforces 500m machine safety buffers and OHE 25kV power isolation envelopes.
-  * Evaluates 10,000+ combinatorial possibilities in <3.5s to generate provably optimal shadow convoys.
+  * Our computer engine groups compatible repair jobs in the same track section to run together.
+  * Automatically enforces 500-meter safety separation between heavy machinery and ground crews.
+  * Guarantees overhead high-voltage power is switched off before any work begins underneath.
 
---- BLOCK 2.5: INNOVATION PILLAR 3 — TIMETABLE MARGIN INTEGRATION (BOTTOM-RIGHT CARD) ---
-* Header Badge: 3. TIMETABLE MARGIN INTEGRATION
-* Title: Corridor Headway Awareness
+--- BLOCK 2.5: PILLAR 3 — TIMETABLE GAP MATCHING (BOTTOM-RIGHT CARD) ---
+* Header Badge: 3. TIMETABLE GAP MATCHING
+* Title: Protecting Train Punctuality
 * Key Points:
-  * Snaps joint possession envelopes into natural timetable "white margins" between scheduled trains.
-  * Preserves sectional running times and eliminates unscheduled passenger stops at outer home signals.
-  * Real-time conflict-free alignment with Indian Railways passenger express and freight paths.
+  * Fits maintenance windows directly into natural time gaps between scheduled trains.
+  * Protects high-speed passenger trains like Rajdhani & Vande Bharat from unexpected stops.
+  * Keeps freight rakes moving steadily across high-traffic corridors without congestion pile-ups.
 
 ====================================================================================================
 SLIDE 3 — TECHNICAL APPROACH
@@ -100,60 +99,51 @@ SLIDE 3 — TECHNICAL APPROACH
 [OFFICIAL TEMPLATE CATEGORY]: TECHNICAL APPROACH
 [OFFICIAL POINTERS]: Technologies to be used (e.g. programming languages, frameworks, hardware) | Methodology and process for implementation (Flow Charts/Images/ working prototype)
 
---- SECTION A: TECHNOLOGIES TO BE USED (TOP HALF — 4 STRUCTURED TECH CARDS) ---
+--- SECTION A: TECHNOLOGIES USED (TOP HALF — 4 STRUCTURED CARDS) ---
 
---- BLOCK 3.1: PROGRAMMING LANGUAGES & RUNTIME (TOP CARD 1) ---
+--- BLOCK 3.1: PROGRAMMING LANGUAGES (TOP CARD 1) ---
 * Header Badge: LANGUAGES & RUNTIME
-* Primary Language: Python 3.11 LTS
-  - Core optimization solver, constraint modeling, safety validation & telemetry backend.
-* Frontend Language: TypeScript 5.x / JavaScript ES2024
-  - Type-safe interactive dashboard components, real-time client state management.
-* Scripting & Automation: Bash / PowerShell for automated test pipelines.
+* Python 3.11: Powers the scheduling math, railway safety checks, and API backend.
+* TypeScript & JavaScript: Delivers a fast, interactive, type-safe web dashboard for operators.
+* Automated Scripting: Automates end-to-end verification and testing pipelines.
 
---- BLOCK 3.2: FRAMEWORKS & CORE LIBRARIES (TOP CARD 2) ---
-* Header Badge: FRAMEWORKS & LIBRARIES
-* Backend Framework: FastAPI (Asynchronous REST API, high-throughput JSON serialization, OpenAPI docs).
-* Frontend Stack: React 19 + Vite (Sub-second HMR, modular component architecture), Tailwind CSS.
-* Data Validation: Pydantic v2 (Strict operational schema validation and type enforcement).
-* Graph & Topology: NetworkX (1-hop corridor topology graph and cascade propagation analysis).
+--- BLOCK 3.2: FRAMEWORKS & LIBRARIES (TOP CARD 2) ---
+* Header Badge: FRAMEWORKS & TOOLS
+* FastAPI (Python): High-speed backend that handles live schedules and requests instantly.
+* React 19 + Tailwind CSS: Clean, responsive operator interface with dark-mode night-shift theme.
+* Data & Mapping Tools: Validates input schemas and models corridor track connections cleanly.
 
 --- BLOCK 3.3: OPTIMIZATION & AI/ML ENGINES (TOP CARD 3) ---
-* Header Badge: OPTIMIZATION & AI/ML
-* Constraint Solver: Google OR-Tools CP-SAT (Constraint Programming with Boolean Satisfiability).
-* Duration Predictor: scikit-learn (Task duration variance estimation & regression on historical logs).
-* Verification Engine: Standalone Python Deterministic Rulebook Engine (G&SR Chapter XV).
-* Automated Testing: Pytest (55 unit and integration tests with 100% passing exit code).
+* Header Badge: OPTIMIZATION & LOGIC
+* Google OR-Tools (Optimization Engine): Mathematically searches thousands of schedule combinations in seconds to find the best plan.
+* Predictive Machine Learning: Estimates realistic job duration based on weather and equipment type.
+* Dedicated Safety Gate: Independent code that verifies official railway safety rules.
 
---- BLOCK 3.4: HARDWARE & DEPLOYMENT INFRASTRUCTURE (TOP CARD 4) ---
+--- BLOCK 3.4: HARDWARE & DEPLOYMENT (TOP CARD 4) ---
 * Header Badge: HARDWARE & DEPLOYMENT
-* Server Hardware: Divisional Railway Control On-Prem Linux Servers (Ubuntu 22.04 LTS / Docker).
-* Client Terminals: Dual-Monitor Section Controller & Station Master Workstations (Edge Web UI).
-* Mobile / Field Layer: Field Supervisor PWA (Progressive Web App on rugged Android handhelds).
-* Database & Caching: PostgreSQL / SQLite with Redis cache for sub-second reactive replanning.
+* Control Office Servers: Runs on standard railway division computers (Linux / Windows).
+* Controller Workstations: Multi-screen dashboard for Section Controllers and Station Masters.
+* Mobile Field Access: Web access on handheld tablets/phones for supervisors at track sites.
+* Fast Storage: Local database with fast memory cache for sub-second plan updates.
 
---- SECTION B: METHODOLOGY & PROCESS FOR IMPLEMENTATION (BOTTOM HALF) ---
+--- SECTION B: 5-STEP PROCESS & WORKING PROTOTYPE (BOTTOM HALF) ---
 
---- BLOCK 3.5: 5-STEP IMPLEMENTATION METHODOLOGY FLOWCHART (BOTTOM-LEFT CONTAINER) ---
-* Section Header: 5-STAGE OPERATIONAL IMPLEMENTATION METHODOLOGY
-* Step 1: INGESTION & NORMALIZATION
-  - Multi-dept work orders (Eng/TRD/S&T) + NTES passenger timetables parsed into normalized JSON schemas.
-* Step 2: DURATION RISK & PRIORITY ESTIMATION
-  - ML regression estimates task duration variance based on machine type, weather, and historical overruns.
-* Step 3: CP-SAT COMBINATORIAL OPTIMIZATION
-  - Multi-knapsack interval scheduling bundles compatible tasks into corridor white margins in <3.5s.
-* Step 4: INDEPENDENT DETERMINISTIC SAFETY GATE
-  - 100% deterministic audit checks IR G&SR rules: 500m machine buffer, 25kV power cut, 15m train headway.
-* Step 5: DISPATCH, MAREY CHARTS & REPLANNING
-  - Generates Station Master Joint Block Notices, interactive Marey string diagrams, and <500ms replanning.
+--- BLOCK 3.5: 5-STEP IMPLEMENTATION METHODOLOGY (BOTTOM-LEFT CONTAINER) ---
+* Section Header: HOW THE SYSTEM WORKS (5-STEP OPERATIONAL FLOW)
+* Step 1: GATHER DEMANDS — Reads maintenance requests from all 3 departments + passenger timetables.
+* Step 2: ESTIMATE DURATION — Machine learning predicts realistic job durations and flags urgent repairs.
+* Step 3: FIND OPTIMAL SCHEDULE — Google optimization engine fits jobs into timetable gaps in <3.5 seconds.
+* Step 4: INDEPENDENT SAFETY CHECK — Verifies official Railway Safety Rules (G&SR Chapter XV): enforces 500m machine buffer, power shut-off, and 15-min train clearance. The AI cannot bypass this safety gate.
+* Step 5: ISSUE NOTICES & REPLAN — Generates official station master block notices, live train charts, and updates the plan in under 0.5s if a train is delayed.
 
---- BLOCK 3.6: WORKING PROTOTYPE VERIFICATION CARD (BOTTOM-RIGHT CONTAINER) ---
-* Header Badge: WORKING PROTOTYPE VERIFIED
-* Title: Fully Functional End-to-End Implementation
-* Verified Deliverables:
-  * Full-Stack Web App: FastAPI Python backend paired with React 19 interactive operational dashboard.
-  * Interactive Marey Chart: Real-time time-distance string visualization with live conflict detection.
-  * Disruption Injection Engine: Simulates train delays and tests <500ms rolling horizon rescheduling.
-  * 55/55 Passing Tests: 100% verified test suite covering solver, safety rules, and API endpoints.
+--- BLOCK 3.6: WORKING PROTOTYPE VERIFIED (BOTTOM-RIGHT CONTAINER) ---
+* Header Badge: WORKING PROTOTYPE READY
+* Title: Fully Built & Tested Software
+* What is already working:
+  * Full Web Application: Complete FastAPI backend connected to an interactive React dashboard.
+  * Live Time-Distance Train Chart: Visualizes train movements and maintenance blocks side-by-side.
+  * Live Delay Simulator: Test injecting a 45-min train delay and watch the schedule adapt in <0.5s.
+  * 55 Passing Automated Tests: Every scheduling rule and safety constraint is mathematically verified.
 
 ====================================================================================================
 SLIDE 4 — FEASIBILITY AND VIABILITY
@@ -161,41 +151,40 @@ SLIDE 4 — FEASIBILITY AND VIABILITY
 [OFFICIAL TEMPLATE CATEGORY]: FEASIBILITY AND VIABILITY
 [OFFICIAL POINTERS]: Analysis of the feasibility of the idea | Potential challenges and risks | Strategies for overcoming these challenges
 
---- BLOCK 4.1: CHALLENGE 1 — DATA AVAILABILITY & LEGACY INTEGRATION (ROW 1) ---
-* Challenge Badge: DATA AVAILABILITY
-* Real Challenge: Live Indian Railways TMS/COA feeds are confidential and access-restricted.
-* Architectural Mitigation: Universal Schema Ingestion Adapter: Calibrated on public NTES timetables and RDSO machine output norms; schema-ready for REST/CSV/FOIS APIs.
-* Feasibility Status: FEASIBLE (Ready) — Operates online or offline; zero direct write API dependency.
+--- BLOCK 4.1: CHALLENGE 1 — DATA AVAILABILITY & LEGACY SYSTEMS (ROW 1) ---
+* Challenge Badge: DATA ACCESS
+* Real Challenge: Live Indian Railways internal systems are restricted and not directly connected to external apps.
+* How SETU Solves It: Works with standard spreadsheets (Excel/CSV) and public timetables today, and connects via standard APIs whenever Indian Railways connects internal systems (COA/TMS).
+* Status: FEASIBLE & READY — Works offline or online with zero risk to existing systems.
 
---- BLOCK 4.2: CHALLENGE 2 — PEAK-HOUR MATHEMATICAL INFEASIBILITY (ROW 2) ---
-* Challenge Badge: PEAK INFEASIBILITY
-* Real Challenge: High corridor train density leaves zero legal windows for all requested maintenance blocks.
-* Architectural Mitigation: Automated Tiered Relaxation Hierarchy: Step 1 compresses non-critical buffers; Step 2 defers low-priority routine tasks with audit log; Step 3 preserves safety invariants.
-* Feasibility Status: ROBUST (Proven) — Guaranteed solvable fallback plan; engine never crashes or deadlocks.
+--- BLOCK 4.2: CHALLENGE 2 — BUSY PEAK HOURS WITH NO TRACK TIME (ROW 2) ---
+* Challenge Badge: HEAVY TRAFFIC
+* Real Challenge: During peak rush hours, dense train traffic leaves zero gaps for all requested repairs.
+* How SETU Solves It: Step-by-step smart adjustment: prioritizes critical safety repairs, safely defers minor routine jobs with an official audit log, and never crashes or breaks safety limits.
+* Status: ROBUST & PROVEN — Always produces a valid, safe schedule even during peak rush hours.
 
---- BLOCK 4.3: CHALLENGE 3 — REAL-TIME DISRUPTIONS & DELAYS (ROW 3) ---
-* Challenge Badge: LIVE DISRUPTIONS
-* Real Challenge: Unplanned 45-min freight delay or machine breakdown shatters pre-computed plan.
-* Architectural Mitigation: Warm-Start 1-Hop Cascade Replanner: Recalculates affected local block section in <500ms using rolling horizon without rebuilding global network.
-* Feasibility Status: <500ms LATENCY — Sub-second reactive rescheduling benchmarked in simulation.
+--- BLOCK 4.3: CHALLENGE 3 — UNEXPECTED TRAIN DELAYS (ROW 3) ---
+* Challenge Badge: REAL-TIME DELAYS
+* Real Challenge: A freight train running 45 minutes late ruins the pre-planned maintenance schedule.
+* How SETU Solves It: Fast local replanning: instead of recalculating the entire railway division, SETU recalculates just the affected local track section in under 0.5 seconds.
+* Status: <0.5 SECONDS — Fast enough for real-time section controller use.
 
---- BLOCK 4.4: STEPWISE ADOPTION ROADMAP (BOTTOM CONTAINER) ---
-* Banner Header: STEPWISE ADOPTION ROADMAP: ZERO DISRUPTION TO RUNNING TRAFFIC OPERATIONS
+--- BLOCK 4.4: 3-STEP ADOPTION ROADMAP (BOTTOM CONTAINER) ---
+* Banner Header: 3-STEP ADOPTION PLAN: ZERO DISRUPTION TO RUNNING TRAINS
 
-  [PHASE 1: READ-ONLY SHADOW ADVISORY]
-  * Runs in parallel with Section Controller in division office.
-  * Provides advisory recommendations; Section Controller retains 100% manual control.
-  * Zero operational risk to running trains; proves accuracy against real-world logs.
+  [STEP 1: SMART ADVISORY MODE (ZERO RISK)]
+  * Runs on a screen beside the Section Controller in the divisional control room.
+  * Recommends optimal windows; the human controller retains 100% authority to approve or reject.
+  * Proves reliability against real-world operations with zero operational risk.
 
-  [PHASE 2: CONTROLLED DIVISION PILOT]
-  * Controlled pilot on single high-density double-line section (Kanpur-Prayagraj).
-  * Section Controller digitally approves SETU-bundled Shadow Convoys.
-  * Integrated field worker mobile portal for automated block clearance reports.
+  [STEP 2: DIVISIONAL PILOT]
+  * Trial run on one busy double-line route (such as Kanpur to Prayagraj).
+  * Section Controllers digitally approve combined windows with track workers confirming via tablet.
+  * Tracks actual time saved and train punctuality improvements.
 
-  [PHASE 3: ENTERPRISE COA/TMS INTEGRATION]
-  * Direct bi-directional API link with CRIS Control Office Application (COA).
-  * Fully automated block negotiation between Engineering, TRD, and S&T.
-  * Network-wide deployment across Indian Railways Golden Quadrilateral corridors.
+  [STEP 3: FULL RAILWAY DEPLOYMENT]
+  * Direct link with Indian Railways Control Office Application (COA).
+  * Fully automated block negotiation between departments across major trunk corridors.
 
 ====================================================================================================
 SLIDE 5 — IMPACT AND BENEFITS
@@ -203,49 +192,49 @@ SLIDE 5 — IMPACT AND BENEFITS
 [OFFICIAL TEMPLATE CATEGORY]: IMPACT AND BENEFITS
 [OFFICIAL POINTERS]: Potential impact on the target audience | Benefits of the solution (social, economic, environmental, etc.)
 
---- BLOCK 5.0: BENCHMARK QUALIFICATION SUBTITLE ---
-* Subtitle Text: BENCHMARKED ON 433.5 KM ARTERIAL CORRIDOR SIMULATION (Delhi-Kanpur | 140+ Trains/Day | 18 Multi-Dept Orders)
+--- BLOCK 5.0: BENCHMARK SUBTITLE BANNER ---
+* Subtitle Text: TESTED ON HIGH-DENSITY DELHI–KANPUR ROUTE (433.5 KM | 140+ TRAINS DAILY | 18 REPAIR ORDERS)
 
---- BLOCK 5.1: HERO METRIC 1 — TRACK POSSESSION DOWNTIME ---
+--- BLOCK 5.1: HERO METRIC 1 — TRACK SHUTDOWN TIME ---
 * Big Numeral: -38.9%
-* Title: TRACK POSSESSION DOWNTIME
-* Micro-Annotation: Total track closure reduced from 2,080 min to 1,270 min across corridor simulation.
+* Title: TRACK SHUTDOWN TIME
+* Plain Explanation: Total track closure reduced from 34.6 hours down to 21.1 hours across the corridor.
 
---- BLOCK 5.2: HERO METRIC 2 — CORRIDOR CAPACITY RECOVERED ---
+--- BLOCK 5.2: HERO METRIC 2 — TRACK TIME RETURNED TO TRAINS ---
 * Big Numeral: +810 MIN
-* Title: CORRIDOR CAPACITY RECOVERED
-* Micro-Annotation: Active traffic capacity restored for passenger express and freight paths across 6 sub-divisions.
+* Title: LINE CAPACITY SAVED
+* Plain Explanation: Over 13 hours of extra track time returned to running passenger and freight trains.
 
---- BLOCK 5.3: HERO METRIC 3 — DIESEL FUEL SAVED / DAY ---
+--- BLOCK 5.3: HERO METRIC 3 — DIESEL FUEL SAVED DAILY ---
 * Big Numeral: 1,420 L
 * Title: DIESEL FUEL SAVED / DAY
-* Micro-Annotation: Eliminated idle locomotive hours on held freight trains (~3.8t CO2 daily reduction).
+* Plain Explanation: Freight trains spend less time waiting with engines idling (~3.8 tonnes CO2 cut daily).
 
---- BLOCK 5.4: HERO METRIC 4 — SAFETY BUFFER VIOLATIONS ---
+--- BLOCK 5.4: HERO METRIC 4 — SAFETY VIOLATIONS ---
 * Big Numeral: ZERO
-* Title: SAFETY BUFFER VIOLATIONS
-* Micro-Annotation: 100% adherence to G&SR Chapter XV distance and power isolation rules across 55 test suites.
+* Title: SAFETY BREACHES
+* Plain Explanation: 100% adherence to distance buffers and power shut-off rules across 55 test scenarios.
 
---- BLOCK 5.5: VALUE PILLAR 1 — OPERATIONAL & SOCIAL IMPACT (BOTTOM-LEFT CARD) ---
-* Header Badge: OPERATIONAL & SOCIAL IMPACT
+--- BLOCK 5.5: BENEFIT 1 — BETTER PASSENGER SERVICE (BOTTOM-LEFT CARD) ---
+* Header Badge: PASSENGER & SOCIAL GAINS
 * Key Benefits:
-  * Passenger Train Punctuality: Eliminates unscheduled outer-signal stops and secondary cascading delays on trunk lines.
-  * Mechanized Track Quality: Regular, guaranteed tamping machine windows prevent severe temporary speed restrictions (TSRs).
-  * Commuter Reliability: Predictable passenger journey times across high-density intercity passenger corridors.
+  * On-Time Passenger Trains: Eliminates sudden stops outside stations caused by uncoordinated track repairs.
+  * Smoother Journeys: Regular maintenance prevents severe speed restrictions on tracks.
+  * Reliable Travel Times: Predictable arrival times for daily commuters and long-distance travelers.
 
---- BLOCK 5.6: VALUE PILLAR 2 — ECONOMIC & FREIGHT BENEFITS (BOTTOM-CENTER CARD) ---
-* Header Badge: ECONOMIC & FREIGHT BENEFITS
+--- BLOCK 5.6: BENEFIT 2 — FREIGHT & FINANCIAL SAVINGS (BOTTOM-CENTER CARD) ---
+* Header Badge: FREIGHT & COST BENEFITS
 * Key Benefits:
-  * Freight Path Availability: Fast-tracks high-value container & bulk rakes without getting sidelined for maintenance.
-  * Capital Asset Utilization: Maximizes output per machine-hour for expensive track tampers (CSM) and OHE ladder cars.
-  * Indian Railways Operating Ratio: Reduces unproductive possession penalties and lowers divisional operating costs.
+  * Faster Freight Movement: Cargo rakes move through corridors without being sidelined for hours.
+  * Better Machine Usage: Expensive track tamping machines get more work done per working hour.
+  * Lower Operating Costs: Less fuel wasted on idling trains and fewer unproductive track closures.
 
---- BLOCK 5.7: VALUE PILLAR 3 — WORKFORCE SAFETY & GOVERNANCE (BOTTOM-RIGHT CARD) ---
-* Header Badge: WORKFORCE SAFETY & GOVERNANCE
+--- BLOCK 5.7: BENEFIT 3 — WORKER SAFETY & COOPERATION (BOTTOM-RIGHT CARD) ---
+* Header Badge: WORKER SAFETY & TRANSPARENCY
 * Key Benefits:
-  * Guaranteed Electrical Isolation: TRD power block lockout prevents electrocution risks for ground tamping crews.
-  * Zero Inter-Departmental Blame: Eliminates contentious coordination disputes between Engineering, TRD, and S&T.
-  * Verifiable Digital Audit Trail: Complete regulatory transparency for every possession request, approval, and deferral.
+  * Electrocution Protection: Guaranteed overhead power shut-off protects track workers on the ground.
+  * Better Department Teamwork: Eliminates blame games between Track, Electrical, and Signal departments.
+  * Clear Digital Records: Transparent electronic logs of every repair request, approval, and delay.
 
 ====================================================================================================
 SLIDE 6 — RESEARCH AND REFERENCES
@@ -253,35 +242,35 @@ SLIDE 6 — RESEARCH AND REFERENCES
 [OFFICIAL TEMPLATE CATEGORY]: RESEARCH AND REFERENCES
 [OFFICIAL POINTERS]: Details / Links of the reference and research work
 
---- BLOCK 6.1: RESEARCH PILLAR 1 — RAILWAY DOMAIN & SAFETY (TOP-LEFT CARD) ---
-* Header Badge: 1. RAILWAY DOMAIN & SAFETY
+--- BLOCK 6.1: PILLAR 1 — OFFICIAL RAILWAY SAFETY STANDARDS (TOP-LEFT CARD) ---
+* Header Badge: 1. RAILWAY SAFETY STANDARDS
 * Citations & Sources:
-  * Indian Railways G&SR Rulebook: General & Subsidiary Rules — Chapter XV: Rules for Working of Trains on Temporary Single Line & Permanent Way Protection.
-  * RDSO Track Machine Guidelines: Comprehensive norms on CSM/BCM machine productivity, maintenance tolerances & headway buffer clearances (IRICEN, Pune).
-  * Static Speed Restriction Manuals: Standards governing temporary speed restrictions following mechanized tamping.
+  * Indian Railways General & Subsidiary Rules (G&SR): Chapter XV rules for track protection and maintenance safety.
+  * RDSO Track Machine Guidelines (IRICEN): Standard output rates and safety buffer distances for heavy track machines.
+  * Speed Restriction Manuals: Official regulations governing train speeds after track maintenance.
 
---- BLOCK 6.2: RESEARCH PILLAR 2 — OPTIMIZATION & ALGORITHMS (TOP-CENTER CARD) ---
-* Header Badge: 2. OPTIMIZATION & ALGORITHMS
+--- BLOCK 6.2: PILLAR 2 — MATHEMATICAL SCHEDULING RESEARCH (TOP-CENTER CARD) ---
+* Header Badge: 2. OPTIMIZATION RESEARCH
 * Citations & Sources:
-  * Google OR-Tools CP-SAT Solver: Laurent Perron & Frederic Didier (Google Operations Research): Constraint Programming with SAT Solvers for NP-hard Scheduling.
-  * Railway Rescheduling Theory: Caimi, Fuchsberger, Burkolter (ETH Zurich): Periodic Timetable Conflict Resolution and Dynamic Rescheduling in Dense Rail Networks.
-  * Rolling Horizon Decision Support: Multi-stage optimization frameworks for dynamic network disruption handling.
+  * Google OR-Tools Research (Perron & Didier): Leading constraint optimization library used for complex scheduling.
+  * Railway Scheduling Theory (ETH Zurich): Academic research on resolving timetable conflicts on dense railway networks.
+  * Real-Time Rescheduling Methods: Standard frameworks for adapting schedules quickly when trains run late.
 
---- BLOCK 6.3: RESEARCH PILLAR 3 — OPEN DATA & BENCHMARKS (TOP-RIGHT CARD) ---
-* Header Badge: 3. OPEN DATA & BENCHMARKS
+--- BLOCK 6.3: PILLAR 3 — REAL RAILWAY TIMETABLES & DATA (TOP-RIGHT CARD) ---
+* Header Badge: 3. RAILWAY TIMETABLE DATA
 * Citations & Sources:
-  * National Train Enquiry System (NTES): Public passenger train timetable schemas, station arrival/departure times, and section running intervals.
-  * Freight Operations Info System (FOIS): Standard headway allocations, rake turnover norms, and bulk freight priority schedules.
-  * Delhi-Kanpur 433.5 km Benchmark: Authentic double-line arterial corridor model with 6 sub-divisions and 140+ daily scheduled trains.
+  * National Train Enquiry System (NTES): Authentic public train arrival, departure, and running time schedules.
+  * Freight Operations Information System (FOIS): Standard goods train headway and corridor movement patterns.
+  * Delhi-Kanpur Corridor Model: Realistic 433.5 km double-line route with 6 major stations and 140+ daily trains.
 
---- BLOCK 6.4: CODEBASE VERIFICATION & REPRODUCIBILITY HUB (BOTTOM CONTAINER) ---
-* Header Title: LIVE CODEBASE & SIMULATION VERIFICATION SUMMARY
-* Embedded QR Code Label: SCAN TO INSPECT REPO (Links to live GitHub project workspace)
-* Verification Badges & Claims:
-  * [VERIFIED] 55 / 55 Unit & Integration Tests Passing — 100% test coverage on solver constraints, safety validation, and disruption recovery.
-  * [VERIFIED] Google OR-Tools CP-SAT + FastAPI Telemetry — Production-grade Python 3.11 backend with asynchronous optimization engine.
-  * [VERIFIED] Interactive Marey String Chart Included — Section-by-section dynamic space-time visualization with live conflict detection.
-  * [VERIFIED] Delhi-Kanpur Double-Line Dataset Reproducible — Complete 433.5 km simulation dataset included for independent peer review.
+--- BLOCK 6.4: CODEBASE VERIFICATION & REPRODUCIBILITY (BOTTOM CONTAINER) ---
+* Header Title: LIVE CODEBASE & PROTOTYPE VERIFICATION
+* Scannable QR Code: Links directly to live GitHub repository and interactive prototype.
+* Proven Verification Badges:
+  * [VERIFIED] 55 / 55 Automated Tests Passing — Complete test coverage for optimization, safety rules, and APIs.
+  * [VERIFIED] Full-Stack Python & React Application — Fast, reliable, and ready for immediate live demonstration.
+  * [VERIFIED] Interactive Time-Distance String Chart — Live visual proof of train movements and maintenance blocks.
+  * [VERIFIED] Complete 433.5 km Corridor Dataset — Fully reproducible benchmark included in repository for evaluation.
 ====================================================================================================
-END OF SLIDE-BY-SLIDE CONTENT SPECIFICATION
+END OF PLAIN-ENGLISH CONTENT SPECIFICATION
 ====================================================================================================
