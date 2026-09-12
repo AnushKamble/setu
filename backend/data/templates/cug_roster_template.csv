@@ -1,0 +1,6 @@
+gang_id,supervisor_name,phone_number,department,role,base_station
+CIVIL-GANG-4,Rajesh Sharma,+919876543210,ENGINEERING,SSE/P-Way In-Charge,Ghaziabad
+TRD-DEPOT-2,Vipin Verma,+919811223344,TRD,TRD Traction Foreman,Aligarh
+SIG-UNIT-9,Amit Saxena,+919822334455,S_AND_T,Sectional Signal Inspector,Kanpur
+SM-GZB-CTRL,Rakesh Gupta,+919833445566,STATION_MASTER,Station Master In-Charge,Ghaziabad
+TPC-CNB-NORTH,K. L. Meena,+919844556677,TPC,Traction Power Controller,Kanpur Central

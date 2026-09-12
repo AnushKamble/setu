@@ -1,0 +1,9 @@
+train_number,train_name,priority_class,section_id,entry_minute,exit_minute,is_goods_forecast
+12002,Bhopal Shatabdi Express,EXPRESS,SEC-NDLS-GZB-UP,360,390,False
+12302,Howrah Rajdhani Express,EXPRESS,SEC-NDLS-GZB-UP,420,450,False
+12424,Dibrugarh Rajdhani Express,EXPRESS,SEC-GZB-ALJN-UP,500,560,False
+22436,Vande Bharat Express,EXPRESS,SEC-ALJN-CNB-UP,600,720,False
+12560,Shiv Ganga Superfast Express,EXPRESS,SEC-NDLS-GZB-UP,1140,1175,False
+BOXN-01,Container Freight Long-Haul,FREIGHT_SCHEDULED,SEC-NDLS-GZB-UP,750,820,False
+COAL-04,NTPC Dadri Coal Rake,FREIGHT_DEMAND,SEC-GZB-ALJN-DN,900,990,True
+BCN-12,Fertilizer Bulk Freight,FREIGHT_SCHEDULED,SEC-ALJN-CNB-DN,1200,1350,False
