@@ -1,4 +1,18 @@
 import React, { useState } from 'react'
+import {
+  FolderDown,
+  Download,
+  Wrench,
+  Train,
+  Upload,
+  RefreshCw,
+  Zap,
+  AlertTriangle,
+  CheckCircle2,
+  TrendingUp,
+  Calendar,
+  BarChart3
+} from 'lucide-react'
 
 const DEFAULT_SAMPLE_JOBS_CSV = `job_id,section_id,department,work_type,duration_minutes,statutory_deadline_hours,machine_required,min_crew_size,priority_weight
 JOB-MY-001,SEC-NDLS-GZB-UP,ENGINEERING,TRACK_TAMPING,180,36,TAMPING_MACHINE,8,1.8
@@ -100,7 +114,7 @@ export default function CustomDataView({ onNavigate = () => {} }) {
       <div className="card-surface" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-            <span style={{ fontSize: '18px' }}>📂</span>
+            <FolderDown size={20} color="#38bdf8" />
             <span style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)' }}>
               Custom Railway Data Ingestion & Large-Scale Testing
             </span>
@@ -118,26 +132,29 @@ export default function CustomDataView({ onNavigate = () => {} }) {
           <button
             onClick={() => handleDownloadTemplate('jobs')}
             className="horizon-pill-btn"
-            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)' }}
+            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '5px' }}
             title="Download blank template for maintenance jobs"
           >
-            📥 Jobs Template (.csv)
+            <Download size={12} />
+            <span>Jobs Template (.csv)</span>
           </button>
           <button
             onClick={() => handleDownloadTemplate('trains')}
             className="horizon-pill-btn"
-            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)' }}
+            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '5px' }}
             title="Download blank template for train movements"
           >
-            📥 Trains Template (.csv)
+            <Download size={12} />
+            <span>Trains Template (.csv)</span>
           </button>
           <button
             onClick={() => handleDownloadTemplate('cug')}
             className="horizon-pill-btn"
-            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)' }}
+            style={{ height: '30px', padding: '0 12px', background: 'rgba(255,255,255,0.05)', color: '#e4e4e7', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '5px' }}
             title="Download blank template for field gang CUG roster"
           >
-            📥 CUG Roster (.csv)
+            <Download size={12} />
+            <span>CUG Roster (.csv)</span>
           </button>
         </div>
       </div>
@@ -152,22 +169,25 @@ export default function CustomDataView({ onNavigate = () => {} }) {
               <button
                 onClick={() => handleSwitchType('jobs')}
                 className={`horizon-pill-btn ${activeDataType === 'jobs' ? 'active' : ''}`}
-                style={{ fontSize: '11px', padding: '0 12px' }}
+                style={{ fontSize: '11px', padding: '0 12px', display: 'flex', alignItems: 'center', gap: '5px' }}
               >
-                🔧 Maintenance Jobs ({activeDataType === 'jobs' ? 'Active' : ''})
+                <Wrench size={12} />
+                <span>Maintenance Jobs ({activeDataType === 'jobs' ? 'Active' : ''})</span>
               </button>
               <button
                 onClick={() => handleSwitchType('trains')}
                 className={`horizon-pill-btn ${activeDataType === 'trains' ? 'active' : ''}`}
-                style={{ fontSize: '11px', padding: '0 12px' }}
+                style={{ fontSize: '11px', padding: '0 12px', display: 'flex', alignItems: 'center', gap: '5px' }}
               >
-                🚆 Train Timetables ({activeDataType === 'trains' ? 'Active' : ''})
+                <Train size={12} />
+                <span>Train Timetables ({activeDataType === 'trains' ? 'Active' : ''})</span>
               </button>
             </div>
 
             {/* File Upload Input */}
             <label style={{ cursor: 'pointer', fontSize: '11.5px', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span>📁 Upload File</span>
+              <Upload size={13} />
+              <span>Upload File</span>
               <input type="file" accept=".csv" onChange={handleFileUpload} style={{ display: 'none' }} />
             </label>
           </div>
@@ -219,7 +239,7 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                 opacity: isSubmitting ? 0.6 : 1
               }}
             >
-              <span>{isSubmitting ? '⏳' : '⚡'}</span>
+              {isSubmitting ? <RefreshCw size={13} className="spin" /> : <Zap size={13} />}
               <span>{isSubmitting ? 'Validating & Solving...' : 'Ingest & Solve Schedule'}</span>
             </button>
           </div>
@@ -227,7 +247,10 @@ export default function CustomDataView({ onNavigate = () => {} }) {
           {/* Error Notice */}
           {errorDetails && (
             <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '6px', padding: '12px', color: '#fca5a5', fontSize: '12px', whiteSpace: 'pre-line' }}>
-              <strong>⚠️ Validation or Ingestion Error:</strong>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <AlertTriangle size={14} />
+                <strong>Validation or Ingestion Error:</strong>
+              </div>
               <div style={{ marginTop: '4px' }}>{errorDetails}</div>
             </div>
           )}
@@ -236,8 +259,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
           {resultMessage && (
             <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '8px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontWeight: 700, color: '#34d399', fontSize: '13px' }}>
-                  ✅ {resultMessage.message}
+                <span style={{ fontWeight: 700, color: '#34d399', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <CheckCircle2 size={14} />
+                  <span>{resultMessage.message}</span>
                 </span>
                 {resultMessage.optimization && (
                   <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
@@ -272,15 +296,17 @@ export default function CustomDataView({ onNavigate = () => {} }) {
               <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
                 <button
                   onClick={() => onNavigate('marey')}
-                  style={{ flex: 1, padding: '6px', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.4)', borderRadius: '4px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ flex: 1, padding: '6px', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.4)', borderRadius: '4px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
                 >
-                  📈 View on Marey String Chart
+                  <TrendingUp size={12} />
+                  <span>View on Marey String Chart</span>
                 </button>
                 <button
                   onClick={() => onNavigate('planner')}
-                  style={{ flex: 1, padding: '6px', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '4px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer' }}
+                  style={{ flex: 1, padding: '6px', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '4px', fontSize: '11.5px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
                 >
-                  📅 View on Possession Matrix
+                  <Calendar size={12} />
+                  <span>View on Possession Matrix</span>
                 </button>
               </div>
             </div>
@@ -291,7 +317,7 @@ export default function CustomDataView({ onNavigate = () => {} }) {
         <div className="card-surface" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
             <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>📊</span>
+              <BarChart3 size={15} color="#38bdf8" />
               <span>Empirical Scalability Stress Test Audit</span>
             </div>
             <p style={{ margin: '4px 0 0 0', fontSize: '11.5px', color: 'var(--text-secondary)' }}>
@@ -319,7 +345,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                   <td style={{ padding: '8px 4px' }}>378</td>
                   <td style={{ padding: '8px 4px', color: '#10b981', fontWeight: 700 }}>0.38s</td>
                   <td style={{ padding: '8px 4px' }}>126 MB</td>
-                  <td style={{ padding: '8px 4px', color: '#10b981' }}>✅ 0 Conflicts</td>
+                  <td style={{ padding: '8px 4px', color: '#10b981' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><CheckCircle2 size={12} /> 0 Conflicts</span>
+                  </td>
                 </tr>
                 <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '8px 4px', fontWeight: 600, color: '#e4e4e7' }}>Level 2: Delhi Division</td>
@@ -327,7 +355,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                   <td style={{ padding: '8px 4px' }}>378</td>
                   <td style={{ padding: '8px 4px', color: '#10b981', fontWeight: 700 }}>2.31s</td>
                   <td style={{ padding: '8px 4px' }}>130 MB</td>
-                  <td style={{ padding: '8px 4px', color: '#10b981' }}>✅ 0 Conflicts</td>
+                  <td style={{ padding: '8px 4px', color: '#10b981' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><CheckCircle2 size={12} /> 0 Conflicts</span>
+                  </td>
                 </tr>
                 <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '8px 4px', fontWeight: 600, color: '#e4e4e7' }}>Level 3: Freight Trunk</td>
@@ -335,7 +365,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                   <td style={{ padding: '8px 4px' }}>1,008</td>
                   <td style={{ padding: '8px 4px', color: '#38bdf8', fontWeight: 700 }}>15.56s</td>
                   <td style={{ padding: '8px 4px' }}>145 MB</td>
-                  <td style={{ padding: '8px 4px', color: '#10b981' }}>✅ 0 Conflicts</td>
+                  <td style={{ padding: '8px 4px', color: '#10b981' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><CheckCircle2 size={12} /> 0 Conflicts</span>
+                  </td>
                 </tr>
                 <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '8px 4px', fontWeight: 600, color: '#e4e4e7' }}>Level 4: High-Density NDLS-CNB</td>
@@ -343,7 +375,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                   <td style={{ padding: '8px 4px' }}>1,890</td>
                   <td style={{ padding: '8px 4px', color: '#38bdf8', fontWeight: 700 }}>15.88s</td>
                   <td style={{ padding: '8px 4px' }}>150 MB</td>
-                  <td style={{ padding: '8px 4px', color: '#10b981' }}>✅ 0 Conflicts</td>
+                  <td style={{ padding: '8px 4px', color: '#10b981' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><CheckCircle2 size={12} /> 0 Conflicts</span>
+                  </td>
                 </tr>
                 <tr>
                   <td style={{ padding: '8px 4px', fontWeight: 600, color: '#f59e0b' }}>Level 5: Mega-Division (14D)</td>
@@ -351,7 +385,9 @@ export default function CustomDataView({ onNavigate = () => {} }) {
                   <td style={{ padding: '8px 4px' }}>6,048</td>
                   <td style={{ padding: '8px 4px', color: '#f59e0b', fontWeight: 700 }}>17.43s</td>
                   <td style={{ padding: '8px 4px' }}>165 MB</td>
-                  <td style={{ padding: '8px 4px', color: '#10b981' }}>✅ 0 Conflicts</td>
+                  <td style={{ padding: '8px 4px', color: '#10b981' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><CheckCircle2 size={12} /> 0 Conflicts</span>
+                  </td>
                 </tr>
               </tbody>
             </table>

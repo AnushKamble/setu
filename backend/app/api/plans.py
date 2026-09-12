@@ -27,6 +27,25 @@ _LATEST_BASELINE_PLAN: BaselinePlanResult = None
 _LATEST_OPTIMIZED_PLAN: OptimizationResult = None
 
 
+def invalidate_plan_caches():
+    """Resets cached baseline and CP-SAT optimized plans when database state changes."""
+    global _LATEST_BASELINE_PLAN, _LATEST_OPTIMIZED_PLAN
+    _LATEST_BASELINE_PLAN = None
+    _LATEST_OPTIMIZED_PLAN = None
+
+
+def set_latest_optimized_plan(plan: OptimizationResult):
+    """Sets the latest optimized plan globally across all planning and downstream endpoints."""
+    global _LATEST_OPTIMIZED_PLAN
+    _LATEST_OPTIMIZED_PLAN = plan
+
+
+def get_latest_optimized_plan() -> Optional[OptimizationResult]:
+    """Retrieves the active optimized plan."""
+    global _LATEST_OPTIMIZED_PLAN
+    return _LATEST_OPTIMIZED_PLAN
+
+
 @router.post("/baseline", response_model=BaselinePlanResult, status_code=status.HTTP_200_OK)
 def run_baseline_plan(db: Session = Depends(get_db)):
     """Executes the decentralized greedy baseline planner against current database records."""
@@ -71,6 +90,11 @@ def run_optimized_plan(
     """Executes Google OR-Tools CP-SAT multi-department convoy optimizer."""
     global _LATEST_OPTIMIZED_PLAN
 
+    if not hasattr(db, 'query'):
+        from backend.app.database import SessionLocal
+        with SessionLocal() as s:
+            return run_optimized_plan(time_limit=time_limit, db=s)
+
     jobs = db.query(MaintenanceJob).all()
     windows = db.query(CorridorWindow).all()
     trains = db.query(TrainMovement).all()
@@ -98,9 +122,13 @@ def run_optimized_plan(
 def get_latest_optimized_plan(db: Session = Depends(get_db)):
     """Retrieves the most recently generated optimized plan."""
     global _LATEST_OPTIMIZED_PLAN
-    if _LATEST_OPTIMIZED_PLAN is None:
-        return run_optimized_plan(db=db)
-    return _LATEST_OPTIMIZED_PLAN
+    if _LATEST_OPTIMIZED_PLAN is not None:
+        return _LATEST_OPTIMIZED_PLAN
+    if not hasattr(db, 'query'):
+        from backend.app.database import SessionLocal
+        with SessionLocal() as s:
+            return run_optimized_plan(time_limit=10.0, db=s)
+    return run_optimized_plan(time_limit=10.0, db=db)
 
 
 @router.get("/compare")

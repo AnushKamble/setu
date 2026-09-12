@@ -1,0 +1,222 @@
+================================================================================
+SETU (Shared Engineering-Traction-Utility Block Planner)
+SMART INDIA HACKATHON — MASTER PREPARATION & DEFENSE BRIEFING
+ALL TEAM MEMBERS MASTER CONTEXT & CROSS-FUNCTIONAL ALIGNMENT
+================================================================================
+
+1. EXECUTIVE SUMMARY & ELEVATOR PITCH FOR JUDGES
+--------------------------------------------------------------------------------
+SETU is an upstream decision-support and possession-planning intelligence platform
+designed for Indian Railways (IR). It bridges the historical departmental silos
+between:
+  1. Engineering (Track / P-Way) via Track Management System (TMS)
+  2. Traction Distribution (OHE Electrical) via Traction Distribution Management System (TDMS)
+  3. Signal & Telecom (S&T) via Signal Maintenance Management System (SMMS)
+
+Today in Indian Railways, each department independently approaches the Section
+Controller (SCOR) for track possession (corridor maintenance blocks). This manual,
+decentralized booking creates:
+  - Severe traffic bunching and express train detention (Rajdhani, Vande Bharat, etc.).
+  - Fragmented, repeated track closures on the same physical section.
+  - Idle track capacity where one department works while the adjacent line or
+    electrical wire sits idle, followed hours later by another shutdown.
+
+SETU replaces this fragmented workflow with a mathematically proven, AI-prioritized,
+and multi-department coordinated block planning engine. By deploying Google OR-Tools
+CP-SAT combinatorial optimization, LightGBM machine learning, and an independent
+Zero-Trust Safety Validator, SETU:
+  - Slashes total corridor possessions by 38.9% (from 18 manual down to 11 coordinated blocks).
+  - Eliminates 810 minutes (13.5 hours) of unnecessary track closures weekly on the corridor.
+  - Generates 7 multi-department "Joint Convoys", co-locating track, electrical, and signalling gangs.
+  - Guarantees ZERO timetable collisions with passenger express services.
+  - Achieves sub-second optimization (<0.3s execution time).
+
+
+2. THE PROBLEM STATEMENT: DECONSTRUCTED & DIRECTLY MAPPED
+--------------------------------------------------------------------------------
+Reference Document: PS_TRACEABILITY.md
+
+The official Smart India Hackathon problem statement requires five core pillars:
+
+[PS-1] DATA INTEGRATION:
+  - Requirement: Integration of maintenance demands (defects, overdue maintenance)
+    from TMS, SMMS, and TDMS with corridor block availability as per Train Time Table
+    and Goods Trains forecast (COA).
+  - SETU Answer: Canonical Railway Ledger (`backend/app/models/railway.py`), Ingestion
+    Adapters, anti-circularity latent-noise synthetic corpus generator, and the live
+    Field Engineer Requisition Portal (`/portal`).
+
+[PS-2] AI/ML PRIORITIZATION:
+  - Requirement: Prioritize and schedule tasks based on criticality, urgency, and
+    impact on asset availability.
+  - SETU Answer: LightGBM Priority Ranker (outputting risk score in [0, 1]), Quantile
+    Duration Regressor (P50 nominal duration and P90 conservative buffer), and
+    Cost-of-Waiting ordinal hazard function (predicting risk escalation per 7-day deferral).
+
+[PS-3] COMBINATORIAL OPTIMIZATION & CONVOYS:
+  - Requirement: Maximize asset uptime by minimizing downtime and efficiently
+    coordinating multi-department activities.
+  - SETU Answer: Google OR-Tools CP-SAT discrete solver using boolean convoy decision
+    variables (z_{j, j', w}), pairwise domain compatibility matrix safe(j, j'), and
+    lexicographic multi-stage optimization.
+
+[PS-4] MULTI-HORIZON CONSISTENCY:
+  - Requirement: Provide block plans over multiple time horizons (weekly and monthly)
+    to support short-term and long-term planning.
+  - SETU Answer: Two-Tier Rolling Horizon Coordinator. The monthly strategic horizon
+    sets a coarse possession-hour quota envelope per section (e.g. <= 45h/month);
+    the weekly tactical horizon optimizes exact 5-minute slots strictly bounded by
+    the monthly envelope. (Corrected strategic-to-tactical dependency direction).
+
+[PS-5] SAFETY, DYNAMIC REPLANNING & DATA-DRIVEN REPLACEMENT:
+  - Requirement: Ensure uninterrupted train operations, replace manual guesswork, and
+    provide dynamic replanning under live disruptions.
+  - SETU Answer: Zero-Trust Independent Safety Validator (7 decoupled checks),
+    Dynamic Replanner with Frozen State (<0.05s warm-start re-solve), and the
+    interactive What-If Corridor Disruption Simulator.
+
+
+3. SYSTEM ARCHITECTURE AT A GLANCE
+--------------------------------------------------------------------------------
+Reference Document: ARCHITECTURE_CONTRACT.md
+
+                  +----------------------------------------------+
+                  |  TMS (Track) • TDMS (OHE) • SMMS (Signalling) |
+                  |    + COA Timetable & Goods Train Forecast    |
+                  +----------------------------------------------+
+                                         │
+                                         ▼
+                  +----------------------------------------------+
+                  |         1. CANONICAL RAILWAY LEDGER          |
+                  |     (Data Schemas, Geometry, Work Orders)    |
+                  +----------------------------------------------+
+                                         │
+                                         ▼
+                  +----------------------------------------------+
+                  |       2. PREDICTIVE ML ENGINE (LightGBM)     |
+                  |   Criticality Score • P90 Buffer • CoW Hazard|
+                  +----------------------------------------------+
+                                         │
+                                         ▼
+                  +----------------------------------------------+
+                  |        3. OPPORTUNITY MINING (safe(j,j'))    |
+                  | Spatial • Temporal • Multi-Dept Compatibility|
+                  +----------------------------------------------+
+                                         │
+                                         ▼
+                  +----------------------------------------------+
+                  |      4. CP-SAT COMBINATORIAL OPTIMIZER       |
+                  |   Lexicographic: Statutory -> CoW -> Downtime|
+                  +----------------------------------------------+
+                         │                              │
+                  (If Feasible)                   (If Infeasible)
+                         │                              │
+                         ▼                              ▼
+            +---------------------------+  +---------------------------+
+            | 5. ZERO-TRUST VALIDATOR   |  | 6. INFEASIBILITY ENGINE   |
+            | 7 External Safety Checks  |  | Slack Relaxation & Buffer |
+            +---------------------------+  +---------------------------+
+                         │
+                         ▼
+            +---------------------------+
+            | 7. OPERATOR REVIEW & BDMS |
+            | Pin, Override, Signoff    |
+            +---------------------------+
+                         │
+             (Live Disruption Event)
+                         │
+                         ▼
+            +---------------------------+
+            | 8. DYNAMIC WARM REPLANNER |
+            | Frozen State Re-solve     |
+            +---------------------------+
+
+
+4. TEAM MEMBER ROLES & SCRIPT ASSIGNMENTS
+--------------------------------------------------------------------------------
+  1. TANMAY   — Algorithms & Optimization (CP-SAT, Convoy Formulations, safe(j,j'),
+                Infeasibility Fallback, Replanner)
+  2. SHREEYA  — Data Generation & Railway Modelling (Synthetic Generator, Latent
+                Degradation Noise, Timetables, Delhi-Kanpur Corridor Network)
+  3. VISHAL   — Frontend & Interactive Digital Twin (React 19, Vite, Time-Space Gantt,
+                Marey String Chart, Topology Map, Zero-Emoji Control Room UX)
+  4. SHARANYA — Business ROI, Carbon ESG, Governance & Deployment (Fuel/Diesel
+                Savings, BDMS Export, Statutory Audit Trail, Docker, CI/CD)
+  5. MRUNAL   — Machine Learning & Predictive Analytics (LightGBM Priority, P50/P90
+                Quantile Duration Regressor, Cost-of-Waiting Hazard Model, Anti-Circularity)
+  6. ANUSH    — Backend Systems, Canonical Ledger & Safety Validator (FastAPI,
+                SQLAlchemy, Zero-Trust Safety Checker, Dispatcher, Test Suites)
+
+
+5. THE 5-MINUTE GOLDEN DEMO FLOW FOR JURORS
+--------------------------------------------------------------------------------
+When the judges arrive at your station:
+
+MINUTE 1: THE HOOK & OPERATIONAL BOTTLENECK (Presenter: Tanmay / Sharanya)
+  - "Respected Judges, Indian Railways runs 13,000+ passenger trains daily on saturated
+    corridors like Delhi-Kanpur. Track maintenance is currently booked manually in silos.
+    Track gangs, OHE electrical gangs, and Signalling gangs each demand separate track blocks.
+    The result: 558 train delay minutes daily and massive fuel waste."
+  - "SETU is the first mathematical decision-support system that unifies TMS, TDMS,
+    and SMMS to bundle maintenance into joint convoys, proving zero express train disruption."
+
+MINUTE 2: LIVE FIELD EMERGENCY INGESTION (Presenter: Vishal / Anush)
+  - Navigate to the "Field Requisition Portal" (`/portal`).
+  - "Rather than showing pre-baked static charts, let us simulate a live field emergency
+    reported on Northern Railway right now."
+  - Click "Incident 1: USFD Rail Fracture on GZB-ALJN Up Main".
+  - Watch the pipeline execute in 0.28 seconds:
+      1. Canonical Ledger commits the order.
+      2. LightGBM predicts Priority Score: 0.95 (CRITICAL) and adds +25m P90 buffer.
+      3. CP-SAT co-locates the fracture repair with a pre-scheduled OHE block.
+      4. Zero-Trust Validator passes 7/7 safety checks.
+
+MINUTE 3: PROVING ZERO CONFLICT ON THE GANTT & MAREY CHART (Presenter: Tanmay / Vishal)
+  - Click "Inspect on Possession Planner" -> View the green Joint Convoy block on Day 1.
+  - Switch to "Marey String Chart" -> Show how the shaded possession band sits cleanly
+    in the white space between train trajectory strings (Rajdhani Express #12302 and
+    Vande Bharat #22436 pass with 15-minute safety aura buffers intact).
+
+MINUTE 4: WHAT-IF SIMULATION & DYNAMIC REPLANNING (Presenter: Anush / Tanmay)
+  - Navigate to "What-If Simulator" -> Inject a 45-minute delay on an inbound express.
+  - Show the dynamic replanner: In 0.04 seconds, without altering in-progress jobs
+    (frozen state), SETU shifts the downstream start minute and absorbs the slack.
+
+MINUTE 5: FINANCIAL ROI, ESG CARBON SAVINGS & BDMS EXPORT (Presenter: Sharanya)
+  - Show Executive ROI view: ₹18.4 Lakhs daily operational saving, 1,420 liters of
+    diesel saved by preventing freight train stop-and-go restarts.
+  - Export the official Indian Railways BDMS circular bundle with 1 click.
+
+
+6. TOP 5 JURY TRAP QUESTIONS & UNIVERSAL DEFENSE
+--------------------------------------------------------------------------------
+Q1: "Is SETU replacing the Section Controller (SCOR) or the Railway Board's BDMS?"
+  - DEFENSE: "No. SETU is an UPSTREAM decision-support tool. It produces an optimized,
+    conflict-free, multi-department proposal bundle for the Divisional Operations
+    Manager (DOM) to review, pin, and formally file into BDMS. Humans remain in the
+    loop (HITL) at all times."
+
+Q2: "Why didn't you use Reinforcement Learning or an LLM for scheduling?"
+  - DEFENSE: "In railway safety, non-deterministic models like LLMs or RL cannot prove
+    safety bounds and hallucinate time slots. CP-SAT is a deterministic constraint
+    programming solver that mathematically proves global optimality and guarantees
+    zero hard safety constraint violations."
+
+Q3: "How do you know synthetic data isn't biased or circular with your ML model?"
+  - DEFENSE: "We engineered an Anti-Circularity Latent-Noise Generator. It injects
+    unobserved latent variables (metallurgy batch anomalies, ballast moisture) that
+    influence asset degradation but are strictly HIDDEN from the ML model features,
+    preventing circular data leakage."
+
+Q4: "What happens if CP-SAT finds NO feasible schedule?"
+  - DEFENSE: "SETU never crashes or outputs a blank screen. Our automated Infeasibility
+    Relaxation Engine steps in: it relaxes the lowest-penalty soft constraint (e.g.
+    sliding statutory deadlines by 24 hours), suggests alternative windows, and raises
+    an urgent priority escalation flag for the human controller."
+
+Q5: "Why P90 duration instead of average duration?"
+  - DEFENSE: "In railway track work, duration overruns cause cascading train delays.
+    Scheduling with P50 (mean/median) means 50% of jobs overrun. Scheduling with P90
+    provides a conservative engineering buffer so following trains never get caught
+    behind a lingering maintenance crew."
+================================================================================

@@ -18,9 +18,17 @@ import ExecutiveRoiView from './components/views/ExecutiveRoiView'
 import KavachSimulatorView from './components/views/KavachSimulatorView'
 import CopilotChatView from './components/views/CopilotChatView'
 import CustomDataView from './components/views/CustomDataView'
+import FieldPortalView from './components/views/FieldPortalView'
+import OperationalStepper from './components/OperationalStepper'
+import DemandTimetableView from './components/views/DemandTimetableView'
+import SpaceTimeDisruptionView from './components/views/SpaceTimeDisruptionView'
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview')
+  const [demandSubTab, setDemandSubTab] = useState('backlog')
+  const [spaceTimeSubTab, setSpaceTimeSubTab] = useState('planner')
+  const [isCorridorDisrupted, setIsCorridorDisrupted] = useState(false)
+  const [corridorDisruptionDetails, setCorridorDisruptionDetails] = useState(null)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [horizonMode, setHorizonMode] = useState('WEEK')
   const [health, setHealth] = useState(null)
@@ -31,6 +39,9 @@ export default function App() {
   const [jobs, setJobs] = useState([])
   const [comparison, setComparison] = useState(null)
   const [optimizedPlan, setOptimizedPlan] = useState(null)
+  const [baselinePlan, setBaselinePlan] = useState(null)
+  const [activePlanMode, setActivePlanMode] = useState('OPTIMIZED') // 'OPTIMIZED' | 'BASELINE'
+  const [isPlanModified, setIsPlanModified] = useState(false)
   const [validationReport, setValidationReport] = useState(null)
   const [explanationReport, setExplanationReport] = useState(null)
   const [selectedSectionFilter, setSelectedSectionFilter] = useState('ALL')
@@ -40,6 +51,67 @@ export default function App() {
 
   const [loading, setLoading] = useState(false)
   const [statusMessage, setStatusMessage] = useState('')
+  const [highlightTarget, setHighlightTarget] = useState(null)
+
+  const handleNavigate = (tab, targetKey = null) => {
+    if (['demand', 'maintenance', 'topology', 'portal', 'windows', 'timetable'].includes(tab)) {
+      if (tab === 'maintenance') setDemandSubTab('backlog')
+      else if (tab === 'topology') setDemandSubTab('topology')
+      else if (tab === 'portal') setDemandSubTab('portal')
+      else if (tab === 'windows') setDemandSubTab('windows')
+      else if (tab === 'timetable') setDemandSubTab('timetable')
+      setActiveTab('demand')
+    } else if (['planner', 'marey', 'whatif', 'spacetime'].includes(tab)) {
+      if (tab === 'marey') setSpaceTimeSubTab('marey')
+      else if (tab === 'whatif') setSpaceTimeSubTab('whatif')
+      else setSpaceTimeSubTab('planner')
+      setActiveTab('planner')
+    } else {
+      setActiveTab(tab)
+    }
+    if (horizonMode === 'MONTH') setHorizonMode('WEEK')
+    const key = targetKey || tab
+    setHighlightTarget(key)
+    setTimeout(() => {
+      setHighlightTarget(null)
+    }, 2800)
+  }
+
+  const handleDisruptionApplied = (data) => {
+    if (data?.isReset) {
+      setIsCorridorDisrupted(false)
+      setCorridorDisruptionDetails(null)
+      setStatusMessage('Corridor timetable and possession plan restored to nominal baseline.')
+      fetchInitialData()
+      return
+    }
+
+    setIsCorridorDisrupted(true)
+    setCorridorDisruptionDetails(data)
+    if (data?.replanning_diff?.updated_plan && data.replanning_diff.updated_plan.blocks) {
+      setOptimizedPlan(data.replanning_diff.updated_plan)
+      setIsPlanModified(true)
+    }
+    fetch('/api/plans/compare').then(r => r.json()).then(c => setComparison(c)).catch(() => {})
+    fetch('/api/plans/validate').then(r => r.json()).then(v => setValidationReport(v)).catch(() => {})
+    fetch('/api/plans/export-bdms', { method: 'POST' }).then(r => r.json()).then(b => setBdmsBundle(b)).catch(() => {})
+    setStatusMessage(`Disruption applied: +${data?.impact?.total_network_delay_minutes || 45}m network delay. Live timetable & Gantt updated.`)
+  }
+
+  const handleResetDisruption = async () => {
+    setLoading(true)
+    try {
+      await fetch('/api/simulation/reset', { method: 'POST' })
+      setIsCorridorDisrupted(false)
+      setCorridorDisruptionDetails(null)
+      await fetchInitialData()
+      setStatusMessage('Corridor restored to nominal baseline schedule.')
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     fetchInitialData()
@@ -57,12 +129,13 @@ export default function App() {
   const fetchInitialData = async () => {
     setLoading(true)
     try {
-      const [hRes, scRes, jRes, wRes, optRes, compRes, valRes, explRes, bdmsRes] = await Promise.all([
+      const [hRes, scRes, jRes, wRes, optRes, baseRes, compRes, valRes, explRes, bdmsRes] = await Promise.all([
         fetch('/api/health').then(r => r.json()),
         fetch('/api/scenarios').then(r => r.json()),
         fetch('/api/jobs').then(r => r.json()),
         fetch('/api/windows?limit=100').then(r => r.json()),
         fetch('/api/plans/optimize').then(r => r.json()),
+        fetch('/api/plans/baseline').then(r => r.json()),
         fetch('/api/plans/compare').then(r => r.json()),
         fetch('/api/plans/validate').then(r => r.json()),
         fetch('/api/plans/explain').then(r => r.json()),
@@ -73,20 +146,24 @@ export default function App() {
       setJobs(jRes)
       setWindows(wRes)
       setOptimizedPlan(optRes)
+      setBaselinePlan(baseRes)
       setComparison(compRes)
       setValidationReport(valRes)
       setExplanationReport(explRes)
       setBdmsBundle(bdmsRes)
 
-      const distinctSections = [
-        { id: 'SEC-NDLS-GZB-UP', name: 'New Delhi - Ghaziabad Up Main', track_type: 'UP_MAIN', length_km: 25.5, max_speed_kmh: 130 },
-        { id: 'SEC-NDLS-GZB-DN', name: 'New Delhi - Ghaziabad Down Main', track_type: 'DN_MAIN', length_km: 25.5, max_speed_kmh: 130 },
-        { id: 'SEC-GZB-ALJN-UP', name: 'Ghaziabad - Aligarh Up Main', track_type: 'UP_MAIN', length_km: 106.0, max_speed_kmh: 140 },
-        { id: 'SEC-GZB-ALJN-DN', name: 'Ghaziabad - Aligarh Down Main', track_type: 'DN_MAIN', length_km: 106.0, max_speed_kmh: 140 },
-        { id: 'SEC-ALJN-CNB-UP', name: 'Aligarh - Kanpur Up Main', track_type: 'UP_MAIN', length_km: 302.0, max_speed_kmh: 130 },
-        { id: 'SEC-ALJN-CNB-DN', name: 'Aligarh - Kanpur Down Main', track_type: 'DN_MAIN', length_km: 302.0, max_speed_kmh: 130 },
-      ]
-      setSections(distinctSections)
+      let secList = await fetch('/api/sections').then(r => r.json()).catch(() => [])
+      if (!secList || secList.length === 0) {
+        secList = [
+          { id: 'SEC-NDLS-GZB-UP', name: 'New Delhi - Ghaziabad Up Main', track_type: 'UP_MAIN', length_km: 25.5, max_speed_kmh: 130 },
+          { id: 'SEC-NDLS-GZB-DN', name: 'New Delhi - Ghaziabad Down Main', track_type: 'DN_MAIN', length_km: 25.5, max_speed_kmh: 130 },
+          { id: 'SEC-GZB-ALJN-UP', name: 'Ghaziabad - Aligarh Up Main', track_type: 'UP_MAIN', length_km: 106.0, max_speed_kmh: 140 },
+          { id: 'SEC-GZB-ALJN-DN', name: 'Ghaziabad - Aligarh Down Main', track_type: 'DN_MAIN', length_km: 106.0, max_speed_kmh: 140 },
+          { id: 'SEC-ALJN-CNB-UP', name: 'Aligarh - Kanpur Up Main', track_type: 'UP_MAIN', length_km: 302.0, max_speed_kmh: 130 },
+          { id: 'SEC-ALJN-CNB-DN', name: 'Aligarh - Kanpur Down Main', track_type: 'DN_MAIN', length_km: 302.0, max_speed_kmh: 130 },
+        ]
+      }
+      setSections(secList)
     } catch (err) {
       console.error('Initial fetch failed:', err)
     } finally {
@@ -96,7 +173,7 @@ export default function App() {
 
   const handleSeedScenario = async (scName) => {
     setLoading(true)
-    setStatusMessage(`Loading ${scName} scenario...`)
+    setStatusMessage(`Synthesizing and solving ${scName} scenario...`)
     try {
       await fetch('/api/scenarios/seed', {
         method: 'POST',
@@ -104,7 +181,9 @@ export default function App() {
         body: JSON.stringify({ scenario_name: scName, seed: 42 }),
       })
       await fetchInitialData()
-      setStatusMessage(`Scenario active: ${scName}`)
+      setActivePlanMode('OPTIMIZED')
+      setIsPlanModified(false)
+      setStatusMessage(`Scenario loaded: ${scName} (Optimal CP-SAT schedule active)`)
     } catch (err) {
       setStatusMessage(`Error: ${err.message}`)
     } finally {
@@ -113,6 +192,10 @@ export default function App() {
   }
 
   const handleReoptimize = async () => {
+    if (activePlanMode === 'OPTIMIZED' && !isPlanModified) {
+      setStatusMessage('Schedule is already globally optimal with 0 conflicts.')
+      return
+    }
     setLoading(true)
     setStatusMessage('Solving OR-Tools CP-SAT multi-department formulation...')
     try {
@@ -128,6 +211,8 @@ export default function App() {
       setValidationReport(valRes)
       setExplanationReport(explRes)
       setBdmsBundle(bdmsRes)
+      setActivePlanMode('OPTIMIZED')
+      setIsPlanModified(false)
       setStatusMessage(`Optimized in ${optRes.solve_time_seconds}s! -${compRes.deltas.percentage_possessions_reduced}% possessions reduced.`)
     } catch (err) {
       setStatusMessage(`Optimization error: ${err.message}`)
@@ -140,11 +225,14 @@ export default function App() {
     setLoading(true)
     setStatusMessage('Simulating legacy decentralized manual baseline...')
     try {
-      const [compRes] = await Promise.all([
+      const [baseRes, compRes] = await Promise.all([
         fetch('/api/plans/baseline', { method: 'POST' }).then(r => r.json()),
-        fetch('/api/plans/compare').then(r => r.json()).then(c => setComparison(c))
+        fetch('/api/plans/compare').then(r => r.json())
       ])
-      setStatusMessage('Baseline schedule generated.')
+      setBaselinePlan(baseRes)
+      setComparison(compRes)
+      setActivePlanMode('BASELINE')
+      setStatusMessage('Legacy baseline active: Decentralized uncoordinated departmental bookings.')
     } catch (err) {
       setStatusMessage(`Error: ${err.message}`)
     } finally {
@@ -152,12 +240,27 @@ export default function App() {
     }
   }
 
+  const currentBlocks = activePlanMode === 'BASELINE'
+    ? (baselinePlan?.blocks || [])
+    : (optimizedPlan?.blocks || [])
+
   const filteredBlocks = selectedSectionFilter === 'ALL'
-    ? (optimizedPlan?.blocks || [])
-    : (optimizedPlan?.blocks || []).filter(b => b.section_id === selectedSectionFilter)
+    ? currentBlocks
+    : currentBlocks.filter(b => b.section_id === selectedSectionFilter)
 
   return (
     <div className="app-shell">
+      {/* Top Loading Progress Bar & Status Pill */}
+      {loading && (
+        <>
+          <div className="top-loading-bar" />
+          <div className="floating-loading-pill">
+            <div className="spinner-mini" />
+            <span>{statusMessage || 'Computing Corridor Optimization Model...'}</span>
+          </div>
+        </>
+      )}
+
       {/* 1. Left Enterprise Domain Navigation Sidebar */}
       <AppSidebar
         activeTab={activeTab}
@@ -198,7 +301,7 @@ export default function App() {
         <main className="app-workspace">
 
         {/* Actionable Status Toast */}
-        {statusMessage && (
+        {statusMessage && !loading && (
           <div style={{
             background: 'rgba(59, 130, 246, 0.1)',
             border: '1px solid rgba(59, 130, 246, 0.25)',
@@ -215,9 +318,7 @@ export default function App() {
             <button
               onClick={() => setStatusMessage('')}
               style={{ background: 'transparent', border: 'none', color: 'inherit', cursor: 'pointer', fontSize: '12px' }}
-            >
-              ✕
-            </button>
+             aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
           </div>
         )}
 
@@ -229,7 +330,13 @@ export default function App() {
           />
         ) : (
           <>
-            {/* Screen 1: Overview */}
+            {/* Guided Operational Lifecycle Stepper */}
+            <OperationalStepper
+              activeTab={activeTab}
+              onSelectTab={setActiveTab}
+            />
+
+            {/* Step 1: Network Overview */}
             {activeTab === 'overview' && (
               <OverviewView
                 jobs={jobs}
@@ -237,107 +344,99 @@ export default function App() {
                 optimizedPlan={optimizedPlan}
                 comparison={comparison}
                 validationReport={validationReport}
-                onNavigate={(tab) => setActiveTab(tab)}
+                highlightTarget={highlightTarget}
+                onNavigate={handleNavigate}
               />
             )}
 
-            {/* Screen 2: Possession Planner (PRIMARY WORKHORSE) */}
-            {activeTab === 'planner' && (
-              <PlannerView
+            {/* Step 2: Demands, Block Windows & Train Timetable */}
+            {(activeTab === 'demand' || ['maintenance', 'topology', 'portal'].includes(activeTab)) && (
+              <DemandTimetableView
+                jobs={jobs}
+                windows={windows}
+                sections={sections}
+                optimizedPlan={optimizedPlan}
+                activeSubTab={demandSubTab}
+                onSelectSubTab={setDemandSubTab}
+                onNavigate={handleNavigate}
+                onPlanUpdated={() => {
+                  fetchInitialData()
+                  setStatusMessage('Corridor work order and timetable updated.')
+                }}
+                onDisruptionApplied={handleDisruptionApplied}
+              />
+            )}
+
+            {/* Step 3: AI Solver & Convoy Optimization */}
+            {activeTab === 'optimization' && (
+              <OptimizeCompareView
+                comparison={comparison}
+                explanationReport={explanationReport}
+                highlightTarget={highlightTarget}
+                onNavigate={handleNavigate}
+              />
+            )}
+
+            {/* Step 4: Space-Time Verification & Disruption Resilience */}
+            {['planner', 'marey', 'whatif', 'spacetime'].includes(activeTab) && (
+              <SpaceTimeDisruptionView
+                activeSubTab={spaceTimeSubTab}
                 blocks={filteredBlocks}
                 sections={sections}
                 jobs={jobs}
                 windows={windows}
                 comparison={comparison}
                 loading={loading}
+                activePlanMode={activePlanMode}
+                isPlanModified={isPlanModified}
+                highlightTarget={highlightTarget}
                 onReoptimize={handleReoptimize}
                 onGenerateBaseline={handleGenerateBaseline}
                 onPlanUpdated={(newPlan) => {
                   setOptimizedPlan(newPlan)
+                  setIsPlanModified(true)
                   fetch('/api/plans/compare').then(r => r.json()).then(c => setComparison(c))
                   fetch('/api/plans/export-bdms', { method: 'POST' }).then(r => r.json()).then(b => setBdmsBundle(b))
                 }}
-                onNavigate={(tab) => setActiveTab(tab)}
-              />
-            )}
-
-            {/* Screen 2.2: Universal Indian Railways Time-Distance Marey String Chart */}
-            {activeTab === 'marey' && (
-              <MareyChartView
-                selectedSection={selectedSectionFilter}
+                onNavigate={handleNavigate}
+                selectedSectionFilter={selectedSectionFilter}
                 onSelectBlock={(b) => setSelectedDrawerBlock(b)}
-                onNavigate={(tab) => setActiveTab(tab)}
+                onDisruptionApplied={handleDisruptionApplied}
+                isCorridorDisrupted={isCorridorDisrupted}
+                corridorDisruptionDetails={corridorDisruptionDetails}
+                onResetDisruption={handleResetDisruption}
               />
             )}
 
-            {/* Screen 2.5: Interactive Railway Track Topology Map */}
-            {activeTab === 'topology' && (
-              <CorridorMap
-                sections={sections}
-                jobs={jobs}
-                blocks={optimizedPlan?.blocks || []}
-                windows={windows}
-                selectedSection={selectedSectionFilter}
-                onSelectSection={(sec) => setSelectedSectionFilter(sec)}
-                onSelectBlock={(b) => setSelectedDrawerBlock(b)}
-                onNavigate={(tab) => setActiveTab(tab)}
-              />
-            )}
-
-            {/* Screen 3: Optimization & Comparison */}
-            {activeTab === 'optimization' && (
-              <OptimizeCompareView
-                comparison={comparison}
-                explanationReport={explanationReport}
-                onNavigate={(tab) => setActiveTab(tab)}
-              />
-            )}
-
-            {/* Screen 3.5: Custom Railway Data Ingestion & Scalability Hub */}
-            {activeTab === 'customdata' && (
-              <CustomDataView
-                onNavigate={(tab) => setActiveTab(tab)}
-              />
-            )}
-
-            {/* Screen 4: What-If Disruption Simulator */}
-            {activeTab === 'whatif' && (
-              <WhatIfView
-                jobs={jobs}
-                blocks={optimizedPlan?.blocks || []}
-                onNavigate={(tab) => setActiveTab(tab)}
-              />
-            )}
-
-            {/* Screen 5: Maintenance Backlog */}
-            {activeTab === 'maintenance' && (
-              <MaintenanceView
-                jobs={jobs}
-                onSelectJob={(j) => setSelectedJob(j)}
-              />
-            )}
-
-            {/* Screen 6: Review / Decision Center */}
+            {/* Step 5: Tactical Plan Reviewer & Official BDMS Sanction Note */}
             {activeTab === 'review' && (
               <ReviewView
                 validationReport={validationReport}
                 bdmsBundle={bdmsBundle}
                 optimizedPlan={optimizedPlan}
-                onNavigate={(tab) => setActiveTab(tab)}
+                highlightTarget={highlightTarget}
+                onNavigate={handleNavigate}
               />
             )}
 
-            {/* Screen 6.5: Field Crew Dispatcher & Digital Muster */}
+            {/* Additional Features: Custom Data Ingestion */}
+            {activeTab === 'customdata' && (
+              <CustomDataView
+                onNavigate={handleNavigate}
+              />
+            )}
+
+            {/* Additional Features: Field Crew Dispatcher & Digital Muster */}
             {activeTab === 'dispatch' && (
               <CrewDispatchView
-                onNavigate={(tab) => setActiveTab(tab)}
+                onNavigate={handleNavigate}
               />
             )}
 
             {/* Screen 6.7: Executive ROI & ESG Financial Dashboard */}
             {activeTab === 'roi' && (
               <ExecutiveRoiView
-                onNavigate={(tab) => setActiveTab(tab)}
+                onNavigate={handleNavigate}
               />
             )}
 

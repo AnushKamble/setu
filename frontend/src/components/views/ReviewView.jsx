@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
+import { CheckCircle2, Download, FileText, Printer, X, Zap, Radio, TrendingUp, ArrowRight } from 'lucide-react'
 
 export default function ReviewView({
   validationReport,
   bdmsBundle,
   optimizedPlan,
+  highlightTarget = null,
   onNavigate
 }) {
   const [isApproved, setIsApproved] = useState(false)
   const [downloadNotice, setDownloadNotice] = useState('')
   const [showCircularModal, setShowCircularModal] = useState(false)
+  const isHighlighted = highlightTarget === 'review'
 
   const handleDownloadBDMS = () => {
     if (!bdmsBundle) return
@@ -22,7 +25,7 @@ export default function ReviewView({
   }
 
   return (
-    <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div className={isHighlighted ? 'highlight-pulse-target' : ''} style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px', borderRadius: '12px' }}>
       {/* 1. Header */}
       <div>
         <h1 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>
@@ -35,6 +38,9 @@ export default function ReviewView({
 
       {downloadNotice && (
         <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
           padding: '10px 14px',
           borderRadius: '6px',
           background: 'rgba(16, 185, 129, 0.12)',
@@ -43,7 +49,8 @@ export default function ReviewView({
           fontSize: '12.5px',
           fontWeight: 600
         }}>
-          ✓ {downloadNotice}
+          <CheckCircle2 size={15} />
+          <span>{downloadNotice}</span>
         </div>
       )}
 
@@ -63,25 +70,34 @@ export default function ReviewView({
             <button
               className="btn-action btn-secondary"
               onClick={handleDownloadBDMS}
-              style={{ fontSize: '12px' }}
+              style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
             >
-              📥 Export BDMS JSON
+              <Download size={13} />
+              <span>Export BDMS JSON</span>
             </button>
 
             <button
               className="btn-action"
               onClick={() => setShowCircularModal(true)}
-              style={{ fontSize: '12px', background: '#1e3a8a', border: '1px solid #3b82f6', color: '#93c5fd', fontWeight: 700 }}
+              style={{ fontSize: '12px', background: '#1e3a8a', border: '1px solid #3b82f6', color: '#93c5fd', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
             >
-              📄 View Official Circular Memo
+              <FileText size={13} />
+              <span>View Official Circular Memo</span>
             </button>
 
             <button
               className="btn-action btn-success"
               onClick={() => setIsApproved(true)}
-              style={{ fontSize: '12px', padding: '8px 16px' }}
+              style={{ fontSize: '12px', padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '6px' }}
             >
-              {isApproved ? '✓ Plan Formally Approved' : 'Approve & Lock Plan'}
+              {isApproved ? (
+                <>
+                  <CheckCircle2 size={13} />
+                  <span>Plan Formally Approved</span>
+                </>
+              ) : (
+                'Approve & Lock Plan'
+              )}
             </button>
           </div>
         </div>
@@ -148,7 +164,7 @@ export default function ReviewView({
                 fontSize: '12px',
                 color: 'var(--text-primary)'
               }}>
-                <span style={{ color: 'var(--accent-emerald)', fontWeight: 800 }}>✓</span>
+                <CheckCircle2 size={13} color="var(--accent-emerald)" style={{ flexShrink: 0 }} />
                 <span>{chk}</span>
               </div>
             ))}
@@ -190,8 +206,15 @@ export default function ReviewView({
                   <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
                     {req.requisition_id} • {req.section_id}
                   </div>
-                  <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                    {req.is_joint_convoy ? '⚡ Multi-Department Convoy' : 'Single Department Block'} • {req.duration_minutes} mins
+                  <div style={{ fontSize: '11px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    {req.is_joint_convoy ? (
+                      <>
+                        <Zap size={11} color="#f59e0b" />
+                        <span>Multi-Department Convoy • {req.duration_minutes} mins</span>
+                      </>
+                    ) : (
+                      `Single Department Block • ${req.duration_minutes} mins`
+                    )}
                   </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -204,6 +227,70 @@ export default function ReviewView({
           </div>
         </div>
       )}
+
+      {/* 4. Phase 5 Completion & Field Dispatch / ROI Action Bar */}
+      <div style={{
+        marginTop: '8px',
+        padding: '16px 20px',
+        background: 'rgba(16, 185, 129, 0.06)',
+        border: '1px solid rgba(16, 185, 129, 0.25)',
+        borderRadius: '8px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '14px'
+      }}>
+        <div>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
+            Corridor Block Sanction Pipeline Completed
+          </div>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+            Official BDMS bundle validated. Proceed to field mobilization via CUG Dispatcher or audit financial savings.
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <button
+            onClick={() => onNavigate && onNavigate('dispatch')}
+            style={{
+              background: '#22c55e',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '9px 16px',
+              fontSize: '12px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <Radio size={14} />
+            <span>Mobilize Crews (CUG Dispatch)</span>
+            <ArrowRight size={13} />
+          </button>
+          <button
+            onClick={() => onNavigate && onNavigate('roi')}
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border)',
+              borderRadius: '6px',
+              padding: '9px 16px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <TrendingUp size={14} color="#a855f7" />
+            <span>Executive ROI & ESG</span>
+          </button>
+        </div>
+      </div>
 
       {/* Official Indian Railways Circular Memo Modal */}
       {showCircularModal && (
@@ -258,8 +345,8 @@ function OfficialIndianRailwaysCircularModal({
             <span style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-primary)' }}>
               Official Circular Memo • Northern Railway BDMS Form
             </span>
-            <span style={{ fontSize: '11px', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>
-              ✓ ZERO-TRUST VERIFIED
+            <span style={{ fontSize: '11px', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', padding: '2px 8px', borderRadius: '4px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <CheckCircle2 size={11} /> ZERO-TRUST VERIFIED
             </span>
           </div>
 
@@ -267,16 +354,18 @@ function OfficialIndianRailwaysCircularModal({
             <button
               onClick={handlePrint}
               className="btn-action"
-              style={{ fontSize: '12px', padding: '6px 16px', background: '#2563eb', color: '#fff', fontWeight: 700 }}
+              style={{ fontSize: '12px', padding: '6px 16px', background: '#2563eb', color: '#fff', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
             >
-              🖨️ Print / Save as PDF
+              <Printer size={13} />
+              <span>Print / Save as PDF</span>
             </button>
             <button
               onClick={onClose}
               className="btn-action btn-secondary"
-              style={{ fontSize: '12px', padding: '6px 12px' }}
+              style={{ fontSize: '12px', padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '4px' }}
             >
-              Close ✕
+              <span>Close</span>
+              <X size={13} />
             </button>
           </div>
         </div>
@@ -286,16 +375,6 @@ function OfficialIndianRailwaysCircularModal({
           {/* Official Letterhead */}
           <div style={{ textAlign: 'center', borderBottom: '2px solid #111827', paddingBottom: '14px', marginBottom: '16px' }}>
             <div style={{ fontSize: '15px', fontWeight: 'bold', letterSpacing: '1px' }}>भारत सरकार / GOVERNMENT OF INDIA</div>
-            <div style={{ fontSize: '17px', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase' }}>रेल मंत्रालय / MINISTRY OF RAILWAYS</div>
-            <div style={{ fontSize: '14px', fontWeight: 'bold', letterSpacing: '0.5px' }}>उत्तर रेलवे / NORTHERN RAILWAY — DELHI DIVISION</div>
-            <div style={{ fontSize: '11px', color: '#374151', marginTop: '2px' }}>
-              मंडल रेल प्रबंधक कार्यालय (परिचालन शाखा), स्टेट एंट्री रोड, नई दिल्ली - 110055<br />
-              Office of the Divisional Railway Manager (Operating Branch), State Entry Road, New Delhi – 110055
-            </div>
-          </div>
-
-          {/* Reference & Date */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', fontSize: '12px' }}>
             <div><b>Circular No:</b> NR/DLI/OPTG/SETU-BDMS/2026/CIRCULAR-W37</div>
             <div><b>Dated:</b> New Delhi, 12-September-2026</div>
           </div>
@@ -368,7 +447,7 @@ function OfficialIndianRailwaysCircularModal({
                   <td>Day {req.day_number} ({req.start_time_hhmm} – {req.end_time_hhmm})</td>
                   <td>{req.possession_duration_minutes} min</td>
                   <td style={{ fontWeight: req.block_type === 'JOINT_CONVOY' ? 'bold' : 'normal' }}>
-                    {req.block_type === 'JOINT_CONVOY' ? '⚡ Joint Convoy' : 'Departmental'}
+                    {req.block_type === 'JOINT_CONVOY' ? 'Joint Convoy (Bundled)' : 'Departmental'}
                   </td>
                   <td>{(req.participating_departments || []).join(' + ')}</td>
                   <td style={{ color: req.traction_ohe_isolation_required ? '#b91c1c' : '#374151', fontWeight: req.traction_ohe_isolation_required ? 'bold' : 'normal' }}>

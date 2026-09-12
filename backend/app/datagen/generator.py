@@ -79,22 +79,39 @@ class RailwayDataGenerator:
         """
         asset_types = {
             DepartmentEnum.ENGINEERING.value: [
-                ("RAIL_WELD", 4, 45, 65, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
-                ("FASTENING_SYSTEM", 3, 30, 45, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
-                ("TURNOUT_SWITCH", 5, 60, 90, SafetyClassEnum.INTERLOCKED.value, ["TRACK_MAINTENANCE_GANG", "TAMPING_MACHINE"]),
-                ("BALLAST_BED", 2, 75, 110, SafetyClassEnum.HEAVY_EQUIPMENT.value, ["TAMPING_MACHINE"]),
+                # Short/Precision Tasks (35 - 65 min)
+                ("FASTENING_SYSTEM", 3, 35, 50, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
+                ("SEJ_EXPANSION_JOINT", 4, 55, 75, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
+                ("USFD_FLAW_CLAMPING", 5, 65, 85, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
+                # Tactical Corridor Tasks (85 - 145 min)
+                ("RAIL_WELD_THERMIT", 4, 110, 140, SafetyClassEnum.STANDARD.value, ["TRACK_MAINTENANCE_GANG"]),
+                ("GLUED_INSULATED_JOINT", 4, 85, 115, SafetyClassEnum.INTERLOCKED.value, ["TRACK_MAINTENANCE_GANG"]),
+                ("TURNOUT_SWITCH_RENEWAL", 5, 130, 165, SafetyClassEnum.INTERLOCKED.value, ["TRACK_MAINTENANCE_GANG", "TAMPING_MACHINE"]),
+                # Heavy Mechanised Overhauls (140 - 195 min)
+                ("BALLAST_BED_TAMPING_09_3X", 3, 140, 180, SafetyClassEnum.HEAVY_EQUIPMENT.value, ["TAMPING_MACHINE"]),
+                ("DEEP_BALLAST_SCREENING_BCM", 2, 160, 195, SafetyClassEnum.HEAVY_EQUIPMENT.value, ["TAMPING_MACHINE"]),
             ],
             DepartmentEnum.TRD.value: [
-                ("OHE_INSULATOR", 4, 40, 60, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG", "TOWER_WAGON"]),
-                ("CONTACT_WIRE", 5, 60, 85, SafetyClassEnum.ISOLATION_REQUIRED.value, ["TOWER_WAGON"]),
-                ("CANTILEVER_ASSEMBLY", 3, 45, 70, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
-                ("TRACTION_SUBSTATION", 4, 50, 75, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
+                # Short/Precision Tasks (40 - 65 min)
+                ("OHE_INSULATOR_WASHING", 3, 45, 60, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
+                ("ISOLATOR_SWITCH_OVERHAUL", 4, 55, 75, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
+                # Tactical Corridor Tasks (75 - 135 min)
+                ("DROPPER_CURRENT_JUMPER", 4, 75, 95, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG", "TOWER_WAGON"]),
+                ("CANTILEVER_ASSEMBLY_ALIGN", 3, 85, 115, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
+                ("NEUTRAL_SECTION_ASSEMBLY", 5, 105, 135, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG", "TOWER_WAGON"]),
+                # Heavy Traction Overhauls (140 - 185 min)
+                ("CONTACT_WIRE_RESTRINGING", 5, 140, 175, SafetyClassEnum.ISOLATION_REQUIRED.value, ["TOWER_WAGON"]),
+                ("TRACTION_SUBSTATION_FEEDER", 4, 150, 185, SafetyClassEnum.ISOLATION_REQUIRED.value, ["OHE_MAINTENANCE_GANG"]),
             ],
             DepartmentEnum.S_AND_T.value: [
-                ("TRACK_CIRCUIT", 5, 35, 50, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
-                ("POINT_MACHINE", 5, 50, 75, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
-                ("SIGNAL_ASPECT_LED", 3, 25, 40, SafetyClassEnum.STANDARD.value, ["SIGNAL_MAINTENANCE_GANG"]),
-                ("AXLE_COUNTER", 4, 30, 45, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                # Short/Precision Tasks (30 - 55 min)
+                ("SIGNAL_ASPECT_LED_ARRAY", 3, 30, 45, SafetyClassEnum.STANDARD.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                ("AXLE_COUNTER_RESET_TEST", 4, 40, 55, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                ("TRACK_CIRCUIT_DROP_SHUNT", 5, 45, 60, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                # Tactical Signalling Tasks (70 - 135 min)
+                ("POINT_MACHINE_THROW_LOCK", 5, 70, 95, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                ("INTERLOCKING_RELAY_RACK", 4, 90, 120, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
+                ("BLOCK_INSTRUMENT_TOKENLESS", 5, 105, 135, SafetyClassEnum.INTERLOCKED.value, ["SIGNAL_MAINTENANCE_GANG"]),
             ],
         }
 
@@ -213,15 +230,24 @@ class RailwayDataGenerator:
             ("12560", "Shiv Ganga Express", 1200, 1260),        # 20:00 - 21:00
         ]
 
-        # Night maintenance windows: 01:30 to 04:00 (150 mins)
-        # Mid-day off-peak windows: 11:30 to 13:00 (90 mins)
-        window_patterns = [
-            (90, 240, 150, "NIGHT_BLOCK", ["ENGINEERING", "TRD", "S_AND_T"]),       # 01:30 - 04:00
-            (690, 780, 90, "MID_DAY_OFF_PEAK", ["ENGINEERING", "TRD", "S_AND_T"]),   # 11:30 - 13:00
-        ]
-
         for day in range(horizon_days):
             day_offset = day * 1440
+            is_weekend = (day % 7) in [5, 6]
+
+            # Realistic Indian Railways Timetabled Corridor Possession Patterns:
+            # - Weekdays: Deep Night Integrated Block (240m), Midday Shadow Block (120m), Afternoon Gap (90m)
+            # - Weekends: Mega Engineering Possessions (285m) & Extended Integrated Shadow (180m)
+            if is_weekend:
+                window_patterns = [
+                    (30, 315, 285, "NIGHT_BLOCK", ["ENGINEERING", "TRD", "S_AND_T"]),       # 00:30 - 05:15 (285 min)
+                    (750, 930, 180, "DAY_OFF_PEAK", ["ENGINEERING", "TRD", "S_AND_T"]),     # 12:30 - 15:30 (180 min)
+                ]
+            else:
+                window_patterns = [
+                    (30, 270, 240, "NIGHT_BLOCK", ["ENGINEERING", "TRD", "S_AND_T"]),       # 00:30 - 04:30 (240 min)
+                    (690, 810, 120, "DAY_OFF_PEAK", ["ENGINEERING", "TRD", "S_AND_T"]),     # 11:30 - 13:30 (120 min)
+                    (840, 930, 90, "DAY_OFF_PEAK", ["ENGINEERING", "TRD", "S_AND_T"]),      # 14:00 - 15:30 (90 min)
+                ]
 
             # Generate corridor windows for each section
             for section in sections:
@@ -256,6 +282,10 @@ class RailwayDataGenerator:
                             section_id=section.id,
                             entry_minute=t_entry,
                             exit_minute=t_exit,
+                            original_entry_minute=t_entry,
+                            original_exit_minute=t_exit,
+                            delay_minutes=0,
+                            status="ON_TIME",
                             is_goods_forecast=False,
                             delay_probability=0.08,
                         )
@@ -276,6 +306,10 @@ class RailwayDataGenerator:
                             section_id=section.id,
                             entry_minute=f_entry,
                             exit_minute=f_exit,
+                            original_entry_minute=f_entry,
+                            original_exit_minute=f_exit,
+                            delay_minutes=0,
+                            status="ON_TIME",
                             is_goods_forecast=True,
                             delay_probability=0.35,
                         )

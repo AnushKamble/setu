@@ -1,4 +1,19 @@
 import React from 'react'
+import {
+  Compass,
+  Calendar,
+  TrendingUp,
+  GitFork,
+  Wrench,
+  BarChart3,
+  Zap,
+  FileCheck,
+  Radio,
+  Coins,
+  ShieldCheck,
+  Mic,
+  ScrollText
+} from 'lucide-react'
 
 export default function TopNavbar({
   activeTab,
@@ -14,19 +29,20 @@ export default function TopNavbar({
   loading
 }) {
   const navItems = [
-    { id: 'overview', label: 'Overview', icon: '🧭' },
-    { id: 'planner', label: 'Possession Planner', icon: '📅', isPrimary: true },
-    { id: 'marey', label: 'String Chart', icon: '📈' },
-    { id: 'topology', label: 'Track Topology', icon: '🛤️' },
-    { id: 'maintenance', label: 'Maintenance', icon: '🔧' },
-    { id: 'optimization', label: 'Optimization', icon: '📊' },
-    { id: 'whatif', label: 'What-If', icon: '⚡' },
-    { id: 'review', label: 'Decisions', icon: '📋' },
-    { id: 'dispatch', label: 'Crew Dispatch', icon: '📲' },
-    { id: 'roi', label: 'Executive ROI', icon: '💰' },
-    { id: 'kavach', label: 'Kavach TCAS', icon: '🛡️' },
-    { id: 'copilot', label: 'AI Co-Pilot', icon: '🎙️' },
-    { id: 'audit', label: 'Audit', icon: '📜' },
+    { id: 'overview', label: 'Overview', icon: <Compass size={14} /> },
+    { id: 'planner', label: 'Possession Planner', icon: <Calendar size={14} />, isPrimary: true },
+    { id: 'marey', label: 'String Chart', icon: <TrendingUp size={14} /> },
+    { id: 'topology', label: 'Track Topology', icon: <GitFork size={14} /> },
+    { id: 'maintenance', label: 'Maintenance', icon: <Wrench size={14} /> },
+    { id: 'optimization', label: 'Optimization', icon: <BarChart3 size={14} /> },
+    { id: 'whatif', label: 'What-If', icon: <Zap size={14} /> },
+    { id: 'review', label: 'Decisions', icon: <FileCheck size={14} /> },
+    { id: 'portal', label: 'Field Portal', icon: <Wrench size={14} /> },
+    { id: 'dispatch', label: 'Crew Dispatch', icon: <Radio size={14} /> },
+    { id: 'roi', label: 'Executive ROI', icon: <Coins size={14} /> },
+    { id: 'kavach', label: 'Kavach TCAS', icon: <ShieldCheck size={14} /> },
+    { id: 'copilot', label: 'AI Co-Pilot', icon: <Mic size={14} /> },
+    { id: 'audit', label: 'Audit', icon: <ScrollText size={14} /> },
   ]
 
   return (
@@ -107,13 +123,13 @@ export default function TopNavbar({
             title="Switch operational scenario to stress-test the optimizer"
           >
             {[
-              { id: 'NORMAL', label: '⚡ Normal Corridor (Dual-Track)' },
-              { id: 'HIGH_MAINTENANCE', label: '⚡ High Backlog (36 Jobs)' },
-              { id: 'CONGESTED', label: '⚡ Congested (Night Blocks)' },
-              { id: 'RESOURCE_CONSTRAINED', label: '⚡ Resource Shortage' },
-              { id: 'DISRUPTION_HEAVY', label: '⚡ Disruption Heavy' },
-              { id: 'HARD_OPTIMIZATION', label: '⚡ Statutory Stress (Relaxation)' },
-              { id: 'ENTERPRISE_DIVISION', label: '⚡ Enterprise Division (60+ Jobs)' },
+              { id: 'NORMAL', label: 'Scenario: Normal Corridor (Dual-Track)' },
+              { id: 'HIGH_MAINTENANCE', label: 'Scenario: High Backlog (36 Jobs)' },
+              { id: 'CONGESTED', label: 'Scenario: Congested (Night Blocks)' },
+              { id: 'RESOURCE_CONSTRAINED', label: 'Scenario: Resource Shortage' },
+              { id: 'DISRUPTION_HEAVY', label: 'Scenario: Disruption Heavy' },
+              { id: 'HARD_OPTIMIZATION', label: 'Scenario: Statutory Stress (Relaxation)' },
+              { id: 'ENTERPRISE_DIVISION', label: 'Scenario: Enterprise Division (60+ Jobs)' },
             ].map(s => (
               <option key={s.id} value={s.id}>{s.label}</option>
             ))}

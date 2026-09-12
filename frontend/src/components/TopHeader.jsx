@@ -1,4 +1,20 @@
 import React from 'react'
+import {
+  Compass,
+  Calendar,
+  TrendingUp,
+  GitFork,
+  BarChart3,
+  FolderDown,
+  Zap,
+  Wrench,
+  FileCheck,
+  Radio,
+  Coins,
+  ShieldCheck,
+  Mic,
+  ScrollText
+} from 'lucide-react'
 
 export default function TopHeader({
   activeTab,
@@ -16,23 +32,24 @@ export default function TopHeader({
   loading
 }) {
   const metaMap = {
-    overview: { domain: 'Traffic & Operations', title: 'Corridor Overview & Health', icon: '🧭' },
-    planner: { domain: 'Traffic & Operations', title: 'Joint Corridor Possession Planner', icon: '📅' },
-    marey: { domain: 'Traffic & Operations', title: 'Marey String Chart (Time-Distance Diagram)', icon: '📈' },
-    topology: { domain: 'Traffic & Operations', title: 'Schematic Corridor Track Topology', icon: '🛤️' },
-    optimization: { domain: 'Optimizer & Digital Twin', title: 'CP-SAT Solver & Baseline Comparison', icon: '📊' },
-    customdata: { domain: 'Optimizer & Digital Twin', title: 'Custom Railway Data Ingestion & Scale', icon: '📂' },
-    whatif: { domain: 'Optimizer & Digital Twin', title: 'What-If Disruption Simulator', icon: '⚡' },
-    maintenance: { domain: 'Optimizer & Digital Twin', title: 'Multi-Department Maintenance Backlog', icon: '🔧' },
-    review: { domain: 'Optimizer & Digital Twin', title: 'Review & BDMS Circular Signoff', icon: '📋' },
-    dispatch: { domain: 'Field & Safety Suite', title: 'Field Crew Dispatcher & Digital Muster', icon: '📲' },
-    roi: { domain: 'Field & Safety Suite', title: 'Executive ROI & ESG Financial Dashboard', icon: '💰' },
-    kavach: { domain: 'Field & Safety Suite', title: 'Kavach (TCAS) & TSR Telemetry Simulator', icon: '🛡️' },
-    copilot: { domain: 'Intelligence & Audit', title: 'AI Operations Co-Pilot ("Ask SETU")', icon: '🎙️' },
-    audit: { domain: 'Intelligence & Audit', title: 'Statutory Compliance & Audit Trail', icon: '📜' },
+    overview: { domain: 'Traffic & Operations', title: 'Corridor Overview & Health', icon: <Compass size={15} /> },
+    planner: { domain: 'Traffic & Operations', title: 'Joint Corridor Possession Planner', icon: <Calendar size={15} /> },
+    marey: { domain: 'Traffic & Operations', title: 'Marey String Chart (Time-Distance Diagram)', icon: <TrendingUp size={15} /> },
+    topology: { domain: 'Traffic & Operations', title: 'Schematic Corridor Track Topology', icon: <GitFork size={15} /> },
+    optimization: { domain: 'Optimizer & Digital Twin', title: 'CP-SAT Solver & Baseline Comparison', icon: <BarChart3 size={15} /> },
+    customdata: { domain: 'Optimizer & Digital Twin', title: 'Custom Railway Data Ingestion & Scale', icon: <FolderDown size={15} /> },
+    whatif: { domain: 'Optimizer & Digital Twin', title: 'What-If Disruption Simulator', icon: <Zap size={15} /> },
+    maintenance: { domain: 'Optimizer & Digital Twin', title: 'Multi-Department Maintenance Backlog', icon: <Wrench size={15} /> },
+    review: { domain: 'Optimizer & Digital Twin', title: 'Review & BDMS Circular Signoff', icon: <FileCheck size={15} /> },
+    portal: { domain: 'Field & Safety Suite', title: 'Field Engineer Requisition Portal (TMS/TDMS/SMMS)', icon: <Wrench size={15} /> },
+    dispatch: { domain: 'Field & Safety Suite', title: 'Field Crew Dispatcher & Digital Muster', icon: <Radio size={15} /> },
+    roi: { domain: 'Field & Safety Suite', title: 'Executive ROI & ESG Financial Dashboard', icon: <Coins size={15} /> },
+    kavach: { domain: 'Field & Safety Suite', title: 'Kavach (TCAS) & TSR Telemetry Simulator', icon: <ShieldCheck size={15} /> },
+    copilot: { domain: 'Intelligence & Audit', title: 'AI Operations Co-Pilot ("Ask SETU")', icon: <Mic size={15} /> },
+    audit: { domain: 'Intelligence & Audit', title: 'Statutory Compliance & Audit Trail', icon: <ScrollText size={15} /> },
   }
 
-  const currentMeta = metaMap[activeTab] || { domain: 'SETU System', title: activeTab, icon: '⚡' }
+  const currentMeta = metaMap[activeTab] || { domain: 'SETU System', title: activeTab, icon: <Zap size={15} /> }
 
   return (
     <header className="top-header">
@@ -53,7 +70,7 @@ export default function TopHeader({
           <span className="breadcrumb-domain">{currentMeta.domain}</span>
           <span className="breadcrumb-sep">/</span>
           <span className="breadcrumb-current">
-            <span style={{ marginRight: '6px' }}>{currentMeta.icon}</span>
+            <span style={{ marginRight: '6px', display: 'inline-flex', alignItems: 'center' }}>{currentMeta.icon}</span>
             {currentMeta.title}
           </span>
         </div>
@@ -68,7 +85,7 @@ export default function TopHeader({
             className="header-copilot-btn"
             title="Ask SETU AI Co-Pilot"
           >
-            <span>🎙️</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center' }}><Mic size={14} /></span>
             <span>Ask SETU</span>
           </button>
         )}
@@ -109,13 +126,13 @@ export default function TopHeader({
           title="Switch operational scenario to stress-test the optimizer"
         >
           {[
-            { id: 'NORMAL', label: '⚡ Normal Corridor' },
-            { id: 'HIGH_MAINTENANCE', label: '⚡ High Backlog (36 Jobs)' },
-            { id: 'CONGESTED', label: '⚡ Congested (Night)' },
-            { id: 'RESOURCE_CONSTRAINED', label: '⚡ Resource Shortage' },
-            { id: 'DISRUPTION_HEAVY', label: '⚡ Disruption Heavy' },
-            { id: 'HARD_OPTIMIZATION', label: '⚡ Statutory Stress' },
-            { id: 'ENTERPRISE_DIVISION', label: '⚡ Enterprise Division (60+)' },
+            { id: 'NORMAL', label: 'Scenario: Normal Corridor' },
+            { id: 'HIGH_MAINTENANCE', label: 'Scenario: High Backlog (36 Jobs)' },
+            { id: 'CONGESTED', label: 'Scenario: Congested (Night)' },
+            { id: 'RESOURCE_CONSTRAINED', label: 'Scenario: Resource Shortage' },
+            { id: 'DISRUPTION_HEAVY', label: 'Scenario: Disruption Heavy' },
+            { id: 'HARD_OPTIMIZATION', label: 'Scenario: Statutory Stress' },
+            { id: 'ENTERPRISE_DIVISION', label: 'Scenario: Enterprise Division (60+)' },
           ].map(s => (
             <option key={s.id} value={s.id}>{s.label}</option>
           ))}

@@ -27,10 +27,35 @@ def get_db():
         db.close()
 
 
+from sqlalchemy import text
+
+
 def init_db():
-    """Create all database tables."""
+    """Create all database tables and add missing migration columns."""
     import backend.app.models  # Ensure all models are registered
     Base.metadata.create_all(bind=engine)
+
+    # Lightweight migration for train_movements dynamic delay columns
+    with engine.connect() as conn:
+        for col, col_type in [
+            ("original_entry_minute", "INTEGER"),
+            ("original_exit_minute", "INTEGER"),
+            ("delay_minutes", "INTEGER DEFAULT 0"),
+            ("status", "VARCHAR(20) DEFAULT 'ON_TIME'")
+        ]:
+            try:
+                conn.execute(text(f"ALTER TABLE train_movements ADD COLUMN {col} {col_type}"))
+                conn.commit()
+            except Exception:
+                pass
+        try:
+            conn.execute(text("UPDATE train_movements SET original_entry_minute = entry_minute WHERE original_entry_minute IS NULL"))
+            conn.execute(text("UPDATE train_movements SET original_exit_minute = exit_minute WHERE original_exit_minute IS NULL"))
+            conn.execute(text("UPDATE train_movements SET delay_minutes = 0 WHERE delay_minutes IS NULL"))
+            conn.execute(text("UPDATE train_movements SET status = 'ON_TIME' WHERE status IS NULL"))
+            conn.commit()
+        except Exception:
+            pass
 
 
 def reset_db():

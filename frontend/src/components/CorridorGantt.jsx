@@ -149,10 +149,10 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
               cursor: 'pointer'
             }}
           >
-            <option value="" disabled>🔍 Jump to Block...</option>
+            <option value="" disabled>Jump to Block...</option>
             {(blocks || []).map(b => (
               <option key={b.block_id} value={b.block_id}>
-                {b.is_pinned ? '📌 ' : b.status === 'APPROVED' ? '✅ ' : ''}{b.block_id} (D{Math.floor(b.start_minute / 1440) + 1} • {b.duration_min}m • {b.section_id})
+                {b.is_pinned ? '[PIN] ' : b.status === 'APPROVED' ? '[APPR] ' : ''}{b.block_id} (D{Math.floor(b.start_minute / 1440) + 1} • {b.duration_min}m • {b.section_id})
               </option>
             ))}
           </select>
@@ -194,7 +194,7 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
       </div>
 
       {/* Track Section Gantt Rows */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         {filteredSections.map(sec => {
           const secBlocks = visibleBlocks.filter(b => b.section_id === sec.id)
 
@@ -203,7 +203,7 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
               display: 'grid',
               gridTemplateColumns: '200px 1fr',
               alignItems: 'center',
-              padding: '8px 0',
+              padding: '10px 0',
               borderBottom: '1px solid var(--border-subtle)'
             }}>
               {/* Section Identity */}
@@ -309,7 +309,7 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
                       title={`Click to inspect or modify ${b.block_id}: Day ${Math.floor(b.start_minute / 1440) + 1} (${b.duration_min} mins)`}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '4px', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                        {isPinned ? '📌 PINNED' : isApproved ? '✅ APPR' : isConvoy ? '⚡ CONVOY' : 'BLOCK'}
+                        {isPinned ? 'PINNED' : isApproved ? 'APPR' : isConvoy ? 'CONVOY' : 'BLOCK'}
                         <span style={{ opacity: 0.8, fontSize: '9.5px' }}>({b.job_ids.length}j)</span>
                       </div>
                       <span style={{ fontSize: '9.5px', fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '1px 4px', borderRadius: '3px' }}>
@@ -338,7 +338,7 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: '10px', height: '10px', borderRadius: '2px', background: '#064e3b', border: '1px solid #10b981', display: 'inline-block' }}></span>
-            <span>⚡ Joint Convoy (Multi-Dept)</span>
+            <span>Joint Convoy (Multi-Dept)</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: '10px', height: '10px', borderRadius: '2px', background: '#27272a', border: '1px solid rgba(255,255,255,0.15)', display: 'inline-block' }}></span>
@@ -346,7 +346,7 @@ export default function CorridorGantt({ blocks, sections, jobs, onSelectBlock })
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: '10px', height: '10px', borderRadius: '2px', background: '#451a03', border: '1px solid #f59e0b', display: 'inline-block' }}></span>
-            <span>📌 Pinned / Locked Block</span>
+            <span>Pinned / Locked Block</span>
           </div>
         </div>
 

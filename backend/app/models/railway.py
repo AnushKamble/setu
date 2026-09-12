@@ -129,6 +129,10 @@ class TrainMovement(Base):
     exit_minute = Column(Integer, nullable=False)
     is_goods_forecast = Column(Boolean, default=False)
     delay_probability = Column(Float, default=0.1)
+    original_entry_minute = Column(Integer, nullable=True)
+    original_exit_minute = Column(Integer, nullable=True)
+    delay_minutes = Column(Integer, default=0)
+    status = Column(String(20), default="ON_TIME")  # ON_TIME, DELAYED, KNOCKED_ON
 
     section = relationship("Section", back_populates="trains")
 

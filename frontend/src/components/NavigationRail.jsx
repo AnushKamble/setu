@@ -1,4 +1,13 @@
 import React from 'react'
+import {
+  Compass,
+  Calendar,
+  Wrench,
+  BarChart3,
+  Zap,
+  ShieldCheck,
+  ScrollText
+} from 'lucide-react'
 
 export default function NavigationRail({ activeTab, onSelectTab }) {
   return (
@@ -24,7 +33,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'overview' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>🧭</span>
+            <Compass size={14} />
             <span>Overview</span>
           </span>
         </button>
@@ -41,7 +50,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           }}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📅</span>
+            <Calendar size={14} />
             <span>Possession Planner</span>
           </span>
           <span className="nav-counter-pill" style={{ background: 'rgba(59, 130, 246, 0.25)', color: '#93c5fd' }}>
@@ -54,7 +63,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'maintenance' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>🔧</span>
+            <Wrench size={14} />
             <span>Maintenance</span>
           </span>
         </button>
@@ -64,7 +73,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'optimization' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📊</span>
+            <BarChart3 size={14} />
             <span>Optimization</span>
           </span>
         </button>
@@ -77,7 +86,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'whatif' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>⚡</span>
+            <Zap size={14} />
             <span>What-If</span>
           </span>
         </button>
@@ -90,7 +99,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'review' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>🛡️</span>
+            <ShieldCheck size={14} />
             <span>Decisions</span>
           </span>
           <span className="nav-counter-pill" style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#34d399' }}>
@@ -103,7 +112,7 @@ export default function NavigationRail({ activeTab, onSelectTab }) {
           className={`sidebar-nav-btn ${activeTab === 'audit' ? 'active' : ''}`}
         >
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📜</span>
+            <ScrollText size={14} />
             <span>Audit</span>
           </span>
         </button>

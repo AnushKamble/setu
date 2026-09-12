@@ -1,3 +1,4 @@
+import { ShieldCheck, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 
 export default function KavachSimulatorView({
@@ -158,7 +159,7 @@ export default function KavachSimulatorView({
         {/* Cab Header Bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #27272a', paddingBottom: '12px', marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '18px' }}>🛡️</span>
+            <ShieldCheck size={20} color="#38bdf8" />
             <div>
               <div style={{ fontSize: '14px', fontWeight: 900, color: '#ffffff', letterSpacing: '0.5px' }}>
                 KAVACH DMI — CAB DISPLAY UNIT (LOCOMOTIVE ON-BOARD CONSOLE)
@@ -179,7 +180,7 @@ export default function KavachSimulatorView({
               color: warningActive ? '#ef4444' : '#34d399',
               border: `1px solid ${warningActive ? '#ef4444' : '#10b981'}`
             }}>
-              {warningActive ? '⚠️ KAVACH OVER-SPEED ALARM' : '● FULL SUPERVISION (FS)'}
+              {warningActive ? 'KAVACH OVER-SPEED ALARM' : '● FULL SUPERVISION (FS)'}
             </span>
 
             <span style={{
@@ -321,7 +322,7 @@ export default function KavachSimulatorView({
                 cursor: 'pointer'
               }}
             >
-              {simulating ? 'Simulating...' : '✓ Test Compliant Driver (Service Brake)'}
+              {simulating ? 'Simulating...' : 'Test Compliant Driver (Service Brake)'}
             </button>
 
             <button
@@ -340,7 +341,7 @@ export default function KavachSimulatorView({
                 boxShadow: '0 2px 10px rgba(220, 38, 38, 0.4)'
               }}
             >
-              {simulating ? 'Simulating Intervention...' : '⚠️ Test Distracted Driver (Kavach AEB Auto-Brake)'}
+              {simulating ? 'Simulating Intervention...' : 'Test Distracted Driver (Kavach AEB Auto-Brake)'}
             </button>
           </div>
         </div>
@@ -359,7 +360,7 @@ export default function KavachSimulatorView({
             alignItems: 'center',
             gap: '10px'
           }}>
-            <span style={{ fontSize: '20px' }}>{simResult.kavach_emergency_brake_engaged ? '🛡️' : '✓'}</span>
+            <span>{simResult.kavach_emergency_brake_engaged ? <ShieldCheck size={22} color="#ef4444" /> : <CheckCircle2 size={22} color="#10b981" />}</span>
             <div>
               <b style={{ color: '#ffffff' }}>
                 {simResult.kavach_emergency_brake_engaged ? 'KAVACH AUTOMATIC EMERGENCY BRAKE (AEB) INTERVENTION SUCCESSFUL' : 'DRIVER COMPLIANT SPEED REDUCTION'}

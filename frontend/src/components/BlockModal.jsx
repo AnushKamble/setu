@@ -73,18 +73,18 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                 {block.block_id}
               </h3>
               {block.is_convoy ? (
-                <span className="dept-pill convoy">⚡ JOINT CONVOY</span>
+                <span className="dept-pill convoy">JOINT CONVOY</span>
               ) : (
                 <span className="dept-pill engg">SINGLE BLOCK</span>
               )}
               {block.is_pinned && (
                 <span style={{ fontSize: '11px', fontWeight: 800, background: 'rgba(234, 88, 12, 0.2)', color: '#fb923c', border: '1px solid rgba(251, 146, 60, 0.4)', padding: '2px 8px', borderRadius: '4px' }}>
-                  📌 PINNED
+                  PINNED
                 </span>
               )}
               {block.status === 'APPROVED' && (
                 <span style={{ fontSize: '11px', fontWeight: 800, background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', border: '1px solid rgba(52, 211, 153, 0.4)', padding: '2px 8px', borderRadius: '4px' }}>
-                  ✅ APPROVED
+                  APPROVED
                 </span>
               )}
             </div>
@@ -103,9 +103,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
               padding: '4px 8px',
               borderRadius: '6px'
             }}
-          >
-            ✕
-          </button>
+           aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
         </div>
 
         {/* Modal Body */}
@@ -180,7 +178,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
             marginBottom: '22px'
           }}>
             <h4 style={{ fontSize: '13px', fontWeight: 700, color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>🎮 Operator Human-in-the-Loop Controls</span>
+              <span>Operator Human-in-the-Loop Controls</span>
               <span style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 400 }}>(Document D Part 55)</span>
             </h4>
 
@@ -205,7 +203,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                 >
                   {candidateWindows.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.label} {w.id === block.window_id ? '★ Current' : ''}
+                      {w.label} {w.id === block.window_id ? '(Current)' : ''}
                     </option>
                   ))}
                 </select>
@@ -215,7 +213,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                   disabled={actionLoading || selectedNewWindow === block.window_id}
                   onClick={() => handleOperatorAction('REASSIGN_WINDOW', selectedNewWindow)}
                 >
-                  🔄 Apply Reassignment
+                  Apply Reassignment
                 </button>
               </div>
             </div>
@@ -233,7 +231,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                 disabled={actionLoading}
                 onClick={() => handleOperatorAction(block.is_pinned ? 'UNPIN' : 'PIN')}
               >
-                {block.is_pinned ? '🔓 Unpin Block' : '📌 Pin Block (Lock)'}
+                {block.is_pinned ? 'Unpin Block' : 'Pin Block (Lock)'}
               </button>
 
               <button
@@ -242,7 +240,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                 disabled={actionLoading}
                 onClick={() => handleOperatorAction('APPROVE')}
               >
-                ✅ Approve for BDMS Export
+                Approve for BDMS Export
               </button>
 
               <button
@@ -251,7 +249,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                 disabled={actionLoading}
                 onClick={() => handleOperatorAction('REJECT')}
               >
-                ❌ Defer / Reject Possession
+                Defer / Reject Possession
               </button>
             </div>
           </div>
@@ -279,7 +277,7 @@ export default function BlockModal({ block, jobs, onClose, onPlanUpdated }) {
                         {j.department}
                       </span>
                       {j.statutory_deadline_minute && (
-                        <span style={{ fontSize: '10px', color: 'var(--accent-rose)', fontWeight: 800 }}>🚨 STATUTORY</span>
+                        <span style={{ fontSize: '10px', color: 'var(--accent-rose)', fontWeight: 800 }}>STATUTORY</span>
                       )}
                     </div>
                     <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '3px' }}>

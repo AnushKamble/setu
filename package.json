@@ -1,0 +1,12 @@
+{
+  "name": "setu-railway-planner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SETU - AI-Powered Railway Maintenance & Joint Possession Planning System",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "backend": "python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload",
+    "test": "pytest -v"
+  }
+}

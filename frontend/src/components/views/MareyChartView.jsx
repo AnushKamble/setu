@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Zap, CheckCircle2 } from 'lucide-react'
 
 export default function MareyChartView({
   onNavigate = () => {},
@@ -91,10 +92,20 @@ export default function MareyChartView({
               background: simulatedDelayTrain ? '#f43f5e' : 'rgba(244, 63, 94, 0.12)',
               border: '1px solid ' + (simulatedDelayTrain ? '#f43f5e' : 'rgba(244, 63, 94, 0.4)'),
               color: simulatedDelayTrain ? '#fff' : '#fca5a5',
-              fontWeight: 700
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            {simulatedDelayTrain ? '✕ Reset Express Delay' : '⚡ Simulate Rajdhani Delay (+45m)'}
+            {simulatedDelayTrain ? (
+              'Reset Express Delay'
+            ) : (
+              <>
+                <Zap size={12} />
+                <span>Simulate Rajdhani Delay (+45m)</span>
+              </>
+            )}
           </button>
         </div>
       </div>
@@ -451,7 +462,7 @@ export default function MareyChartView({
                       fontSize="9"
                       fontWeight="800"
                     >
-                      {blk.is_convoy ? `⚡ JOINT CONVOY` : `BLOCK`} ({blk.duration_min}m)
+                      {blk.is_convoy ? 'JOINT CONVOY' : 'BLOCK'} ({blk.duration_min}m)
                     </text>
                   </g>
                 </g>
@@ -559,8 +570,9 @@ export default function MareyChartView({
           <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-primary)' }}>
             Space-Time Corridor Diagnostics
           </div>
-          <div style={{ fontSize: '11px', color: 'var(--accent-emerald)', fontWeight: 700 }}>
-            ✓ 100% Zero-Conflict Timetable Margin Verified
+          <div style={{ fontSize: '11px', color: 'var(--accent-emerald)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <CheckCircle2 size={13} />
+            <span>100% Zero-Conflict Timetable Margin Verified</span>
           </div>
         </div>
 
@@ -589,7 +601,7 @@ export default function MareyChartView({
                   <div style={{ background: 'var(--bg-input)', padding: '10px 14px', borderRadius: '6px', border: '1px solid var(--border)' }}>
                     <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Operating Window (IST)</div>
                     <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)', marginTop: '2px' }}>
-                      {tr.start_time} ➔ {tr.end_time}
+                      {tr.start_time} → {tr.end_time}
                     </div>
                   </div>
 
@@ -608,7 +620,7 @@ export default function MareyChartView({
                   <div style={{ background: 'var(--bg-input)', padding: '10px 14px', borderRadius: '6px', border: '1px solid var(--border)' }}>
                     <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Block ID & Type</div>
                     <div style={{ fontSize: '14px', fontWeight: 800, color: blk.is_convoy ? 'var(--accent-emerald)' : 'var(--accent-amber)', marginTop: '2px' }}>
-                      {blk.block_id} • {blk.is_convoy ? '⚡ JOINT CONVOY' : 'SINGLE DEPT'}
+                      {blk.block_id} • {blk.is_convoy ? 'JOINT CONVOY' : 'SINGLE DEPT'}
                     </div>
                   </div>
 

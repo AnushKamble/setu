@@ -39,6 +39,7 @@ class BaselinePlanResult(BaseModel):
     assignments: List[BaselineAssignment]
     deferred_job_ids: List[str]
     kpis: Dict[str, Any]
+    blocks: List[Dict[str, Any]] = []
 
 
 class BaselinePlanner:
@@ -170,6 +171,26 @@ class BaselinePlanner:
             ) if total_possession_minutes > 0 else 0.0,
         }
 
+        blocks = [
+            {
+                "block_id": f"BASE-{a.job_id}",
+                "window_id": a.window_id,
+                "section_id": a.section_id,
+                "start_minute": a.start_minute,
+                "end_minute": a.end_minute,
+                "duration_min": a.duration_min,
+                "job_ids": [a.job_id],
+                "departments": [a.department],
+                "is_convoy": False,
+                "used_duration_p90_min": a.duration_min,
+                "buffer_min": 10,
+                "explanation": f"Legacy Decentralized Booking: Job {a.job_id} ({a.job_type}) booked individually without convoying.",
+                "is_pinned": False,
+                "status": "UNCOORDINATED",
+            }
+            for a in assignments
+        ]
+
         return BaselinePlanResult(
             total_jobs=len(self.jobs),
             scheduled_jobs_count=len(assignments),
@@ -184,4 +205,5 @@ class BaselinePlanner:
             assignments=assignments,
             deferred_job_ids=deferred_job_ids,
             kpis=kpis,
+            blocks=blocks,
         )

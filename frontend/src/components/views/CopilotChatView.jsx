@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Trash2, MessageSquare, Bot, User, Send, Mic } from 'lucide-react'
 
 export default function CopilotChatView({
   onNavigate = () => {}
@@ -7,7 +8,7 @@ export default function CopilotChatView({
     {
       role: 'assistant',
       content: 
-`### 🎙️ Welcome to SETU Operations Co-Pilot
+`### Welcome to SETU Operations Co-Pilot
 
 I am your **AI Decision-Support Assistant** connected directly to the active CP-SAT optimization engine, Northern Railway timetable, and Indian Railways statutory rulebooks (**IRPWM & ACTM**).
 
@@ -28,39 +29,36 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
     "Why can't we do track tamping on Thursday morning at Aligarh?",
     "Which statutory deadlines will breach if we cancel Sunday's block?",
     "What is our projected annual financial and carbon savings?",
-    "How does Kavach TCAS enforce the 30 km/h speed restriction?",
-    "Show the pre-registered departmental roster for Block B01."
+    "What is the safety protocol for TRD tower wagon isolation?",
+    "Explain how CP-SAT guarantees zero conflicting possessions."
   ]
 
   useEffect(() => {
     chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  const handleSendMessage = async (customText = null) => {
-    const textToSend = customText || inputQuery
-    if (!textToSend.trim() || loading) return
+  const handleSendMessage = async (textToSend) => {
+    const query = textToSend || inputQuery
+    if (!query.trim() || loading) return
 
-    const userMessage = { role: 'user', content: textToSend }
+    const userMessage = { role: 'user', content: query }
     setMessages(prev => [...prev, userMessage])
-    if (!customText) setInputQuery('')
+    setInputQuery('')
     setLoading(true)
 
     try {
-      const res = await fetch('/api/copilot/chat', {
+      const res = await fetch('/api/copilot/query', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: textToSend,
-          conversation_history: messages.map(m => ({ role: m.role, content: m.content }))
-        })
+        body: JSON.stringify({ query })
       })
       const data = await res.json()
-      setMessages(prev => [...prev, { role: 'assistant', content: data.response }])
+      setMessages(prev => [...prev, { role: 'assistant', content: data.answer }])
     } catch (err) {
-      console.error('Copilot request failed:', err)
+      console.error(err)
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: '⚠️ Failed to connect to SETU Co-Pilot backend. Please verify your connection to http://127.0.0.1:8000.'
+        content: 'Failed to connect to SETU Co-Pilot backend. Please verify your connection to http://127.0.0.1:8000.'
       }])
     } finally {
       setLoading(false)
@@ -131,9 +129,10 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
               content: 'Conversation history cleared. How may I assist your section control desk today?'
             }])}
             className="btn-action"
-            style={{ fontSize: '11px', padding: '5px 10px', background: 'var(--bg-input)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+            style={{ fontSize: '11px', padding: '5px 10px', background: 'var(--bg-input)', border: '1px solid var(--border)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '5px' }}
           >
-            🗑️ Clear Chat
+            <Trash2 size={12} />
+            <span>Clear Chat</span>
           </button>
         </div>
       </div>
@@ -155,12 +154,16 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
               whiteSpace: 'nowrap',
               cursor: 'pointer',
               fontWeight: 600,
-              transition: 'all 0.15s ease'
+              transition: 'all 0.15s ease',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
             onMouseOver={(e) => { e.currentTarget.style.borderColor = '#38bdf8'; e.currentTarget.style.color = '#38bdf8' }}
             onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-primary)' }}
           >
-            💬 {prompt}
+            <MessageSquare size={11} style={{ flexShrink: 0 }} />
+            <span>{prompt}</span>
           </button>
         ))}
       </div>
@@ -197,10 +200,9 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '16px',
                   flexShrink: 0
                 }}>
-                  🎙️
+                  <Bot size={16} color="#ffffff" />
                 </div>
               )}
 
@@ -232,10 +234,9 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '15px',
                   flexShrink: 0
                 }}>
-                  👤
+                  <User size={15} color="#ffffff" />
                 </div>
               )}
             </div>
@@ -244,8 +245,8 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
 
         {loading && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px' }}>
-              🎙️
+            <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Bot size={15} color="#ffffff" />
             </div>
             <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: '14px', padding: '10px 16px', fontSize: '12px', color: '#a1a1aa' }}>
               <span>SETU is analyzing active CP-SAT constraints, train headways, and statutory IRPWM rules...</span>
@@ -256,29 +257,35 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
         <div ref={chatBottomRef} />
       </div>
 
-      {/* 4. Query Input Box */}
+      {/* 4. Input Command Line */}
       <div style={{
         display: 'flex',
         gap: '10px',
         alignItems: 'center',
         background: 'var(--bg-card)',
         border: '1px solid var(--border)',
-        borderRadius: '10px',
+        borderRadius: '8px',
         padding: '8px 12px'
       }}>
         <input
           type="text"
+          placeholder="Ask SETU anything about corridor possessions, train delays, or safety..."
           value={inputQuery}
           onChange={(e) => setInputQuery(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') handleSendMessage() }}
-          placeholder="Ask SETU anything (e.g. 'Why was Block B01 scheduled at 02:30?' or 'What happens if we cancel Sunday?')..."
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              handleSendMessage()
+            }
+          }}
+          disabled={loading}
           style={{
             flex: 1,
             background: 'transparent',
             border: 'none',
-            color: '#ffffff',
-            fontSize: '13px',
             outline: 'none',
+            color: 'var(--text-primary)',
+            fontSize: '13px',
             padding: '6px'
           }}
         />
@@ -296,10 +303,20 @@ I am your **AI Decision-Support Assistant** connected directly to the active CP-
             fontSize: '13px',
             fontWeight: 700,
             cursor: inputQuery.trim() ? 'pointer' : 'default',
-            transition: 'background 0.15s ease'
+            transition: 'background 0.15s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
           }}
         >
-          {loading ? '...' : 'Send ➤'}
+          {loading ? (
+            '...'
+          ) : (
+            <>
+              <Send size={13} />
+              <span>Send</span>
+            </>
+          )}
         </button>
       </div>
     </div>

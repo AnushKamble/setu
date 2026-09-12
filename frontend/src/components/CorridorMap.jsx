@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { X, ArrowRight, Zap } from 'lucide-react'
 
 export default function CorridorMap({
   sections = [],
@@ -321,9 +322,10 @@ export default function CorridorMap({
             <button
               onClick={() => onSelectSection('ALL')}
               className="btn-action btn-secondary"
-              style={{ fontSize: '11px', padding: '4px 9px' }}
+              style={{ fontSize: '11px', padding: '4px 9px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
             >
-              Reset Filter ✕
+              <span>Reset Filter</span>
+              <X size={11} />
             </button>
           )}
         </div>
@@ -637,13 +639,13 @@ export default function CorridorMap({
                       letterSpacing="0.2px"
                     >
                       {isPrimaryDisrupted
-                        ? `⚠️ DELAY +${disruptionResult.impact.direct_delay_minutes}m (ORIGIN)`
+                        ? `DELAY +${disruptionResult.impact.direct_delay_minutes}m (ORIGIN)`
                         : cascadeHop
-                          ? `⚡ HOP ${cascadeHop.hop_level}: +${cascadeHop.propagated_delay_minutes}m`
+                          ? `HOP ${cascadeHop.hop_level}: +${cascadeHop.propagated_delay_minutes}m`
                           : hasConvoy
-                            ? `⚡ CONVOY (${segBlocks.length} Bundled)`
+                            ? `CONVOY (${segBlocks.length} Bundled)`
                             : hasPossession
-                              ? `⚠️ BLOCK (${segBlocks.length} Active)`
+                              ? `BLOCK (${segBlocks.length} Active)`
                               : `${seg.trackType === 'UP_MAIN' ? '◀ UP' : 'DN ▶'} • ${seg.speed} KM/H`}
                     </text>
                   </g>
@@ -875,7 +877,7 @@ export default function CorridorMap({
                 className="btn-action btn-secondary"
                 style={{ fontSize: '11.5px', padding: '5px 12px' }}
               >
-                Clear Disruption ✕
+                Clear Disruption
               </button>
             </div>
           </div>
@@ -888,7 +890,7 @@ export default function CorridorMap({
 
             {(disruptionResult.impact.cascade_chain || []).map((hop) => (
               <React.Fragment key={hop.section_id}>
-                <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>➔</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>→</span>
                 <div style={{ background: 'rgba(245, 158, 11, 0.16)', border: '1px solid #f59e0b', padding: '5px 10px', borderRadius: '6px', fontSize: '11px' }}>
                   <b style={{ color: '#fcd34d' }}>Hop {hop.hop_level}:</b> <span className="mono" style={{ color: '#fff' }}>{hop.section_id}</span> • <span style={{ color: '#fcd34d', fontWeight: 700 }}>+{hop.propagated_delay_minutes}m</span> <span style={{ color: 'var(--text-muted)', fontSize: '10px' }}>(-{hop.buffer_absorption_minutes}m absorbed)</span>
                 </div>
@@ -966,7 +968,7 @@ export default function CorridorMap({
                 fontWeight: 700
               }}
             >
-              ⚡ Simulate Track Disruption
+              Simulate Track Disruption
             </button>
           </div>
         </div>
@@ -1025,7 +1027,7 @@ export default function CorridorMap({
                     borderRadius: '6px'
                   }}
                 >
-                  {disruptionLoading ? 'Calculating Cascade...' : '⚡ Inject & Calculate Multi-Hop Cascade'}
+                  {disruptionLoading ? 'Calculating Cascade...' : 'Inject & Calculate Multi-Hop Cascade'}
                 </button>
                 <button
                   onClick={() => setShowDisruptionModal(false)}
@@ -1069,7 +1071,7 @@ export default function CorridorMap({
           <div style={{ background: 'var(--bg-input)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }}>
             <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Signaling Interlocking</div>
             <div style={{ fontSize: '18px', fontWeight: 800, color: inspectBlocks.length > 0 ? 'var(--accent-rose)' : 'var(--accent-emerald)', marginTop: '2px' }}>
-              {inspectBlocks.length > 0 ? '🔴 Red (Possession)' : '🟢 Green (Clear)'}
+              {inspectBlocks.length > 0 ? 'Occupied (Possession)' : 'Clear (Normal)'}
             </div>
             <div style={{ fontSize: '10.5px', color: 'var(--text-secondary)', marginTop: '2px' }}>
               Solid State Electronic Interlocking
@@ -1115,7 +1117,7 @@ export default function CorridorMap({
                         {b.block_id}
                       </span>
                       {b.is_convoy ? (
-                        <span className="dept-pill convoy">⚡ JOINT CONVOY</span>
+                        <span className="dept-pill convoy">JOINT CONVOY</span>
                       ) : (
                         <span className="dept-pill engg">SINGLE DEPT</span>
                       )}

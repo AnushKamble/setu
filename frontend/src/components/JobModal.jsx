@@ -1,4 +1,5 @@
 import React from 'react'
+import { AlertTriangle, X } from 'lucide-react'
 
 export default function JobModal({ job, onClose }) {
   if (!job) return null
@@ -24,8 +25,9 @@ export default function JobModal({ job, onClose }) {
                 {job.department}
               </span>
               {job.statutory_deadline_minute && (
-                <span style={{ fontSize: '11px', color: 'var(--accent-rose)', fontWeight: 800 }}>
-                  🚨 STATUTORY
+                <span style={{ fontSize: '11px', color: 'var(--accent-rose)', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <AlertTriangle size={11} />
+                  <span>STATUTORY</span>
                 </span>
               )}
             </div>
@@ -39,13 +41,14 @@ export default function JobModal({ job, onClose }) {
               background: 'transparent',
               border: 'none',
               color: 'var(--text-muted)',
-              fontSize: '22px',
               cursor: 'pointer',
               padding: '4px 8px',
-              borderRadius: '6px'
+              borderRadius: '6px',
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
-            ✕
+            <X size={18} />
           </button>
         </div>
 

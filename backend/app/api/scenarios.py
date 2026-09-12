@@ -15,6 +15,8 @@ from backend.app.models.railway import (
     DepartmentResource,
 )
 
+from backend.app.api.plans import invalidate_plan_caches, run_baseline_plan, run_optimized_plan
+
 router = APIRouter(prefix="", tags=["Scenarios & Network"])
 
 
@@ -34,6 +36,9 @@ def run_seed_scenario(req: SeedRequest, db: Session = Depends(get_db)):
     """Seed the database with chosen scenario and return summary metrics."""
     try:
         summary = seed_database(scenario_name=req.scenario_name, seed=req.seed, db=db)
+        invalidate_plan_caches()
+        run_baseline_plan(db=db)
+        run_optimized_plan(db=db)
         return summary
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -126,4 +131,22 @@ def get_corridor_windows(
             "traffic_impact_tier": w.traffic_impact_tier,
         }
         for w in windows
+    ]
+
+
+@router.get("/sections")
+def get_sections(db: Session = Depends(get_db)):
+    """Retrieve all corridor track sections."""
+    sections = db.query(Section).all()
+    return [
+        {
+            "id": s.id,
+            "name": s.name,
+            "division": s.division,
+            "track_type": s.track_type,
+            "length_km": s.length_km,
+            "max_speed_kmh": s.max_speed_kmh,
+            "adjacent_section_ids": s.adjacent_section_ids or [],
+        }
+        for s in sections
     ]

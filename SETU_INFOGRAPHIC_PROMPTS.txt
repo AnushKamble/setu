@@ -1,0 +1,276 @@
+====================================================================================================
+SETU (SYSTEM FOR ENHANCED TRACK UTILIZATION) — SIH 2026 (PS: SIH26027)
+HIGHLY SPECIALIZED INFOGRAPHIC & VISUAL ASSET PROMPT ENGINEERING SUITE
+====================================================================================================
+Author: SETU System Architecture & Product Strategy Team
+Target Use: Generative AI Visual Models (Midjourney v6, DALL-E 3, FLUX.1 Pro, Ideogram 2.0, or Vector Design Engines)
+Strict Compliance: SIH 2026 Evaluation Standards & Indian Railways Operational Norms
+Output Target: 16:9 Widescreen High-Resolution Operational Schematics (Dark Slate Enterprise UI Style)
+
+====================================================================================================
+SECTION 1: GLOBAL CONTEXT SCENARIO & SYSTEM DIRECTIVE (UNIVERSAL PRE-PROMPT)
+====================================================================================================
+Every infographic generated for Project SETU must strictly represent authentic Indian Railways (IR)
+corridor operations. The software is an Integrated Multi-Department Joint Possession Planning Decision
+Support Engine for Civil Engineering (P-Way/Track), Traction Distribution (TRD/OHE Electrical), and
+Signalling & Telecommunication (S&T).
+
+[SYSTEM DIRECTIVE]:
+"You are an elite principal technical illustrator, transportation operations visualization designer,
+and industrial UI architect specialized in mission-critical railway telemetry and command control.
+You are generating high-precision technical vector infographics for an enterprise decision-support
+system deployed on Indian Railways 1676mm Broad Gauge high-density arterial trunk routes (Delhi-Kanpur corridor).
+Your visual output must look like mission-critical dispatch operations software (similar to Thales,
+Siemens RailSys, or Alstom Iconis), NOT a consumer app, NOT marketing fluff, and NOT science fiction."
+
+[STRICT NEGATIVE DIRECTIVES / WHAT NEVER TO GENERATE]:
+- DO NOT generate futuristic floating bullet trains, sci-fi monorails, hyperloops, or hovertrains.
+- DO NOT generate passenger smartphone booking apps, QR ticketing, platform crowds, or food delivery.
+- DO NOT generate generic AI metaphors: glowing neon brains, robot android hands, floating neural meshes, or magic wands.
+- DO NOT generate cartoonish or hand-drawn sketches, watercolor, or fantasy aesthetics.
+- DO NOT generate incorrect railway infrastructure: track must be authentic dual-line ballasted track with 25 kV AC overhead catenary masts (OHE portal structures), concrete sleepers, and electronic signalling relay huts.
+- DO NOT depict trackmen working directly under live catenary wires without visible OHE de-energization grounding equipment.
+- DO NOT use low-contrast pastel colors. Adhere strictly to the defined Industrial Slate design palette.
+
+[GLOBAL DESIGN SPECIFICATION & COLOR TOKENS]:
+- Canvas Background: Deep Obsidian Slate (#0A1128 or #0F172A)
+- Container Surface: Industrial Slate Panel (#1E293B) with 1px hairline border (#334155)
+- Text Color: Crisp Pure White (#F8FAFC) for headers; Cool Slate (#94A3B8) for telemetry metadata
+- Department Color 1 (Civil Engineering / P-Way): Safety Ochre / Track Yellow (#F59E0B)
+- Department Color 2 (Traction Distribution / TRD): Electric High-Voltage Cyan (#06B6D4)
+- Department Color 3 (Signalling & Telecom / S&T): Rail Signal Emerald Green (#10B981)
+- SETU Unified Shadow Convoy Accent: High-Tech Precision Sky Blue (#3B82F6)
+- Safety Gate / Strict Boundary: Security Amber-Gold (#D97706) and Hard Barrier Red (#EF4444)
+
+====================================================================================================
+PROMPT 1: SLIDE 1 HERO INFOGRAPHIC — DUAL-STATE CORRIDOR CONSOLIDATION GLYPH
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_Corridor_Consolidation_Glyph
+[PURPOSE]: Appears on Slide 1 (Title Page). Visually explains within 3 seconds why SETU exists:
+transforming three fragmented, isolated departmental track shutdowns into one unified, tightly coordinated
+"Shadow Convoy" possession window.
+
+[DETAILED PROMPT SPECIFICATION]:
+"An ultra-clean, minimalist, high-precision industrial vector schematic diagram showing a dual-state
+railway corridor possession timeline, presented on a dark slate background (#0A1128).
+
+LEFT STATE (Label: 'CURRENT PRACTICE: FRAGMENTED SILOED BLOCKS'):
+Three distinct horizontal timeline strips stacked vertically, each representing a separate department
+shutting down the same railway track at different times of day:
+- Top Strip (Color: Safety Ochre #F59E0B): Labeled 'Civil Engineering (CSM Tamping Machine)' — Time: 09:00 to 12:00 (180 min). Shows red hazard buffer zones before and after.
+- Middle Strip (Color: Electric Cyan #06B6D4): Labeled 'TRD (OHE Ladder Car Inspection)' — Time: 13:30 to 15:30 (120 min). Shows separate red buffer zones.
+- Bottom Strip (Color: Signal Green #10B981): Labeled 'S&T (Point Machine Overhaul)' — Time: 16:30 to 18:00 (90 min).
+Below Left State, a high-contrast red warning badge: 'Total Corridor Closure: 390 min | 3 Separate Traffic Halts | Capacity Loss: High'.
+
+CENTER CONVERGENCE ELEMENT:
+A sleek, glowing vector convergence bracket and chevron arrow in Precision Sky Blue (#3B82F6),
+labeled 'SETU CP-SAT BUNDLING ENGINE'.
+
+RIGHT STATE (Label: 'SETU INNOVATION: INTEGRATED SHADOW CONVOY'):
+A single, elegant, consolidated horizontal possession timeline window (Time: 11:00 to 14:30, 210 min):
+- Inside this single block window, all three department work strips are nested concurrently and spatially separated:
+  * Top sub-lane: Engineering Track Machine operating between Km 102.0 and 104.5.
+  * Middle sub-lane: TRD Catenary Ladder Car operating between Km 102.5 and 104.0 under certified power block.
+  * Bottom sub-lane: S&T Point Testing operating at Km 104.2 interlocking crossover.
+Below Right State, a glowing emerald green metric chip: '1 Unified Block Window: 210 min | Saved: 180 min Line Capacity | Safety Margin: 100% Preserved'.
+
+STYLE & AESTHETIC:
+Technical telemetry diagram, vector graphic style, crisp linear edges, ISO 9001 industrial operations aesthetic, no gradients, clean typography, dark theme UI, aspect ratio 16:9, 8k resolution, flat design with hairline borders."
+
+====================================================================================================
+PROMPT 2: SLIDE 2 HERO INFOGRAPHIC — SPATIO-TEMPORAL BEFORE-AND-AFTER CORRIDOR STRIP MAP
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_SpatioTemporal_BeforeAfter_StripMap
+[PURPOSE]: Appears on Slide 2 (Proposed Solution). Demonstrates the physical geometry of railway
+possession planning across track distance (Kilometers) and time (Hours), contrasting triple disjoint
+closures with a synchronized multi-machine Shadow Convoy.
+
+[DETAILED PROMPT SPECIFICATION]:
+"A comprehensive 2D railway operational telemetry strip-map and space-time matrix diagram, dark theme
+(#0F172A), contrasting traditional siloed railway possession planning against the SETU Joint Shadow Convoy.
+
+TOP PANEL (BEFORE: SILOED DEPARTMENTS):
+A Cartesian grid where the X-axis is Distance in Kilometers (Km 100.0 to Km 110.0, marked with authentic Indian
+railway masts and signals) and the Y-axis is Time of Day (06:00 to 22:00).
+- Red Block 1 at 08:30 (Km 102.0 to 105.0): Labeled 'Engineering BCM Ballast Cleaner' shutting down Up-Line. Two scheduled express passenger trains (shown as angled dashed red delay lines) are stopped at outer home signals, waiting for clearance.
+- Red Block 2 at 13:00 (Km 103.0 to 106.0): Labeled 'TRD OHE Wiring Wagon' shutting down the exact same Up-Line again 4 hours later. Freight rake delayed in loop line.
+- Red Block 3 at 17:30 (Km 104.0 to 105.5): Labeled 'S&T Crossover Interlocking Testing' shutting the section a third time.
+Text callout box (Muted Red #EF4444): 'Bottleneck: Repeated section clearances, duplicate speed restrictions, 14.2 hours of compounded network congestion'.
+
+BOTTOM PANEL (AFTER: SETU SHADOW CONVOY):
+The exact same distance-time grid (Km 100.0 to 110.0, 06:00 to 22:00):
+- A single synchronized emerald/cyan/blue multi-layer possession envelope scheduled precisely during a natural timetable headway margin between 11:15 and 14:45 (210 min).
+- Inside this single envelope, three distinct machine envelopes are visualized with clear spatial safety buffers:
+  1. Heavy yellow-striped Track Tamping Machine (Km 102.0 to 103.8).
+  2. Cyan-highlighted TRD OHE Tower Wagon (Km 103.9 to 104.8) with an active de-energized electrical zone indicator (25 kV Isolated).
+  3. Green-highlighted S&T Ground Crew at Junction Km 105.0.
+- Passenger trains (smooth solid blue diagonal lines) glide continuously before 11:15 and after 14:45 with zero unscheduled signal stops.
+Text callout box (Signal Green #10B981): 'SETU Result: 3 Work Orders Executed in 1 Window | Zero Train Cancellations | 180 Minutes Track Time Returned to Traffic'.
+
+STYLE & AESTHETIC:
+Authentic railway dispatch string chart / Marey diagram hybrid, crisp vector grids, clean technical sans-serif annotations, high-contrast dark telemetry theme, zero photographic noise, ultra-sharp vector details."
+
+====================================================================================================
+PROMPT 3: SLIDE 3 HERO INFOGRAPHIC — MULTI-STAGE OPTIMIZATION & DETERMINISTIC SAFETY GATE PIPELINE
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_Optimization_Pipeline_SafetyGate
+[PURPOSE]: Appears on Slide 3 (Technical Approach). Proves architectural rigor by illustrating how
+ML duration forecasting, Google OR-Tools CP-SAT combinatorial optimization, and an Independent
+Deterministic Safety Validator work together in a strict four-stage pipeline.
+
+[DETAILED PROMPT SPECIFICATION]:
+"An ultra-detailed technical systems architecture diagram illustrating the SETU block optimization pipeline,
+designed in an industrial operations software aesthetic on a dark slate background (#0A1128).
+
+HORIZONTAL 4-STAGE PIPELINE (Left to Right with clean data flow connectors):
+
+STAGE 1: MULTI-DEPARTMENT INGESTION & FEATURE ENGINEERING (#1E293B Card)
+- Inputs: Civil Engineering P-Way maintenance orders, TRD Catenary inspection orders, S&T Interlocking orders, plus IR NTES Passenger Timetables and FOIS Freight Schedules.
+- Engine Module: Latent-Noise Duration Variance Estimator (FastAPI microservice).
+- Output: Standardized Work Demand Ledger with priority penalty scores.
+
+STAGE 2: COMBINATORIAL OPTIMIZATION CORE — GOOGLE OR-TOOLS CP-SAT (#1E293B Card with Blue Header #3B82F6)
+- Diagram showing multi-dimensional interval scheduling and spatial bin-packing:
+  * Decision Variables: IntervalVar(Task_i, start, end, duration).
+  * Objective Function: Minimize [Sum(Track Occupancy Cost) + Sum(Task Deferral Penalty) + Sum(Train Headway Interference)].
+  * Solver Engine Badge: 'Google OR-Tools CP-SAT Solver (SAT-Based Constraint Programming)'.
+
+STAGE 3: THE INDEPENDENT DETERMINISTIC SAFETY GATE (HERO ELEMENT — Centered with Glowing Amber/Red Border)
+- A reinforced, impermeable security firewall barrier between Stage 2 and Stage 4.
+- Labeled: 'ZERO-HALLUCINATION DETERMINISTIC SAFETY VALIDATOR (G&SR Chapter XV)'.
+- Three distinct rule verification modules inside the gate:
+  1. 'Spatial Separation Buffer Check': Min 500m separation between heavy track machines and ground crews.
+  2. 'OHE Power Isolation Verification': Guarantees 25kV traction power cut spans the entire physical envelope.
+  3. 'Passenger Train Headway Cushion': Enforces mandatory 15-minute buffer before scheduled high-speed rakes.
+- Subtitle: 'Independent Python Rulebook Engine — Absolute Veto Power — Zero ML Overrides Permitted'.
+
+STAGE 4: OPERATIONAL DISPATCH & FIELD ARTIFACTS (#1E293B Card with Green Header #10B981)
+- Outputs generated:
+  * Station Master Joint Block Authorization Notices (FOIS/COA format).
+  * Dynamic Marey Train-Distance String Charts.
+  * Temporary Speed Restriction (TSR) Bulletins.
+  * Engineering Machine Crew Roster Slips.
+
+STYLE & AESTHETIC:
+Enterprise systems engineering flowchart, isometric / orthographic vector presentation, crisp container cards with 1px border lines, dark mode UI with high contrast, precise arrows with glowing data packet dots, technical typography."
+
+====================================================================================================
+PROMPT 4: SLIDE 4 HERO INFOGRAPHIC — OPERATIONAL FEASIBILITY & DYNAMIC REPLANNING MATRIX
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_Feasibility_DynamicReplanning_Matrix
+[PURPOSE]: Appears on Slide 4 (Feasibility and Viability). Conveys how SETU manages real-world operational
+vulnerabilities: data silos, mathematical infeasibility during peak congestion, and real-time train disruptions.
+
+[DETAILED PROMPT SPECIFICATION]:
+"An enterprise-grade operational risk and dynamic resilience matrix infographic for railway corridor management,
+rendered in an industrial command center telemetry format on dark navy slate (#0F172A).
+
+LAYOUT STRUCTURE:
+A 3-row, 3-column structured comparative grid with rounded slate cards (#1E293B) and illuminated border accents:
+
+ROW 1: DATA AVAILABILITY & LEGACY INTEGRATION
+- Left (Challenge): 'Legacy Data Silos & Restricted APIs' — Visual icon of isolated database silos (TMS, COA, SMMS).
+- Center (SETU Architectural Mitigation): 'Universal Schema Ingestion Adapter' — Diagram showing schema normalization accepting standard GTFS, CSV, and REST JSON payloads calibrated on Indian Railways RDSO formats.
+- Right (Feasibility Status Badge): 'FEASIBLE & TESTED (Green #10B981)' — 'Operates offline or online; zero dependency on direct write APIs'.
+
+ROW 2: MATHEMATICAL PEAK-HOUR INFEASIBILITY
+- Left (Challenge): 'Congestion Choke / Infeasible Window' — Visual of zero gap between dense train paths.
+- Center (SETU Architectural Mitigation): 'Automated Tiered Relaxation Hierarchy' — Diagram showing 3-step graceful degradation: Step 1 Softens buffer margins; Step 2 Defers lowest-priority routine inspection with full audit trail; Step 3 Preserves hard safety invariants.
+- Right (Feasibility Status Badge): 'ROBUST & PROVEN (Green #10B981)' — 'Guarantees solvable fallback plan; zero engine lockups'.
+
+ROW 3: REAL-TIME TRAIN DELAYS & SECTION DISRUPTIONS
+- Left (Challenge): 'Unplanned 45-Min Freight Delay' — Diagram of a delayed train colliding with a scheduled block.
+- Center (SETU Architectural Mitigation): 'Warm-Start 1-Hop Cascade Replanner' — Visual showing localized dynamic shifting of affected block window in under 500 milliseconds without restarting network-wide optimization.
+- Right (Feasibility Status Badge): '<500ms LATENCY (Electric Cyan #06B6D4)' — 'Real-time reactive rescheduling verified in simulation'.
+
+LOWER HORIZONTAL BANNER:
+A sleek 3-stage adoption roadmap:
+[Phase 1: Read-Only Section Controller Advisory Mode] -> [Phase 2: Controlled Double-Line Division Pilot] -> [Phase 3: Automated COA/TMS Bi-Directional Link].
+
+STYLE & AESTHETIC:
+Mission-critical systems dashboard, clean vector iconography, high-contrast traffic-light status chips, technical sans-serif typography, dark slate background, no clutter, 16:9 widescreen composition."
+
+====================================================================================================
+PROMPT 5: SLIDE 5 HERO INFOGRAPHIC — CORRIDOR CAPACITY RECOVERY & TRIPLE ROI DASHBOARD
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_Impact_CorridorCapacity_ROIDashboard
+[PURPOSE]: Appears on Slide 5 (Impact and Benefits). Delivers undeniable numerical proof of operational,
+economic, and environmental returns, benchmarked on the 433.5 km Delhi-Kanpur high-density corridor.
+
+[DETAILED PROMPT SPECIFICATION]:
+"A high-impact executive operations analytics dashboard infographic showcasing quantified railway performance gains,
+rendered in an ultra-clean industrial dark mode palette (#0A1128 background, #1E293B telemetry panels).
+
+TOP BANNER / BENCHMARK CALIBRATION:
+A prominent high-contrast subtitle chip:
+'BENCHMARKED ON 433.5 KM ARTERIAL TRUNK CORRIDOR (DELHI–KANPUR | 140+ TRAINS/DAY | 18 MULTI-DEPT WORK ORDERS)'
+
+HERO METRICS ROW (4 Large Illuminated Stat Cards):
+1. Card 1 (Accent: Industrial Ochre #F59E0B):
+   - Huge Numeral: '-38.9%'
+   - Label: 'TRACK POSSESSION OCCUPANCY'
+   - Micro-annotation: 'Total downtime reduced from 2,080 min to 1,270 min across corridor'.
+2. Card 2 (Accent: Precision Sky Blue #3B82F6):
+   - Huge Numeral: '+810 MIN'
+   - Label: 'CORRIDOR CAPACITY RECOVERED'
+   - Micro-annotation: 'Returned to active revenue-earning freight and passenger paths'.
+3. Card 3 (Accent: Eco Emerald Green #10B981):
+   - Huge Numeral: '1,420 L'
+   - Label: 'DIESEL FUEL SAVED / DAY'
+   - Micro-annotation: 'Eliminated idle locomotive hours on held freight rakes (~3.8t CO2 reduction)'.
+4. Card 4 (Accent: Safety Cyan #06B6D4):
+   - Huge Numeral: 'ZERO'
+   - Label: 'SAFETY BUFFER BREACHES'
+   - Micro-annotation: '100% adherence to G&SR Chapter XV distance & power isolation rules'.
+
+BOTTOM SECTION — 3 STAKEHOLDER BENEFIT CARDS:
+- Card A (Operational Impact): Visual of on-time passenger trains, reduced secondary cascading delays, preserved section capacity.
+- Card B (Asset Utilization): Visual of heavy track tamping machine working alongside TRD tower wagon, maximizing output per machine possession hour.
+- Card C (Workforce Protection): Visual of physical track safety boundary with verified OHE de-energization lockout, eliminating inter-departmental miscommunication.
+
+STYLE & AESTHETIC:
+Modern executive dashboard, Bloomberg-terminal meets modern transport operations control center, glowing geometric metric counters, crisp vector borders, 16:9 aspect ratio, ultra-clear legibility from 10 feet away."
+
+====================================================================================================
+PROMPT 6: SLIDE 6 HERO INFOGRAPHIC — DOMAIN GROUNDING, RESEARCH CITATIONS & REPRODUCIBILITY HUB
+====================================================================================================
+[VISUAL ASSET NAME]: SETU_Research_Reproducibility_Matrix
+[PURPOSE]: Appears on Slide 6 (Research and References). Validates technical pedigree, cites authoritative
+railway operating standards, and displays a verified reproducibility panel for jury cross-examination.
+
+[DETAILED PROMPT SPECIFICATION]:
+"A clean, academic-industrial hybrid reference architecture and verification infographic, dark slate
+theme (#0F172A), highlighting the authentic domain research, literature grounding, and open codebase
+supporting Project SETU.
+
+TOP SECTION — THREE THEMATIC RESEARCH PILLARS (3 Structured Slate Panels):
+
+PILLAR 1: RAILWAY DOMAIN & STATUTORY SAFETY STANDARDS
+- Icon: Official Indian Railways Emblem / Track Gauge Schematic.
+- Citation 1: 'Indian Railways General & Subsidiary Rules (G&SR) — Chapter XV: Rules for Working of Trains on Temporary Single Line and Engineering Block Clearances'.
+- Citation 2: 'RDSO Comprehensive Guidelines on Mechanized Track Maintenance & Track Machine Working Norms (Indian Railways Institute of Civil Engineering)'.
+
+PILLAR 2: MATHEMATICAL OPTIMIZATION & SCHEDULING THEORY
+- Icon: Combinatorial Matrix / Constraint Logic Symbol.
+- Citation 1: 'Google OR-Tools CP-SAT Solver: Advanced Constraint Programming with Boolean Satisfiability Engines (L. Perron & F. Didier, Operations Research)'.
+- Citation 2: 'Periodic Timetable Conflict Resolution and Dynamic Rescheduling in Dense Railway Networks (Caimi, Fuchsberger, Burkolter, ETH Zurich)'.
+
+PILLAR 3: OPEN RAILWAY DATA & SCHEMAS
+- Icon: Network Data Schema / Graph Node Symbol.
+- Citation 1: 'National Train Enquiry System (NTES) Public Passenger Timetable Feeds & Section Running Times'.
+- Citation 2: 'Freight Operations Information System (FOIS) Corridor Capacity & Headway Allocation Standards'.
+
+BOTTOM PANEL — CODEBASE VERIFICATION & REPRODUCIBILITY CARD:
+A prominent rectangular telemetry panel (#1E293B with electric cyan border #06B6D4):
+- Left Side: A sharply rendered, clean, high-contrast monochrome QR Code labeled 'SCAN TO INSPECT LIVE REPOSITORY, TEST RUNS & INTERACTIVE DEMO'.
+- Right Side: Verification Badges:
+  * Badge 1: '55 / 55 Unit & Integration Tests Passing (100% Pass Rate)'
+  * Badge 2: 'Python 3.11 CP-SAT Optimization Core | FastAPI Telemetry'
+  * Badge 3: 'Interactive Marey String Chart & Real-Time Disruption Simulator Included'
+  * Badge 4: 'Delhi–Kanpur 433.5 km Double-Line Corridor Benchmark Dataset Fully Reproducible'
+
+STYLE & AESTHETIC:
+Authoritative technical research presentation, high academic credibility, crisp typography, clean vector icons, professional dark mode UI, 16:9 widescreen layout."
+====================================================================================================
+END OF PROMPT ENGINEERING SUITE
+====================================================================================================

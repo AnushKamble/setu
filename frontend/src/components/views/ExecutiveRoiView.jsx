@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Coins, TrendingUp, Leaf, Zap, Train, Clock, Radio, ArrowRight } from 'lucide-react'
 
 export default function ExecutiveRoiView({
   onNavigate = () => {}
@@ -68,7 +69,7 @@ export default function ExecutiveRoiView({
             <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Annual Divisional Savings
             </span>
-            <span style={{ fontSize: '16px' }}>💰</span>
+            <Coins size={16} color="#34d399" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 800, color: '#34d399', marginTop: '6px', letterSpacing: '-0.5px' }}>
             ₹{summary?.annual_savings_crores || '18.42'} Crores
@@ -84,7 +85,7 @@ export default function ExecutiveRoiView({
             <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Punctuality Gain (Mail / Exp)
             </span>
-            <span style={{ fontSize: '16px' }}>📈</span>
+            <TrendingUp size={16} color="#38bdf8" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 800, color: '#38bdf8', marginTop: '6px', letterSpacing: '-0.5px' }}>
             +{summary?.punctuality_gain_pct || '4.2'}%
@@ -100,7 +101,7 @@ export default function ExecutiveRoiView({
             <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Annual Carbon Abatement
             </span>
-            <span style={{ fontSize: '16px' }}>🌱</span>
+            <Leaf size={16} color="#fbbf24" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 800, color: '#fbbf24', marginTop: '6px', letterSpacing: '-0.5px' }}>
             {summary?.annual_co2_avoided_tonnes?.toLocaleString() || '956'} Tonnes CO₂
@@ -116,7 +117,7 @@ export default function ExecutiveRoiView({
             <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               25kV Power Conserved
             </span>
-            <span style={{ fontSize: '16px' }}>⚡</span>
+            <Zap size={16} color="#c084fc" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 800, color: '#c084fc', marginTop: '6px', letterSpacing: '-0.5px' }}>
             {traction ? (traction.annual_kwh_saved / 1000000).toFixed(2) : '1.30'}M kWh/yr
@@ -286,8 +287,8 @@ export default function ExecutiveRoiView({
         gap: '14px'
       }}>
         <div className="card-surface" style={{ padding: '20px', background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.06) 0%, rgba(24, 24, 27, 0.5) 100%)', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '20px' }}>🚆</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+            <Train size={22} color="#34d399" />
             <div>
               <div style={{ fontSize: '14px', fontWeight: 800, color: '#34d399' }}>
                 Indian Railways Mission Net-Zero Carbon 2030
@@ -318,7 +319,7 @@ export default function ExecutiveRoiView({
 
         <div className="card-surface" style={{ padding: '20px', background: 'linear-gradient(180deg, rgba(56, 189, 248, 0.06) 0%, rgba(24, 24, 27, 0.5) 100%)', border: '1px solid rgba(56, 189, 248, 0.3)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '20px' }}>⏱️</span>
+            <Clock size={22} color="#38bdf8" />
             <div>
               <div style={{ fontSize: '14px', fontWeight: 800, color: '#38bdf8' }}>
                 Cascading Delay Compression Model
@@ -345,6 +346,51 @@ export default function ExecutiveRoiView({
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* 6. Executive Workflow Navigation Bar */}
+      <div style={{
+        marginTop: '6px',
+        padding: '16px 20px',
+        background: 'rgba(168, 85, 247, 0.08)',
+        border: '1px solid rgba(168, 85, 247, 0.25)',
+        borderRadius: '8px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '12px'
+      }}>
+        <div>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
+            Corridor Financial & ESG Ledger Audited
+          </div>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+            All metrics reconciled against Railway Board Net-Zero Carbon 2030 guidelines and WTT schedules.
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={() => onNavigate && onNavigate('dispatch')}
+            style={{
+              background: '#22c55e',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '9px 16px',
+              fontSize: '12px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <Radio size={14} />
+            <span>Field Crew Dispatcher</span>
+            <ArrowRight size={13} />
+          </button>
         </div>
       </div>
     </div>

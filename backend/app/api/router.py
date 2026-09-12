@@ -10,6 +10,8 @@ from backend.app.api.roi import router as roi_router
 from backend.app.api.kavach import router as kavach_router
 from backend.app.api.copilot import router as copilot_router
 from backend.app.api.custom_data import router as custom_data_router
+from backend.app.api.jobs import router as jobs_router
+from backend.app.api.trains import router as trains_router
 
 api_router = APIRouter()
 api_router.include_router(health_router)
@@ -23,3 +25,5 @@ api_router.include_router(roi_router)
 api_router.include_router(kavach_router)
 api_router.include_router(copilot_router)
 api_router.include_router(custom_data_router)
+api_router.include_router(jobs_router)
+api_router.include_router(trains_router)

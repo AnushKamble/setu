@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import { Search, X, AlertTriangle } from 'lucide-react'
 
 export default function MaintenanceView({ jobs = [], onSelectJob }) {
   const [deptFilter, setDeptFilter] = useState('ALL')
@@ -132,7 +133,7 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
       }}>
         {/* Search Input */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: '1', minWidth: '240px', maxWidth: '380px' }}>
-          <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>🔍</span>
+          <Search size={14} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
           <input
             type="text"
             placeholder="Search by Job ID, asset, type, or section..."
@@ -152,9 +153,9 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '11px' }}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
             >
-              ✕
+              <X size={12} />
             </button>
           )}
         </div>
@@ -163,40 +164,36 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
           {/* Department Pills */}
           <div style={{ display: 'flex', gap: '3px', background: 'var(--bg-input)', padding: '2px', borderRadius: '6px', border: '1px solid var(--border)' }}>
-            {[
-              { id: 'ALL', label: 'All Depts' },
-              { id: 'ENGINEERING', label: 'Engineering' },
-              { id: 'TRD', label: 'TRD' },
-              { id: 'S_AND_T', label: 'S&T' }
-            ].map(d => (
+            {['ALL', 'ENGINEERING', 'TRD', 'S_AND_T'].map(d => (
               <button
-                key={d.id}
-                onClick={() => setDeptFilter(d.id)}
+                key={d}
+                onClick={() => setDeptFilter(d)}
                 style={{
-                  background: deptFilter === d.id ? 'var(--accent-primary)' : 'transparent',
-                  color: deptFilter === d.id ? '#ffffff' : 'var(--text-secondary)',
+                  padding: '4px 10px',
+                  background: deptFilter === d ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                  color: deptFilter === d ? '#ffffff' : 'var(--text-muted)',
                   border: 'none',
-                  padding: '4px 9px',
                   borderRadius: '4px',
                   fontSize: '11px',
                   fontWeight: 600,
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
                 }}
               >
-                {d.label}
+                {d === 'ALL' ? 'All Depts' : d === 'S_AND_T' ? 'S&T' : d}
               </button>
             ))}
           </div>
 
-          {/* Statutory Filter Pill */}
+          {/* Statutory Filter Switch */}
           <div style={{ display: 'flex', gap: '3px', background: 'var(--bg-input)', padding: '2px', borderRadius: '6px', border: '1px solid var(--border)' }}>
             <button
               onClick={() => setStatutoryFilter('ALL')}
               style={{
-                background: statutoryFilter === 'ALL' ? '#27272a' : 'transparent',
-                color: statutoryFilter === 'ALL' ? '#ffffff' : 'var(--text-secondary)',
-                border: 'none',
                 padding: '4px 9px',
+                background: statutoryFilter === 'ALL' ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                color: statutoryFilter === 'ALL' ? '#ffffff' : 'var(--text-muted)',
+                border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
                 fontWeight: 600,
@@ -208,17 +205,21 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
             <button
               onClick={() => setStatutoryFilter('STATUTORY')}
               style={{
-                background: statutoryFilter === 'STATUTORY' ? 'rgba(239, 68, 68, 0.2)' : 'transparent',
-                color: statutoryFilter === 'STATUTORY' ? 'var(--accent-rose)' : 'var(--text-secondary)',
-                border: 'none',
                 padding: '4px 9px',
+                background: statutoryFilter === 'STATUTORY' ? 'rgba(239, 68, 68, 0.2)' : 'transparent',
+                color: statutoryFilter === 'STATUTORY' ? '#fca5a5' : 'var(--text-muted)',
+                border: 'none',
                 borderRadius: '4px',
                 fontSize: '11px',
                 fontWeight: 600,
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px'
               }}
             >
-              🚨 Statutory
+              <AlertTriangle size={11} />
+              <span>Statutory</span>
             </button>
           </div>
 
@@ -329,9 +330,13 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
                             fontWeight: 700,
                             fontSize: '10px',
                             padding: '2px 6px',
-                            borderRadius: '4px'
+                            borderRadius: '4px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
                           }}>
-                            🚨 Statutory
+                            <AlertTriangle size={10} />
+                            <span>Statutory</span>
                           </span>
                         ) : (
                           <span style={{ color: 'var(--text-muted)', fontSize: '11px' }}>
@@ -395,8 +400,9 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
                   {selectedJobDetail.department}
                 </span>
                 {selectedJobDetail.statutory_deadline_minute && (
-                  <span style={{ fontSize: '10px', fontWeight: 800, color: 'var(--accent-rose)', background: 'rgba(239, 68, 68, 0.12)', padding: '2px 6px', borderRadius: '4px' }}>
-                    🚨 STATUTORY
+                  <span style={{ fontSize: '10px', fontWeight: 800, color: 'var(--accent-rose)', background: 'rgba(239, 68, 68, 0.12)', padding: '2px 6px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <AlertTriangle size={10} />
+                    <span>STATUTORY</span>
                   </span>
                 )}
               </div>
@@ -411,14 +417,15 @@ export default function MaintenanceView({ jobs = [], onSelectJob }) {
                 background: 'transparent',
                 border: 'none',
                 color: 'var(--text-muted)',
-                fontSize: '18px',
                 cursor: 'pointer',
                 padding: '4px 8px',
-                borderRadius: '4px'
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center'
               }}
               title="Close inspection"
             >
-              ✕
+              <X size={16} />
             </button>
           </div>
 

@@ -1,3 +1,4 @@
+import { Radio, Phone, Send, CheckCircle2, AlertTriangle, MapPin, Volume2, ShieldCheck, X } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 
 export default function CrewDispatchView({
@@ -174,18 +175,18 @@ export default function CrewDispatchView({
     const targetPhone = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone
 
     const text = 
-`🚨 *INDIAN RAILWAYS DIVISIONAL CONTROL (NR-DLI)*
+`*INDIAN RAILWAYS DIVISIONAL CONTROL (NR-DLI)*
 *OFFICIAL POSSESSION & MOBILIZATION ORDER*
 ━━━━━━━━━━━━━━━━━━━━━━━
-📌 *Block ID:* ${currentBlock?.block_id || 'B01'}
-📍 *Section:* ${currentBlock?.section_id || 'NDLS - GZB'} (DN Track)
-⏱️ *Duration:* ${currentBlock?.duration_min || 180} mins (Window: ${currentBlock?.start_hhmm} - ${currentBlock?.end_hhmm} IST)
-👷 *Designated Gang:* ${activeCrew?.department || 'ENGINEERING'} • ${activeCrew?.role || 'P-Way'}
-👤 *Supervisor:* ${activeCrew?.supervisor_name || 'Ramesh Kumar (JE)'}
-🔑 *Safety Token / PTW:* ${activeCrew?.safety_token || 'IRPWM-807-ENG'}
-🛠️ *Assigned Machine:* ${activeCrew?.equipment || 'CSU Tamping Machine'}
+*Block ID:* ${currentBlock?.block_id || 'B01'}
+*Section:* ${currentBlock?.section_id || 'NDLS - GZB'} (DN Track)
+*Duration:* ${currentBlock?.duration_min || 180} mins (Window: ${currentBlock?.start_hhmm} - ${currentBlock?.end_hhmm} IST)
+*Designated Gang:* ${activeCrew?.department || 'ENGINEERING'} • ${activeCrew?.role || 'P-Way'}
+*Supervisor:* ${activeCrew?.supervisor_name || 'Ramesh Kumar (JE)'}
+*Safety Token / PTW:* ${activeCrew?.safety_token || 'IRPWM-807-ENG'}
+*Assigned Machine:* ${activeCrew?.equipment || 'CSU Tamping Machine'}
 ━━━━━━━━━━━━━━━━━━━━━━━
-⚠️ *MANDATORY SAFETY DIRECTIVES:*
+*MANDATORY SAFETY DIRECTIVES:*
 ${activeCrew?.notice_text || 'Deploy 3 detonators at 1200m. Verify banner flags.'}
 
 *DIGITAL MUSTER ACTION REQUIRED:*
@@ -227,7 +228,7 @@ _Generated via SETU Railway Traffic Management AI System_`
           accuracy: acc,
           timestamp: timeStr,
           source: 'DEVICE_HARDWARE_GPS',
-          geofenceStatus: '🟢 WITHIN SANCTIONED WORK ZONE (8.4m from track centerline)',
+          geofenceStatus: 'WITHIN SANCTIONED WORK ZONE (8.4m from track centerline)',
           note: `Captured from active device hardware (accuracy ±${acc}m)`
         })
 
@@ -255,7 +256,7 @@ _Generated via SETU Railway Traffic Management AI System_`
       accuracy: 3.5,
       timestamp: timeStr,
       source: 'TRACKBED_ALIGNMENT_SIMULATOR',
-      geofenceStatus: '🟢 WITHIN SANCTIONED WORK ZONE (10.2m from track centerline)',
+      geofenceStatus: 'WITHIN SANCTIONED WORK ZONE (10.2m from track centerline)',
       note
     })
 
@@ -303,7 +304,7 @@ _Generated via SETU Railway Traffic Management AI System_`
             }}
             title="Play authentic dual-tone railway dispatch alert tone (Web Audio API)"
           >
-            <span>🔊</span>
+            <Volume2 size={16} />
             <span>{audioFeedback ? 'Playing Siren...' : 'Test Audio Siren'}</span>
           </button>
 
@@ -324,7 +325,7 @@ _Generated via SETU Railway Traffic Management AI System_`
               cursor: 'pointer'
             }}
           >
-            <span>📱</span>
+            <Phone size={16} />
             <span>{showHandsetSimulator ? 'Hide Handset Simulator' : 'Open Handset Simulator'}</span>
           </button>
 
@@ -349,13 +350,11 @@ _Generated via SETU Railway Traffic Management AI System_`
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <div>✓ {broadcastNotification}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><CheckCircle2 size={14} /><span>{broadcastNotification}</span></div>
           <button
             onClick={() => setBroadcastNotification('')}
             style={{ background: 'none', border: 'none', color: '#34d399', cursor: 'pointer', fontWeight: 800 }}
-          >
-            ✕
-          </button>
+           aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
         </div>
       )}
 
@@ -416,7 +415,7 @@ _Generated via SETU Railway Traffic Management AI System_`
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '18px' }}>🎯</span>
+            <Radio size={18} color="#38bdf8" />
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-primary)' }}>
@@ -519,7 +518,7 @@ _Generated via SETU Railway Traffic Management AI System_`
               }}
               title="Test direct memo delivery to this number"
             >
-              📲 Test WhatsApp Now ▸
+              Test WhatsApp Now ▸
             </button>
           </div>
         )}
@@ -619,7 +618,7 @@ _Generated via SETU Railway Traffic Management AI System_`
               }}
               title="Simulates 100% digital muster check-in for all gang supervisors simultaneously"
             >
-              {musterCheckingAll ? 'Verifying Muster...' : '✓ 1-Click Check-In All Gangs'}
+              {musterCheckingAll ? 'Verifying Muster...' : '1-Click Check-In All Gangs'}
             </button>
 
             <button
@@ -638,7 +637,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 cursor: 'pointer'
               }}
             >
-              {broadcastLoading ? 'Transmitting Batch Orders...' : `🚀 1-Click Broadcast to All ${currentBlock?.crews?.length || 5} Supervisors`}
+              {broadcastLoading ? 'Transmitting Batch Orders...' : `1-Click Broadcast to All ${currentBlock?.crews?.length || 5} Supervisors`}
             </button>
           </div>
         </div>
@@ -659,25 +658,25 @@ _Generated via SETU Railway Traffic Management AI System_`
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', borderBottom: '1px solid #18181b', paddingBottom: '4px' }}>
               <span style={{ color: '#38bdf8', fontWeight: 800 }}>
-                📡 C-DOT RAILWAY GATEWAY DISPATCH TELEMETRY (LIVE TRANSMISSION LOG)
+                C-DOT RAILWAY GATEWAY DISPATCH TELEMETRY (LIVE TRANSMISSION LOG)
               </span>
               <button
                 onClick={() => setShowBroadcastLogs(false)}
                 style={{ background: 'none', border: 'none', color: '#a1a1aa', cursor: 'pointer', fontSize: '11px' }}
               >
-                ✕ Close Log
+                Close Log
               </button>
             </div>
             {broadcastLogs.map((log, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '2px 0', gap: '8px' }}>
                 <span style={{ color: log.is_evaluator_proxy ? '#fbbf24' : '#a1a1aa' }}>
-                  [{log.timestamp}] {log.is_evaluator_proxy ? '★ EVALUATOR PROXY' : 'CUG'}: {log.gang_id} ({log.supervisor})
+                  [{log.timestamp}] {log.is_evaluator_proxy ? '[EVALUATOR PROXY]' : 'CUG'}: {log.gang_id} ({log.supervisor})
                 </span>
                 <span style={{ color: 'var(--text-secondary)' }}>
                   Phone: {log.phone} • {log.channel}
                 </span>
                 <span style={{ color: '#34d399', fontWeight: 700 }}>
-                  ✓ {log.status} ({log.token})
+                  {log.status} ({log.token})
                 </span>
               </div>
             ))}
@@ -748,7 +747,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                       gap: '6px',
                       border: '1px solid rgba(56, 189, 248, 0.2)'
                     }}>
-                      <span>📍</span>
+                      <MapPin size={14} />
                       <span className="mono"><b>GPS:</b> {crew.gps_location}</span>
                     </div>
 
@@ -795,7 +794,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                         }}
                         title="Send this gang's notice to your WhatsApp"
                       >
-                        📲 WhatsApp
+                        WhatsApp
                       </button>
 
                       <button
@@ -812,7 +811,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                         }}
                         title="Check-in with live device GPS"
                       >
-                        📍 GPS
+                        GPS
                       </button>
 
                       <button
@@ -826,7 +825,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                           color: 'var(--text-primary)'
                         }}
                       >
-                        {crew.status === 'ON_SITE_BRIEFED' ? '✓ Mark Ready' : 'Simulate ▸'}
+                        {crew.status === 'ON_SITE_BRIEFED' ? 'Mark Ready' : 'Simulate ▸'}
                       </button>
                     </div>
                   </div>
@@ -872,8 +871,8 @@ _Generated via SETU Railway Traffic Management AI System_`
               <span style={{ color: '#10b981', fontWeight: 700 }}>5G NR-RAILNET</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ color: '#38bdf8', fontSize: '10px' }}>📍 GPS LOCKED</span>
-              <span style={{ color: '#e4e4e7', fontSize: '10px' }}>🔋 94%</span>
+              <span style={{ color: '#38bdf8', fontSize: '10px', display: 'inline-flex', alignItems: 'center', gap: '3px' }}><MapPin size={10} /> GPS LOCKED</span>
+              <span style={{ color: '#e4e4e7', fontSize: '10px' }}>BAT 94%</span>
               <button
                 onClick={() => setShowHandsetSimulator(false)}
                 style={{
@@ -886,9 +885,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                   marginLeft: '4px'
                 }}
                 title="Close handset"
-              >
-                ✕
-              </button>
+               aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
             </div>
           </div>
 
@@ -923,7 +920,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 }}
                 title="Replay alert chime"
               >
-                🔊 Siren
+                Siren
               </button>
             </div>
           </div>
@@ -950,7 +947,7 @@ _Generated via SETU Railway Traffic Management AI System_`
               alignItems: 'center',
               gap: '8px'
             }}>
-              <span style={{ fontSize: '16px' }}>🚨</span>
+              <AlertTriangle size={16} color="#ef4444" />
               <div>
                 <b style={{ color: '#fff' }}>MANDATORY MOBILIZATION ORDER</b>
                 <div style={{ fontSize: '10.5px' }}>Block ID: {currentBlock?.block_id} • Section: {currentBlock?.section_id}</div>
@@ -978,7 +975,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 "{currentBlock?.crews?.[0]?.notice_text}"
               </div>
               <div style={{ textAlign: 'right', marginTop: '6px', color: '#a8a29e', fontSize: '10px' }}>
-                Delivered 14:32 IST ✓✓
+                Delivered 14:32 IST
               </div>
             </div>
 
@@ -998,7 +995,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 {liveGpsState ? `${liveGpsState.lat}° N, ${liveGpsState.lng}° E` : '28.66920° N, 77.45380° E'}
               </div>
               <div style={{ color: '#a1a1aa', fontSize: '10px', marginTop: '2px' }}>
-                {liveGpsState?.geofenceStatus || '🟢 WITHIN TRACKBED SANCTIONED ZONE (KM 24.8)'}
+                {liveGpsState?.geofenceStatus || 'WITHIN TRACKBED SANCTIONED ZONE (KM 24.8)'}
               </div>
             </div>
           </div>
@@ -1028,7 +1025,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 boxShadow: '0 2px 6px rgba(2, 132, 199, 0.4)'
               }}
             >
-              {gpsLoading ? '📡 Transmitting Coordinates...' : '📍 Transmit Live GPS Check-In'}
+              {gpsLoading ? 'Transmitting Coordinates...' : 'Transmit Live GPS Check-In'}
             </button>
 
             <div style={{ display: 'flex', gap: '8px' }}>
@@ -1046,7 +1043,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                   cursor: 'pointer'
                 }}
               >
-                📲 Real WhatsApp
+                Real WhatsApp
               </button>
 
               <button
@@ -1063,7 +1060,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                   cursor: 'pointer'
                 }}
               >
-                ✓ Confirm Detonators
+                Confirm Detonators
               </button>
             </div>
           </div>
@@ -1097,7 +1094,7 @@ _Generated via SETU Railway Traffic Management AI System_`
                 gap: '10px'
               }}
             >
-              <span style={{ color: 'var(--accent-emerald)', fontWeight: 800, fontSize: '14px', marginTop: '1px' }}>✓</span>
+              <CheckCircle2 size={14} color="var(--accent-emerald)" />
               <div>
                 <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)' }}>{chk.label}</div>
                 <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '2px' }}>{chk.detail}</div>
